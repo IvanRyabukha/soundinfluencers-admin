@@ -1,0 +1,13 @@
+@use "../utils/variables" as vars;
+
+@mixin tablet {
+  @media (max-width: vars.$tablet) {
+    @content;
+  }
+}
+
+@mixin mobile {
+  @media (max-width: vars.$mobile) {
+    @content;
+  }
+}

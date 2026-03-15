@@ -1,0 +1,135 @@
+@use "@/app/styles/utils/variables" as vars;
+@use '@/app/styles/utils/breakpoints' as breakpoints;
+@use '@/app/styles/utils/mixins' as mixins;
+
+.button {
+  @include mixins.reset-button();
+  @include mixins.flex-center();
+
+  border-radius: vars.$radius-md;
+
+  font-size: var(--text-md);
+  font-weight: 400;
+  white-space: nowrap;
+  line-height: 20px;
+  user-select: none;
+
+  transition: background-color 320ms cubic-bezier(0.4, 0, 0.2, 1),
+  color 320ms cubic-bezier(0.4, 0, 0.2, 1),
+  border-color 320ms cubic-bezier(0.4, 0, 0.2, 1);
+
+  &:disabled {
+    cursor: not-allowed;
+  }
+
+  &:focus-visible {
+    outline: 2px solid rgba(0, 0, 0, 0.35);
+    outline-offset: 2px;
+  }
+
+  @include breakpoints.mobile {
+    width: 100%;
+  }
+}
+
+.primary {
+  background-color: var(--black-blue);
+  color: var(--white);
+
+  &:not(:disabled) {
+    @include mixins.hover {
+      background-color: var(--hover-button-1);
+    }
+
+    &:active {
+      background-color: var(--pressed-button-1);
+      color: #030922;
+    }
+  }
+
+  &:disabled {
+    background-color: var(--disabled-button-1);
+    color: var(--black-blue);
+  }
+}
+
+.secondary {
+  background-color: #ffffff;
+  color: #030922;
+  border: 1px solid #E7E8F1;
+
+  &:not(:disabled) {
+    @include mixins.hover {
+      background-color: #f3f3f3;
+    }
+
+    &:active {
+      background-color: rgba(32, 41, 52, 0.8);
+      color: #202934;
+    }
+  }
+
+  &:disabled {
+    background-color: #eceef0;
+    color: #515259;
+  }
+}
+
+.gradient {
+  background: var(--color-background-gradient);
+}
+
+.small {
+  padding-block: 8px;
+  border-radius: 8px;
+  width: 115px;
+  max-height: 38px;
+  font-size: var(--text-md);
+
+  @include breakpoints.tablet {
+    width: 76px;
+    height: 34px;
+  }
+}
+
+.medium {
+}
+
+.large {
+  width: 250px;
+  padding-block: 13px;
+
+  @include breakpoints.tablet {
+    padding-block: 11px;
+  }
+
+  @include breakpoints.mobile {
+    width: 100%;
+  }
+}
+
+
+.action {
+  height: 100%;
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+  padding: 0 12px;
+  gap: 4px;
+
+  border-radius: 8px;
+  border: 1px solid transparent;
+  background:
+    linear-gradient(#fff, #fff) padding-box,
+    linear-gradient(360deg, #cfefff 0%, #EBECFF 100%) border-box;
+
+  font-size: 15px;
+  white-space: nowrap;
+
+  @include breakpoints.tablet {
+    font-size: 14px;
+  }
+  @include breakpoints.mobile {
+    font-size: 13px;
+  }
+}

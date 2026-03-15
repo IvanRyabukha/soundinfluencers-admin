@@ -1,0 +1,107 @@
+@use '@/app/styles/utils/breakpoints' as breakpoints;
+@use '@/app/styles/utils/variables' as vars;
+
+.companyDetails {
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+
+  border-radius: vars.$radius-md;
+  border: 1px solid var(--white);
+  background-color: var(--light-blue);
+
+  @include breakpoints.tablet {
+    border-radius: vars.$radius-sm;
+    padding: 16px;
+    gap: 8px;
+  }
+  @include breakpoints.mobile {
+    padding: 12px;
+
+  }
+}
+
+.wrapper {
+  display: flex;
+  gap: 32px;
+
+  @include breakpoints.tablet {
+    gap: 8px;
+  }
+
+  @include breakpoints.mobile {
+    flex-direction: column;
+    gap: 4px;
+  }
+}
+
+.card {
+  flex: 1 0 0;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+
+  border-radius: vars.$radius-sm;
+  background-color: var(--white);
+
+  @include breakpoints.tablet {
+    border-radius: 8px;
+    padding: 12px;
+  }
+
+  @include breakpoints.mobile {
+    padding: 8px;
+  }
+}
+
+.row {
+  display: grid;
+  grid-template-columns: minmax(90px, 140px) 1fr;
+  column-gap: 24px;
+
+  align-items: start;
+  padding-block: 8px;
+
+  @include breakpoints.tablet {
+    grid-template-columns: minmax(90px, 102px) 1fr;
+    column-gap: 8px;
+    padding-block: 2px;
+  }
+
+  @include breakpoints.mobile {
+    grid-template-columns: minmax(72px, 91px) 1fr;
+  }
+}
+
+.label {
+  color: var(--gray-dark);
+  font-size: 16px;
+  font-weight: 400;
+
+  @include breakpoints.tablet {
+    font-size: 14px;
+  }
+
+  @include breakpoints.mobile {
+    font-size: 12px;
+  }
+}
+
+.value {
+  color: var(--gray-dark);
+  font-size: 16px;
+  font-weight: 500;
+
+  min-width: 0;
+  overflow-wrap: break-word;
+
+  @include breakpoints.tablet {
+    font-size: 14px;
+  }
+  @include breakpoints.mobile {
+    font-size: 12px;
+  }
+}
+

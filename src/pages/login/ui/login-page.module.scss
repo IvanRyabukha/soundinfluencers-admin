@@ -1,0 +1,19 @@
+@use "@/app/styles/utils/mixins" as mixins;
+@use '@/app/styles/utils/breakpoints' as breakpoints;
+
+.loginPage {
+  @include mixins.flex-center($direction: column);
+  padding-top: 64px;
+
+  @include breakpoints.tablet {
+    padding-top: 48px;
+  }
+  @include breakpoints.mobile {
+    padding-top: 32px;
+  }
+}
+
+.formContainer {
+  width: 100%;
+  max-width: 700px;
+}

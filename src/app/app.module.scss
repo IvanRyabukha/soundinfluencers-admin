@@ -1,0 +1,63 @@
+@use '@/app/styles/utils/breakpoints' as breakpoints;
+
+.app {
+  &::before,
+  &::after {
+    content: "";
+    position: fixed;
+    border-radius: 50%;
+    z-index: -9999;
+    opacity: 1;
+    filter: blur(200px);
+
+    @media screen and (max-width: 900px) {
+      filter: blur(100px);
+    }
+
+    @media screen and (max-width: 500px) {
+      filter: blur(50px);
+    }
+  }
+
+  &::before {
+    width: 1025px;
+    height: 1025px;
+    top: 0;
+    left: 0;
+    transform: translate(-60%, -65%);
+    background: radial-gradient(circle at center, #d6e6f9 40%, #ffffff 100%);
+  }
+
+  &::after {
+    width: 644px;
+    height: 644px;
+    bottom: 0;
+    right: 0;
+    transform: translate(50%, 50%);
+    background: radial-gradient(circle at center, #d6e6f9 40%, #ffffff 100%);
+  }
+
+  @include breakpoints.tablet {
+    &::before {
+      width: 700px;
+      height: 700px;
+    }
+
+    &::after {
+      width: 450px;
+      height: 450px;
+    }
+  }
+
+  @include breakpoints.mobile {
+    &::before {
+      width: 420px;
+      height: 420px;
+    }
+
+    &::after {
+      width: 280px;
+      height: 280px;
+    }
+  }
+}

@@ -1,0 +1,53 @@
+@use '@/app/styles/utils/mixins' as mixins;
+@use '@/app/styles/utils/breakpoints' as brakpoints;
+
+.loginForm {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 48px;
+
+  @include brakpoints.tablet {
+    gap: 24px;
+  }
+
+  @include brakpoints.mobile {
+    gap: 16px;
+  }
+}
+.head {
+  @include mixins.flex-center($direction: column);
+  gap: 8px;
+  text-align: center;
+}
+.title {
+  font-size: var(--text-xxl);
+  font-weight: 400;
+}
+.subtitle {
+  font-size: var(--text-lg);
+  font-weight: 400;
+}
+
+.fields {
+  max-width: 600px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  gap: 24px;
+
+  @include brakpoints.tablet {
+    gap: 16px;
+  }
+}
+
+.bottom {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  @include brakpoints.mobile {
+    margin-top: 24px;
+  }
+}

@@ -1,0 +1,36 @@
+@use '@/app/styles/utils/breakpoints' as breakpoints;
+
+.welcome {
+  height: 183px;
+  padding: 24px;
+
+  display: flex;
+  align-items: flex-end;
+  align-self: stretch;
+
+  background-color: var(--light-blue);
+  border-radius: 16px;
+  border: 1px solid var(--white);
+
+  @include breakpoints.tablet {
+    height: 140px;
+    padding: 16px;
+  }
+  @include breakpoints.mobile {
+    height: 60px;
+    padding: 16px 12px;
+  }
+}
+
+.title {
+  font-size: 32px;
+  font-weight: 400;
+  line-height: 1.1;
+
+  @include breakpoints.tablet {
+    font-size: 24px;
+  }
+  @include breakpoints.mobile {
+    font-size: 20px;
+  }
+}

@@ -1,0 +1,29 @@
+@use '@/app/styles/utils/breakpoints' as breakpoints;
+@use '@/app/styles/utils/mixins' as mixins;
+
+.button {
+  margin-left: auto;
+  width: max-content;
+  height: 34px;
+  @include mixins.reset-button();
+  @include mixins.flex-center($isInline: true);
+  flex-shrink: 0;
+
+
+  padding: 0 12px;
+  gap: 8px;
+  border-radius: 8px;
+  border: 1px solid var(--blue);
+
+
+  font-size: 14px;
+  color: var(--gray-dark);
+  white-space: nowrap;
+
+  transition: background var(--transition-base);
+  will-change: transform;
+
+  &--active {
+    background: var(--gradient-2);
+  }
+}

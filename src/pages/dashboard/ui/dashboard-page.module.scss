@@ -1,0 +1,45 @@
+@use '@/app/styles/utils/breakpoints' as breakpoints;
+
+.dashboardPage {
+  padding-block: 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+
+  @include breakpoints.tablet {
+    padding-block: 16px;
+    gap: 32px;
+  }
+  @include breakpoints.mobile {
+    gap: 24px;
+  }
+}
+
+.top {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+
+  @include breakpoints.mobile {
+    gap: 16px;
+  }
+}
+
+.sections {
+  display: flex;
+  align-items: stretch;
+  gap: 24px;
+
+  @include breakpoints.tablet {
+    gap: 16px;
+  }
+  @include breakpoints.mobile {
+    flex-direction: column;
+    gap: 24px;
+  }
+}
+
+.footer {
+  display: flex;
+  justify-content: center;
+}

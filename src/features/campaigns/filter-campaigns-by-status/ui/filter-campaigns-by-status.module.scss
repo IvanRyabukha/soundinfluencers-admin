@@ -1,0 +1,52 @@
+@use "@/app/styles/utils/mixins" as mixins;
+@use '@/app/styles/utils/breakpoints' as breakpoints;
+
+.filterBar {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  height: 100%;
+
+  border-radius: 8px;
+  border: 1px solid transparent;
+  background:
+    linear-gradient(#fff, #fff) padding-box,
+    linear-gradient(360deg, #cfefff 0%, #EBECFF 100%) border-box;
+}
+
+.button {
+  @include mixins.reset-button();
+  @include mixins.flex-center();
+  height: 100%;
+  gap: 8px;
+  padding: 0 16px;
+
+  &:first-child {
+    border-top-left-radius: 8px;
+    border-bottom-left-radius: 8px;
+  }
+
+  &:last-child {
+    border-top-right-radius: 8px;
+    border-bottom-right-radius: 8px;
+  }
+
+  &:not(:last-child) {
+    border-right: 1px solid var(--gradient);
+  }
+}
+
+.indicator {
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: var(--blue);
+  transform: scale(0);
+  transition: transform var(--transition-base);
+  will-change: transform;
+
+  &--active {
+    transform: scale(1);
+  }
+}

@@ -1,0 +1,47 @@
+@use '@/app/styles/utils/mixins' as mixins;
+@use '@/app/styles/utils/breakpoints' as breakpoints;
+
+.action {
+  max-width: 600px;
+  width: 100%;
+
+  padding: 12px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-radius: 16px;
+  background-color: var(--white);
+  border: 1px solid var(--gradient);
+
+  font-size: 20px;
+  color: var(--gray-dark);
+
+  transition: box-shadow var(--transition-base);
+
+  @include mixins.hover {
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+  }
+
+  @include breakpoints.tablet {
+    max-width: 100%;
+    padding: 11px 16px;
+    font-size: 16px;
+  }
+  @include breakpoints.mobile {
+    padding: 6px 12px;
+  }
+}
+
+.icon {
+  @include mixins.flex-center();
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+
+  background: var(--linear-gradient);
+
+  @include breakpoints.tablet {
+    width: 32px;
+    height: 32px;
+  }
+}
