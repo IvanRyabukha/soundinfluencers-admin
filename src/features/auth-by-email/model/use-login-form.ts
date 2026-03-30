@@ -12,8 +12,8 @@ export const useLoginForm = () => {
   const methods = useForm<TLoginFormValues>({
     resolver: zodResolver(loginFormSchema),
     defaultValues: {
-      email: "nazar@admin.com",
-      password: "x97&&vM0KUTZX:t^yr4k8!+r&s{2h*I;",
+      email: "",
+      password: "",
     },
   });
 
