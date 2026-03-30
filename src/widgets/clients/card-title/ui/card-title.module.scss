@@ -1,0 +1,20 @@
+@use '@/app/styles/utils/breakpoints' as breakpoints;
+
+.title {
+  padding: 8px 0;
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid var(--blue);
+
+  font-size: 20px;
+  font-weight: 400;
+
+  @include breakpoints.tablet {
+    padding: 4px 0;
+    font-size: 16px;
+  }
+  @include breakpoints.mobile {
+    padding: 2px 0;
+    font-size: 14px;
+  }
+}

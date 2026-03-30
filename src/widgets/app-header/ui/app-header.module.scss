@@ -1,0 +1,46 @@
+@use "@/app/styles/utils/mixins" as mixins;
+@use '@/app/styles/utils/breakpoints' as breakpoints;
+
+.appHeader {
+  width: 100%;
+  position: relative;
+  z-index: 100;
+
+  @include mixins.glass-host();
+
+  &::before {
+    @include mixins.glass-layer(
+            $background-opacity: 0.44,
+            $blur: 4px,
+            $border-opacity: 0.24,
+            $shadow-intensity: 0.06,
+            $highlight-opacity: 0.18,
+            $glow-opacity: 0.05
+    );
+
+    z-index: 0;
+  }
+
+  &::after {
+    @include mixins.glass-shine($opacity: 0.10);
+    z-index: 1;
+  }
+
+  &Inner {
+    max-height: 72px;
+    padding-block: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    @include mixins.glass-content(2);
+
+    @include breakpoints.tablet {
+      padding-block: 8px;
+    }
+    @include breakpoints.mobile {
+      max-height: 56px;
+      padding-block: 8px;
+    }
+  }
+}

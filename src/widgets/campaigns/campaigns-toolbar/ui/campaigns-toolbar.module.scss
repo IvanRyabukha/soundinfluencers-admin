@@ -1,0 +1,19 @@
+@use "@/app/styles/utils/mixins" as mixins;
+@use '@/app/styles/utils/breakpoints' as breakpoints;
+
+.toolbar {
+  display: flex;
+  align-items: stretch;
+  height: 40px;
+  gap: 24px;
+}
+
+.left {
+  display: flex;
+  height: 100%;
+  gap: 24px;
+}
+
+.search {
+  padding: 8px 16px 8px 48px;
+}

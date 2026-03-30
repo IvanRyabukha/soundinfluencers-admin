@@ -1,0 +1,104 @@
+@use '@/app/styles/utils/breakpoints' as breakpoints;
+@use '@/app/styles/utils/mixins' as mixins;
+
+.tableWrapper {
+  width: 100%;
+}
+
+.scrollWrapper {
+  width: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding-bottom: 16px;
+  -webkit-overflow-scrolling: touch;
+
+  box-sizing: border-box;
+
+  &::-webkit-scrollbar {
+    height: 8px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: var(--light-blue);
+    border-radius: 8px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: var(--black-blue);
+    border-radius: 8px;
+  }
+}
+
+.tableInner {
+  position: relative;
+  min-width: 1220px;
+  overflow: hidden;
+  border: 1px solid var(--blue);
+  border-radius: 8px;
+  background: var(--white);
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed;
+}
+
+.tbody {
+  background: var(--white);
+}
+
+.th {
+  background: var(--light-blue);
+  border-bottom: 1px solid var(--blue);
+  &:not(:first-child) {
+    border-left: 1px solid var(--blue);
+  }
+}
+
+.headCell {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 50px;
+
+  white-space: normal;
+  word-break: break-word;
+  font-size: 15px;
+  font-weight: 400;
+}
+
+.tr {
+  //transition: background-color var(--transition-base);
+  //
+  //@include mixins.hover {
+  //  background-color: var(--light-blue);
+  //}
+}
+
+.td {
+  &:not(:first-child) {
+    border-left: 1px solid var(--gradient);
+  }
+}
+
+.footer {
+  background: var(--light-blue);
+  height: 38px;
+  width: 100%;
+  border-top: 1px solid var(--blue);
+}
+
+// styles for overlay
+.overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(2px);
+}

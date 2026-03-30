@@ -1,0 +1,29 @@
+@use "../utils/breakpoints" as breakpoints;
+
+:root {
+  --text-sm: 14px;
+  --text-md: 16px;
+  --text-lg: 20px;
+  --text-xl: 36px;
+  --text-xxl: 48px;
+}
+
+@include breakpoints.tablet {
+  :root {
+    --text-sm: 13px;
+    --text-md: 15px;
+    --text-lg: 16px;
+    --text-xl: 24px;
+    --text-xxl: 32px;
+  }
+}
+
+@include breakpoints.mobile {
+  :root {
+    --text-sm: 12px;
+    --text-md: 14px;
+    --text-lg: 14px;
+    --text-xl: 20px;
+    --text-xxl: 24px;
+  }
+}
