@@ -48,7 +48,7 @@ export interface IClientCampaign {
 export interface IClientDetails {
   clientId: string;
   company: string;
-  name: string;
+  firstName: string;
   email: string;
   companyType: string;
   proposalAccess: boolean;
