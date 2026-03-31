@@ -38,7 +38,7 @@
   height: 50px;
   border-radius: 50%;
 
-  background: var(--linear-gradient);
+  background: var(--brightest-gradient);
 
   @include breakpoints.tablet {
     width: 32px;

@@ -1,0 +1,100 @@
+@use '@/app/styles/utils/breakpoints' as breakpoints;
+@use '@/app/styles/utils/mixins' as mixins;
+@use '@/app/styles/utils/variables' as vars;
+
+.dropzone {
+  width: 530px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 32px;
+
+  padding: 32px;
+  border-radius: vars.$radius-sm;
+  border: 1px dashed var(--light-gray);
+
+  @include breakpoints.tablet {
+    width: 100%;
+    gap: 28px;
+    padding: 28px;
+  }
+
+  @include breakpoints.mobile {
+    gap: 24px;
+    padding: 24px;
+    margin-top: 16px;
+  }
+}
+
+.header {
+  max-width: 350px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
+
+  @include breakpoints.mobile {
+    gap: 8px;
+  }
+}
+
+.title {
+  text-align: center;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+
+.description {
+  text-align: center;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+
+  color: var(--gray);
+
+  @include breakpoints.mobile {
+    font-size: 15px;
+  }
+}
+
+.cta {
+  display: flex;
+  text-align: center;
+  justify-content: center;
+  width: 100%;
+}
+
+.btn {
+  height: 46px;
+}
+
+.closeBtn {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+
+  @include breakpoints.tablet {
+    top: 12px;
+    right: 12px;
+  }
+  @include breakpoints.mobile {
+    top: 8px;
+    right: 8px;
+  }
+}
+
+.closeIcon {
+  width: 24px;
+  height: 24px;
+  aspect-ratio: 1 / 1;
+
+  @include breakpoints.tablet {
+    width: 20px;
+    height: 20px;
+  }
+}

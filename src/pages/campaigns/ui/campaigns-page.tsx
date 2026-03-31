@@ -1,36 +1,48 @@
-import { useEffect, useState } from "react";
-import { parseAsStringLiteral, useQueryState } from "nuqs";
+import { useEffect } from "react";
+import { useCampaignsQuery } from "@/entities/campaign/api/use-campaigns-query.ts";
+import { useCampaignsPageState } from "@/pages/campaigns/model/use-campaigns-page-state.ts";
+import { notifyApiError } from "@/app/api/errors/notify.ts";
 import { PageBreadcrumbs } from "@/widgets/page-breadcrumbs";
 import { PageTitle } from "@/widgets/page-title";
 import { CampaignsToolbar } from "@/widgets/campaigns/campaigns-toolbar";
 import { CampaignsTable } from "@/widgets/campaigns/campaigns-table";
 import { OpenCampaignPayments } from "@/features/campaigns/open-campaign-payments";
-import { getCampaigns } from "@/entities/campaign/api/campaign.api.ts";
-
-import type { TViewCampaignMode } from "@/entities/campaign";
+import { Pagination } from "@/shared/ui";
 
 import styles from './campaigns-page.module.scss';
 
 export const CampaignsPage = () => {
-  const [campaignMode, setCampaignMode] = useQueryState<TViewCampaignMode>("campaigns-mode",
-    parseAsStringLiteral(["main", "payments"]).withDefault("main")
-  );
+  const {
+    page,
+    status,
+    mode,
+    searchValue,
+    isSearchDisabled,
+    queryParams,
+    setPage,
+    handleStatusChange,
+    handleSearchChange,
+    handleModeChange,
+  } = useCampaignsPageState();
 
-  const handleToggleCampaignMode = () => {
-    const nextMode = campaignMode === "main" ? "payments" : "main";
-    void setCampaignMode(nextMode, { history: "replace" });
-  };
-
-  const [data, setData] = useState([]);
+  const { data, isLoading, isFetching, isError, error } = useCampaignsQuery(queryParams);
 
   useEffect(() => {
-    getCampaigns().then((response) => {
-      setData(response.items);
-    })
-    .catch((error) => {
-      console.error("Error fetching campaigns:", error);
-    });
-  }, []);
+    if (isError && error) {
+      notifyApiError(error);
+    }
+  }, [isError, error]);
+
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
+
+  if (isError) {
+    return <div>Error loading campaigns. Please try again later.</div>;
+  }
+
+  const campaigns = data?.items ?? [];
+  const totalPages = data?.totalPages ?? 1;
 
   return (
     <div className={styles.campaignsPage}>
@@ -44,16 +56,29 @@ export const CampaignsPage = () => {
 
       <div className={styles.content}>
         <div className={styles.top}>
-          <PageTitle title={'Campaigns'}/>
-          <CampaignsToolbar />
+          <PageTitle title={'Campaigns'} />
+
+          <CampaignsToolbar
+            searchValue={searchValue}
+            onSearchChange={handleSearchChange}
+            searchDisabled={isSearchDisabled}
+            status={status}
+            onStatusChange={handleStatusChange}
+          />
         </div>
 
         <div className={styles.bottom}>
-          <OpenCampaignPayments campaignMode={campaignMode} onToggle={handleToggleCampaignMode}/>
-          <CampaignsTable data={data} view={campaignMode} />
+          <OpenCampaignPayments campaignMode={mode} onToggle={handleModeChange}/>
+
+          <CampaignsTable data={campaigns} view={mode} isFetching={isFetching} />
+
+          <Pagination
+            currentPage={page}
+            totalPages={totalPages}
+            onPageChange={setPage}
+          />
         </div>
       </div>
-
     </div>
   );
 };

@@ -1,44 +1,25 @@
-import { parseAsString, useQueryState } from "nuqs";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useClientsQuery } from "@/entities/client/api/use-clients-query.ts";
-import { useDebounce } from "@/shared/hooks/use-debounce.ts";
+import { useClientsPageState } from "@/pages/clients-page/model/use-clients-page-state.ts";
+import { SearchByQuery } from "@/features/search";
 
 import { PageBreadcrumbs } from "@/widgets/page-breadcrumbs";
 import { PageTitle } from "@/widgets/page-title";
-import { Search } from "@/features/search";
 import { ClientsTable } from "@/widgets/clients/clients-table";
-import type { TGetClientsParams } from "@/entities/client/model/client.types.ts";
+import { Pagination } from "@/shared/ui";
 
 import { notifyApiError } from "@/app/api/errors/notify.ts";
 
 import styles from "./clients-page.module.scss";
 
 export const ClientsPage = () => {
-  const [query, setQuery] = useQueryState("query",
-    parseAsString.withDefault(""),
-  );
-
-  const page = 1;
-  const limit = 10;
-
-  const [localValue, setLocalValue] = useState(query);
-  const debounceValue = useDebounce(localValue, 400);
-
-  useEffect(() => {
-    const nextValue = debounceValue || "";
-
-    if (nextValue !== query) {
-      void setQuery(nextValue || null, { history: "replace" });
-    }
-  }, [debounceValue, query, setQuery]);
-
-  useEffect(() => {
-    setLocalValue(query);
-  }, [query]);
-
-  const queryParams: TGetClientsParams = query
-    ? { limit, search: query }
-    : { page, limit };
+  const {
+    page,
+    searchValue,
+    queryParams,
+    handleSearchChange,
+    setPage,
+  } = useClientsPageState();
 
   const { data, isLoading, isFetching, isError, error } = useClientsQuery(queryParams);
 
@@ -56,7 +37,8 @@ export const ClientsPage = () => {
     return <div>Error loading clients. Please try again later.</div>;
   }
 
-  console.log('Client list data', data);
+  const clients = data?.items ?? [];
+  const totalPages = data?.totalPages ?? 1;
 
   return (
     <div className={styles.clientsPage}>
@@ -70,9 +52,18 @@ export const ClientsPage = () => {
       <div className={styles.content}>
         <PageTitle title={'Clients list'} />
 
-        <Search value={localValue} onSearchChange={setLocalValue}/>
+        <SearchByQuery
+          value={searchValue}
+          onChange={handleSearchChange}
+        />
 
-        <ClientsTable data={data?.items ?? []} isFetching={isFetching} />
+        <ClientsTable data={clients} isFetching={isFetching} />
+
+        <Pagination
+          currentPage={page}
+          totalPages={totalPages}
+          onPageChange={setPage}
+        />
       </div>
     </div>
   );

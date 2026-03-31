@@ -18,6 +18,7 @@ export const ClientsTable: React.FC<ClientsTableProps> = ({ data, isFetching}) =
       data={data}
       columns={CLIENTS_COLUMN}
       isFetching={isFetching}
+      isManualPagination={true}
       emptyText={"No clients found"}
     />
   );

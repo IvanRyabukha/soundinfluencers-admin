@@ -1,0 +1,20 @@
+@use '@/app/styles/utils/breakpoints' as breakpoints;
+
+.affiliateCell {
+  cursor: pointer;
+}
+
+.cellValue {
+  font-size: 14px;
+  color: var(--black);
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+
+  user-select: none;
+
+  @include breakpoints.tablet {
+    font-size: 13px;
+  }
+}

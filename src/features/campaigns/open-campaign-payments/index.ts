@@ -1,1 +1,1 @@
-export { OpenCampaignPayments } from './ui/open-campaign-payments.tsx';
+export { OpenCampaignPayments } from './ui/open-campaign-payments';

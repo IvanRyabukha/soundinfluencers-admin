@@ -1,10 +1,14 @@
 import type { ColumnDef } from "@tanstack/react-table";
 import type { ICampaign } from "@/entities/campaign/model/campaign.types.ts";
-import { CampaignNameCell } from "@/entities/campaign/ui/campaign-name-cell/campaign-name-cell.tsx";
-import clsx from "clsx";
+import { CampaignNameCell } from "@/widgets/campaigns/campaigns-table/ui/campaign-name-cell/campaign-name-cell.tsx";
+import { CampaignActionsCell } from "@/widgets/campaigns/campaigns-table/ui/campaign-actions-cell/campaign-actions-cell.tsx";
+import { CampaignReportCell } from "@/widgets/campaigns/campaigns-table/ui/campaign-report-cell/campaign-report-cell.tsx";
+import { CampaignPriceCell } from "@/widgets/campaigns/campaigns-table/ui/campaign-price-cell/campaign-price-cell.tsx";
+import { CampaignFollowersCell } from "@/widgets/campaigns/campaigns-table/ui/campaign-followers-cell/campaign-followers-cell.tsx";
+import { CampaignTextCell } from "@/widgets/campaigns/campaigns-table/ui/campaign-text-cell/campaign-text-cell.tsx";
+import { CampaignNoteCell } from "@/widgets/campaigns/campaigns-table/ui/campaign-note-cell/campaign-note-cell.tsx";
 
 import styles from './columns.module.scss';
-import { CampaignActionsCell } from "@/entities/campaign/ui/campaign-actions-cell/campaign-actions-cell.tsx";
 
 export const paymentsCampaignColumns: ColumnDef<ICampaign>[] = [
   {
@@ -27,21 +31,26 @@ export const paymentsCampaignColumns: ColumnDef<ICampaign>[] = [
     size: 105,
     minSize: 105,
     maxSize: 105,
-    cell: () => (
-      <CampaignActionsCell />
+    cell: ({ row }) => (
+      <CampaignActionsCell
+        campaignId={row.original.campaignId}
+        status={row.original.status}
+        socialMedia={row.original.socialMedia}
+      />
     ),
   },
 
   {
     accessorKey: 'creatorRole',
     header: "Client",
-    size: 88,
-    minSize: 88,
-    maxSize: 88,
-    cell: (info ) => (
-      <div className={clsx(styles.cell)}>
-        {info.getValue<string>()}
-      </div>
+    size: 70,
+    minSize: 70,
+    maxSize: 70,
+    cell: ({ row }) => (
+      <CampaignTextCell
+        value={row.original.creatorRole}
+        className={styles.cell}
+      />
     ),
   },
 
@@ -51,10 +60,11 @@ export const paymentsCampaignColumns: ColumnDef<ICampaign>[] = [
     size: 70,
     minSize: 70,
     maxSize: 70,
-    cell: (info ) => (
-      <div className={clsx(styles.cell)}>
-        {info.getValue<string>()}
-      </div>
+    cell: ({ row }) => (
+      <CampaignFollowersCell
+        value={row.original.followers}
+        className={styles.cell}
+      />
     ),
   },
 
@@ -64,10 +74,11 @@ export const paymentsCampaignColumns: ColumnDef<ICampaign>[] = [
     size: 75,
     minSize: 75,
     maxSize: 75,
-    cell: (info ) => (
-      <div className={clsx(styles.cell)}>
-        {info.getValue<string>() + '\u20AC'}
-      </div>
+    cell: ({ row }) => (
+      <CampaignPriceCell
+        value={row.original.cost}
+        className={styles.cell}
+      />
     ),
   },
 
@@ -77,45 +88,55 @@ export const paymentsCampaignColumns: ColumnDef<ICampaign>[] = [
     size: 75,
     minSize: 75,
     maxSize: 75,
-    cell: (info ) => (
-      <div className={clsx(styles.cell)}>
-        {info.getValue<string>() + '\u20AC'}
-      </div>
+    cell: ({ row }) => (
+      <CampaignPriceCell
+        value={row.original.cost}
+        className={styles.cell}
+      />
     ),
   },
 
   {
-    accessorKey: "createdAt",
+    accessorKey: "date",
     header: "Date",
-    size: 87,
-    minSize: 87,
-    maxSize: 87,
-    cell: (info ) => (
-      <div className={clsx(styles.cell)}>
-        {info.getValue<string>()}
-      </div>
+    size: 75,
+    minSize: 75,
+    maxSize: 75,
+    cell: ({ row }) => (
+      <CampaignTextCell
+        value={row.original.date}
+        className={styles.cell}
+      />
     ),
   },
 
   {
     accessorKey: "statusLabel",
     header: "Status",
-    size: 144,
-    minSize: 144,
-    maxSize: 144,
-    cell: (info ) => (
-      <div className={clsx(styles.cell)}>
-        {info.getValue<string>()}
-      </div>
+    size: 85,
+    minSize: 85,
+    maxSize: 85,
+    cell: ({ row }) => (
+      <CampaignTextCell
+        value={row.original.statusLabel}
+        className={styles.cell}
+      />
     ),
   },
 
   {
     id: "reportSent",
     header: "Report Sent",
-    size: 108,
-    minSize: 108,
-    maxSize: 108,
+    size: 70,
+    minSize: 70,
+    maxSize: 70,
+    cell: ({ row }) => (
+      <CampaignReportCell
+        campaignId={row.original.campaignId}
+        reportSent={row.original.reportSent}
+        status={row.original.status}
+      />
+    ),
   },
 
   {
@@ -124,10 +145,11 @@ export const paymentsCampaignColumns: ColumnDef<ICampaign>[] = [
     size: 106,
     minSize: 106,
     maxSize: 106,
-    cell: (info ) => (
-      <div className={clsx(styles.cell)}>
-        {info.getValue<string>()}
-      </div>
+    cell: ({ row }) => (
+      <CampaignTextCell
+        value={row.original.paymentStatus}
+        className={styles.cell}
+      />
     ),
   },
 
@@ -137,44 +159,41 @@ export const paymentsCampaignColumns: ColumnDef<ICampaign>[] = [
     size: 71,
     minSize: 71,
     maxSize: 71,
-    cell: (info ) => (
-      <div className={clsx(styles.cell)}>
-        {info.getValue<string>()}
-      </div>
+    cell: ({ row }) => (
+      <CampaignTextCell
+        value={row.original.invoiceId}
+        className={styles.cell}
+      />
     ),
   },
 
   {
-    accessorKey: 'shortInvoiceId',
+    accessorKey: 'shortInvoiceNumber',
     header: "Inv. #",
     size: 82,
     minSize: 82,
     maxSize: 82,
-    cell: (info ) => (
-      <div className={clsx(styles.cell)}>
-        {info.getValue<string>()}
-      </div>
+    cell: ({ row }) => (
+      <CampaignTextCell
+        value={row.original.shortInvoiceNumber}
+        className={styles.cell}
+      />
     ),
   },
 
   {
     accessorKey: "notes",
     header: "Notes",
-    size: 74,
-    minSize: 74,
-    maxSize: 74,
-    cell: (info ) => (
-      <div
-        className={clsx(styles.cell, styles.notesCell)}
-        title={info.getValue<string>()}
-        // onMouseEnter={(e) => {
-        //   e.preventDefault();
-        //   e.stopPropagation();
-        //   console.log('Show full notes:', info.getValue<string>());
-        // }}
-      >
-        {info.getValue<string>().length > 5 ? info.getValue<string>().slice(0, 5) + '...' : info.getValue<string>()}
-      </div>
+    size: 90,
+    minSize: 90,
+    maxSize: 90,
+    cell: ({ row }) => (
+      <CampaignNoteCell
+        value={row.original.notes}
+        campaignId={row.original.campaignId}
+        status={row.original.status}
+        className={styles.cell}
+      />
     ),
   },
 ];

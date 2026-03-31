@@ -16,7 +16,10 @@
   border: 1px solid var(--blue);
 
 
-  font-size: 14px;
+  font-size: 13px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
   color: var(--gray-dark);
   white-space: nowrap;
 
@@ -24,6 +27,6 @@
   will-change: transform;
 
   &--active {
-    background: var(--gradient-2);
+    background: var(--light-blue);
   }
 }

@@ -17,16 +17,32 @@
   display: flex;
   flex-direction: column;
   gap: 24px;
+
+  @include breakpoints.tablet {
+    gap: 16px;
+  }
+
+  @include breakpoints.mobile {
+    gap: 8px;
+  }
 }
 
 .top {
   display: flex;
   flex-direction: column;
   gap: 24px;
+
+  @include breakpoints.tablet {
+    gap: 8px;
+  }
 }
 
 .bottom {
   display: flex;
   flex-direction: column;
   gap: 16px;
+
+  @include breakpoints.mobile {
+    gap: 8px;
+  }
 }

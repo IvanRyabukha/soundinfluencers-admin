@@ -136,3 +136,74 @@
 }
 
 //endregion
+
+//region reset input
+@mixin reset-field {
+  margin: 0;
+  padding: 0;
+
+  border: none;
+  outline: none;
+  background: transparent;
+
+  font: inherit;
+  color: inherit;
+  letter-spacing: inherit;
+
+  line-height: inherit;
+
+  appearance: none;
+  -webkit-appearance: none;
+
+  box-shadow: none;
+
+  &::placeholder {
+    color: inherit;
+    opacity: 1;
+  }
+
+  &:focus {
+    outline: none;
+  }
+
+  &:disabled {
+    cursor: not-allowed;
+  }
+}
+@mixin remove-number-arrows {
+  &::-webkit-outer-spin-button,
+  &::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+
+  &[type='number'] {
+    -moz-appearance: textfield;
+  }
+}
+@mixin remove-search-decoration {
+  &[type='search'] {
+    -webkit-appearance: none;
+  }
+
+  &::-webkit-search-decoration,
+  &::-webkit-search-cancel-button,
+  &::-webkit-search-results-button,
+  &::-webkit-search-results-decoration {
+    display: none;
+  }
+}
+@mixin fix-autofill {
+  &:-webkit-autofill {
+    box-shadow: 0 0 0 1000px transparent inset;
+    -webkit-text-fill-color: inherit;
+    transition: background-color 5000s ease-in-out 0s;
+  }
+}
+@mixin reset-input {
+  @include reset-field;
+  @include remove-number-arrows;
+  @include remove-search-decoration;
+  @include fix-autofill;
+}
+//endregion

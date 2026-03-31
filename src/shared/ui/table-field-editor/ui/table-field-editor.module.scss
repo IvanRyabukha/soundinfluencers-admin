@@ -1,0 +1,13 @@
+@use '@/app/styles/utils/mixins' as mixins;
+
+.input {
+  @include mixins.reset-input;
+  width: 100%;
+  height: 100%;
+
+  font-size: 14px;
+  color: var(--gray-dark);
+  line-height: normal;
+  font-style: normal;
+  font-weight: 400;
+}

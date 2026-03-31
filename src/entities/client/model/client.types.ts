@@ -28,6 +28,7 @@ export interface IClientsListPayload {
   total: number;
   page: number;
   limit: number;
+  totalPages: number;
 }
 
 export interface IClientsListResponse {
@@ -66,3 +67,13 @@ export interface IClientResponse {
   data: IClientDetails;
 }
 
+// Update client meta
+export interface IUpdateClientMetaDto {
+  isProposalClient?: boolean;
+  internalNote?: string;
+}
+
+export interface IUpdateClientParams {
+  clientId: string;
+  dto: IUpdateClientMetaDto;
+}

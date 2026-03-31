@@ -5,6 +5,7 @@ import styles from './table.module.scss';
 interface TableProps<TData> {
   data: TData[];
   columns: ColumnDef<TData>[];
+  isManualPagination?: boolean;
   isFetching?: boolean;
   emptyText?: string;
 }
@@ -12,6 +13,7 @@ interface TableProps<TData> {
 export function Table<TData>({
   data,
   columns,
+  isManualPagination = false,
   isFetching = false,
   emptyText = "No data available",
 }: TableProps<TData>) {
@@ -22,6 +24,7 @@ export function Table<TData>({
     data,
     columns,
     getCoreRowModel: getCoreRowModel(),
+    manualPagination: isManualPagination,
   });
 
   const rows = table.getRowModel().rows;
@@ -33,9 +36,7 @@ export function Table<TData>({
 
         <div className={styles.tableInner}>
           {isFetching && rows.length > 0 && (
-            <div className={styles.overlay}>
-              Overlay loading...
-            </div>
+            <div className={styles.overlay}></div>
           )}
 
           <table className={styles.table}>

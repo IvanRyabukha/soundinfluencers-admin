@@ -1,0 +1,24 @@
+@use '@/app/styles/utils/breakpoints' as breakpoints;
+@use '@/app/styles/utils/mixins' as mixins;
+
+.cell {
+  padding: 12px 8px;
+
+  font-size: 14px;
+  font-style: normal;
+  line-height: normal;
+  font-weight: 400;
+
+  color: var(--black);
+
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+
+  @include breakpoints.tablet {
+    padding: 10px 4px;
+
+    font-size: 13px;
+  }
+}

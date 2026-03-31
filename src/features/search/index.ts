@@ -1,1 +1,1 @@
-export { Search } from './ui/search.tsx'
+export { SearchByQuery } from './ui/search-by-query.tsx';

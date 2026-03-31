@@ -12,26 +12,32 @@ export interface ICampaign {
   followers: number;
   cost: number;
   salePrice: number;
-  publicPrice: number;
-  createdAt: string;
+  date: string;
   status: TCampaignStatus;
   statusLabel: string;
   reportSent: boolean;
   paymentStatus: 'wait' | 'paid';
   invoiceId: string;
-  shortInvoiceId: string;
+  shortInvoiceNumber: number;
   notes: string;
   affiliatePartner: string;
   affiliateCommission: string;
-  affiliatePaid: number;
+  affiliatePaid: string;
 }
 
-export interface IGetCampaignParams {
-  status: TCampaignStatus;
-  page: number;
+export type TGetCampaignParams =
+  | {
   limit: number;
-  search?: string;
+  search: string;
+  status?: TCampaignStatus;
+  page?: never;
 }
+  | {
+  limit: number;
+  page: number;
+  status?: TCampaignStatus;
+  search?: never;
+};
 
 export interface ICampaignListPayload {
   total: number;
@@ -45,4 +51,31 @@ export interface ICampaignListResponse {
   statusCode: number;
   message: string;
   data: ICampaignListPayload;
+}
+
+// Update campaign
+export interface IUpdateCampaignDto {
+  reportSent?: boolean;
+  notes?: string;
+  affiliatePartner?: string;
+  affiliateCommission?: string;
+  affiliatePaid?: string;
+}
+
+export interface IUpdateCampaignParams {
+  campaignId: string;
+  status: TCampaignStatus;
+  dto: IUpdateCampaignDto;
+}
+
+export interface IUpdateCampaignResponse {
+  statusCode: number;
+  message: string;
+  data: IUpdateCampaignDto & { campaignId: string };
+}
+
+// Delete campaign
+export interface IDeleteCampaignParams {
+  campaignId: string;
+  status: TCampaignStatus;
 }

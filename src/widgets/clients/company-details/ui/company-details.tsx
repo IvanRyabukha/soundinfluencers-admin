@@ -2,7 +2,7 @@ import React from "react";
 
 import { CardTitle } from "@/widgets/clients/card-title";
 import { CompanyFieldsCard } from "@/widgets/clients/company-details/ui/company-fields-card.tsx";
-import { leftFields, rightFields, noteField } from "@/widgets/clients/company-details/model/company-details-fields.ts";
+import { leftFields, rightFields, noteField } from "@/widgets/clients/company-details/model/company-details-fields.tsx";
 import type { IClientDetails } from "@/entities/client/model/client.types.ts";
 
 import s from './company-details.module.scss';

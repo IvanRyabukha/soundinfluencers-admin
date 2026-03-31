@@ -1,0 +1,126 @@
+@use "@/app/styles/utils/mixins" as mixins;
+@use '@/app/styles/utils/breakpoints' as breakpoints;
+
+.toolBar {
+  display: grid;
+  grid-template-columns: minmax(0, 600px) minmax(0, 187px) auto;
+  grid-template-areas: "search limit actions";
+  align-items: center;
+  column-gap: 24px;
+
+  @include breakpoints.tablet {
+    grid-template-columns: auto minmax(0, 187px);
+    grid-template-areas:
+      "search limit"
+      "actions actions";
+    column-gap: 16px;
+    row-gap: 12px;
+  }
+
+  @include breakpoints.mobile {
+    grid-template-columns: auto;
+    grid-template-areas:
+      "search search"
+      "limit actions";
+    column-gap: 8px;
+    row-gap: 12px;
+  }
+}
+
+.search {
+  grid-area: search;
+  width: 100%;
+  height: 40px;
+
+  @include breakpoints.tablet {
+    height: 39px;
+  }
+}
+
+.limit {
+  grid-area: limit;
+  height: 40px;
+
+  @include breakpoints.tablet {
+    height: 39px;
+  }
+
+  @include breakpoints.mobile {
+    height: 42px;
+  }
+}
+
+.actions {
+  grid-area: actions;
+  height: 40px;
+
+  display: flex;
+  align-items: center;
+  justify-self: end;
+  gap: 12px;
+
+  @include breakpoints.tablet {
+    height: 39px;
+    justify-self: start;
+    gap: 8px;
+  }
+
+  @include breakpoints.mobile {
+    height: 42px;
+    justify-self: end;
+  }
+}
+
+.searchInput {
+  padding: 8px 16px 8px 48px;
+  height: 100%;
+
+  @include breakpoints.tablet {
+    padding: 8px 8px 8px 40px;
+  }
+
+  @include breakpoints.mobile {
+    padding: 11px 16px 11px 48px;
+  }
+}
+
+.action {
+  @include mixins.reset-button;
+  height: 100%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  gap: 8px;
+
+  padding: 0 16px;
+
+  border-radius: 8px;
+  border: 1px solid transparent;
+  background:
+    linear-gradient(#fff, #fff) padding-box,
+    linear-gradient(360deg, #cfefff 0%, #EBECFF 100%) border-box;
+
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  white-space: nowrap;
+
+  @include breakpoints.tablet {
+    font-size: 14px;
+    padding: 0 8px;
+    gap: 4px;
+  }
+}
+
+.icon {
+  width: 24px;
+  height: 24px;
+  aspect-ratio: 1 / 1;
+
+  @include breakpoints.tablet {
+    width: 16px;
+    height: 16px;
+  }
+}

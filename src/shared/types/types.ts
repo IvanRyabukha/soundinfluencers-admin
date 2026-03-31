@@ -7,3 +7,5 @@ export type TSocialMedia =
   | "soundcloud"
   | "press"
   | "multipromo";
+
+export type TCurrency = 'EUR' | 'GBP' | 'USD';
