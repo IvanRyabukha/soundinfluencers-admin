@@ -8,8 +8,12 @@ import { AdminLayout } from "@/app/providers/router/ui/admin-layout.tsx";
 import { LoginPage } from "@/pages/login";
 import { DashboardPage } from "@/pages/dashboard";
 import { ClientsPage } from "@/pages/clients-page";
-import { CampaignsPage } from "@/pages/campaigns";
 import { CompanyDetailsPage } from "@/pages/company-details";
+import { CampaignsPage } from "@/pages/campaigns";
+import { InfluencersListPage } from "@/pages/influencers/influencer-list-page";
+import { InfluencerDetailsPage } from "@/pages/influencers/influencer-details-page";
+import { CreateInfluencerAccountPage } from "@/pages/influencers/create-influencer-account-page";
+import { EditInfluencerAccountPage } from "@/pages/influencers/edit-influencer-account-page";
 
 
 export const ROUTER = createBrowserRouter([
@@ -43,7 +47,7 @@ export const ROUTER = createBrowserRouter([
                 path: "dashboard/clients",
                 children: [
                   { index: true, element: <ClientsPage/> },
-                  { path: ":clientId", element: <CompanyDetailsPage /> },
+                  { path: ":clientId", element: <CompanyDetailsPage/> },
                 ],
               },
 
@@ -126,6 +130,21 @@ export const ROUTER = createBrowserRouter([
               {
                 path: "dashboard/influencers",
                 children: [
+                  { index: true, element: <InfluencersListPage /> },
+                  {
+                    path: ":influencerId",
+                    children: [
+                      { index: true, element: <InfluencerDetailsPage /> },
+                      { path: "accounts/create", element: <CreateInfluencerAccountPage /> },
+                      { path: "accounts/:accountId/edit", element: <EditInfluencerAccountPage /> },
+                    ],
+                  },
+                ],
+              },
+
+              {
+                path: "dashboard/payments",
+                children: [
                   {
                     index: true, element:
                       <div style={{
@@ -136,7 +155,7 @@ export const ROUTER = createBrowserRouter([
                         gap: 20,
                         paddingBlock: 150,
                       }}>
-                        <h1 style={{ fontSize: 40 }}>🚧 This page is under development</h1>
+                        <h1 style={{ fontSize: 40 }}>🚧 Payments page is under development</h1>
                         <p style={{ fontSize: 20, color: "#666" }}>
                           We're working hard to bring this feature to life.<br/>
                           It will be available very soon.
@@ -147,7 +166,7 @@ export const ROUTER = createBrowserRouter([
               },
 
               {
-                path: "dashboard/payments",
+                path: "dashboard/influencer-invoices",
                 children: [
                   {
                     index: true, element:
@@ -170,7 +189,7 @@ export const ROUTER = createBrowserRouter([
               },
 
               {
-                path: "dashboard/influencer-invoices",
+                path: "dashboard/influencer-history",
                 children: [
                   {
                     index: true, element:

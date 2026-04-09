@@ -1,0 +1,26 @@
+@use '@/app/styles/utils/breakpoints' as breakpoints;
+
+.campaignNameCell {
+  padding: 12px 8px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.cellText {
+  font-size: 15px;
+  color: var(--black);
+  font-weight: 400;
+  font-style: normal;
+  line-height: normal;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+
+  user-select: none;
+
+  @include breakpoints.tablet {
+    font-size: 13px;
+  }
+}

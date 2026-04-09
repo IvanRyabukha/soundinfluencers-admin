@@ -1,8 +1,10 @@
+@use '@/app/styles/utils/breakpoints' as breakpoints;
+
 .cell {
   display: flex;
   align-items: flex-start;
   justify-content: flex-start;
-  padding: 8px 4px;
+  padding: 8px;
   min-height: 54px;
 
   font-size: 14px;
@@ -11,8 +13,12 @@
 
   white-space: normal;
   word-break: break-word;
-  //overflow: hidden;
-  //text-overflow: ellipsis;
+
+  @include breakpoints.tablet {
+    padding: 8px 4px;
+    font-size: 13px;
+    min-height: 50px;
+  }
 }
 
 .emailCell {

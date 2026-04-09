@@ -1,7 +1,10 @@
 import type { ColumnDef } from "@tanstack/react-table";
 import type { ICampaign } from "@/entities/campaign/model/campaign.types.ts";
-import clsx from "clsx";
-import { CampaignNameCell } from "@/entities/campaign/ui/campaign-name-cell/campaign-name-cell.tsx";
+import { CampaignNameCell } from "@/widgets/campaigns/campaigns-table/ui/campaign-name-cell/campaign-name-cell.tsx";
+import { CampaignTextCell } from "@/widgets/campaigns/campaigns-table/ui/campaign-text-cell/campaign-text-cell.tsx";
+import { CampaignPriceCell } from "@/widgets/campaigns/campaigns-table/ui/campaign-price-cell/campaign-price-cell.tsx";
+import { CampaignNoteCell } from "@/widgets/campaigns/campaigns-table/ui/campaign-note-cell/campaign-note-cell.tsx";
+import { CampaignAffiliateCell } from "@/widgets/campaigns/campaigns-table/ui/campaign-affiliate-cell/campaign-affiliate-cell.tsx";
 
 import styles from "./columns.module.scss";
 
@@ -26,10 +29,14 @@ export const mainCampaignColumns: ColumnDef<ICampaign>[] = [
     size: 180,
     minSize: 180,
     maxSize: 180,
-    cell: (info ) => (
-      <div className={clsx(styles.cell)}>
-        {info.getValue<string>()}
-      </div>
+    cell: ({ row } ) => (
+      <CampaignAffiliateCell
+        value={row.original.affiliatePartner}
+        campaignId={row.original.campaignId}
+        status={row.original.status}
+        field={"affiliatePartner"}
+        className={styles.cell}
+      />
     ),
   },
 
@@ -39,10 +46,11 @@ export const mainCampaignColumns: ColumnDef<ICampaign>[] = [
     size: 85,
     minSize: 85,
     maxSize: 85,
-    cell: (info ) => (
-      <div className={clsx(styles.cell)}>
-        {info.getValue<string>() + '\u20AC'}
-      </div>
+    cell: ({ row } ) => (
+      <CampaignPriceCell
+        value={row.original.cost}
+        className={styles.cell}
+      />
     ),
   },
 
@@ -52,36 +60,42 @@ export const mainCampaignColumns: ColumnDef<ICampaign>[] = [
     size: 85,
     minSize: 85,
     maxSize: 85,
-    cell: (info ) => (
-      <div className={clsx(styles.cell)}>
-        {info.getValue<string>() + '\u20AC'}
-      </div>
+    cell: ({ row } ) => (
+      <CampaignPriceCell
+        value={row.original.salePrice}
+        className={styles.cell}
+      />
     ),
   },
 
   {
     accessorKey: "statusLabel",
     header: "Payment Status",
-    size: 165,
-    minSize: 165,
-    maxSize: 165,
-    cell: (info ) => (
-      <div className={clsx(styles.cell)}>
-        {info.getValue<string>()}
-      </div>
+    size: 90,
+    minSize: 90,
+    maxSize: 90,
+    cell: ({ row } ) => (
+      <CampaignTextCell
+        value={row.original.statusLabel}
+        className={styles.cell}
+      />
     ),
   },
 
   {
     accessorKey: "affiliateCommission",
     header: "Affiliate Commission",
-    size: 150,
-    minSize: 150,
-    maxSize: 150,
-    cell: (info ) => (
-      <div className={clsx(styles.cell)}>
-        {info.getValue<string>()}
-      </div>
+    size: 90,
+    minSize: 90,
+    maxSize: 90,
+    cell: ({ row } ) => (
+      <CampaignAffiliateCell
+        value={row.original.affiliateCommission}
+        campaignId={row.original.campaignId}
+        status={row.original.status}
+        field={"affiliateCommission"}
+        className={styles.cell}
+      />
     ),
   },
 
@@ -91,10 +105,14 @@ export const mainCampaignColumns: ColumnDef<ICampaign>[] = [
     size: 108,
     minSize: 108,
     maxSize: 108,
-    cell: (info ) => (
-      <div className={clsx(styles.cell)}>
-        {info.getValue<string>() + '\u20AC'}
-      </div>
+    cell: ({ row } ) => (
+      <CampaignAffiliateCell
+        value={row.original.affiliatePaid}
+        campaignId={row.original.campaignId}
+        status={row.original.status}
+        field={"affiliatePaid"}
+        className={styles.cell}
+      />
     ),
   },
 
@@ -104,23 +122,27 @@ export const mainCampaignColumns: ColumnDef<ICampaign>[] = [
     size: 108,
     minSize: 108,
     maxSize: 108,
-    cell: (info ) => (
-      <div className={clsx(styles.cell)}>
-        {info.getValue<string>()}
-      </div>
+    cell: ({ row } ) => (
+      <CampaignTextCell
+        value={row.original.paymentStatus}
+        className={styles.cell}
+      />
     ),
   },
 
   {
     accessorKey: "notes",
     header: "Notes",
-    size: 95,
-    minSize: 95,
-    maxSize: 95,
-    cell: (info ) => (
-      <div className={clsx(styles.cell)}>
-        {info.getValue<string>()}
-      </div>
+    size: 110,
+    minSize: 110,
+    maxSize: 110,
+    cell: ({ row }) => (
+      <CampaignNoteCell
+        value={row.original.notes}
+        campaignId={row.original.campaignId}
+        status={row.original.status}
+        className={styles.cell}
+      />
     ),
   },
 ];

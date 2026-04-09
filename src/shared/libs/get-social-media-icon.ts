@@ -1,4 +1,5 @@
 import type { TSocialMedia } from "@/shared/types/types.ts";
+import type { TSocialMediaValue } from "@/entities/influencers/model/influencers.constants.ts";
 
 import instagramIcon from "@/assets/icons/campaigns/social-media/instagram.svg";
 import tiktokIcon from "@/assets/icons/campaigns/social-media/tiktok.svg";
@@ -9,7 +10,7 @@ import soundcloudIcon from "@/assets/icons/campaigns/social-media/soundcloud.svg
 import pressIcon from "@/assets/icons/campaigns/social-media/press.svg";
 import multipromoIcon from "@/assets/icons/campaigns/social-media/multipromo.svg";
 
-export const getSocialMediaIcon = (socialMedia: TSocialMedia) => {
+export const getSocialMediaIcon = (socialMedia: TSocialMedia | TSocialMediaValue) => {
   switch (socialMedia) {
     case "instagram":
       return instagramIcon;

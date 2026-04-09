@@ -1,0 +1,29 @@
+@use '@/app/styles/utils/mixins' as mixins;
+@use '@/app/styles/utils/breakpoints' as breakpoints;
+
+.root {
+  cursor: pointer;
+}
+
+.textInput {
+  @include mixins.reset-input;
+  width: 100%;
+  height: 100%;
+
+  font-size: 16px;
+  color: var(--gray-dark);
+  line-height: normal;
+  font-style: normal;
+  font-weight: 400;
+
+  @include breakpoints.tablet {
+    font-size: 14px;
+  }
+  @include breakpoints.mobile {
+    font-size: 12px;
+  }
+}
+
+.text {
+  user-select: none;
+}

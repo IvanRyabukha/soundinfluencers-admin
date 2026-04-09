@@ -2,13 +2,18 @@
   --background-color: #FBFAF9;
 
   --white: #ffffff;
+  --white-50: rgba(255, 255, 255, 0.50);
   --black-blue: #202934;
   --black: #18181C;
   --gray-dark: #2A2A2A;
   --gray: #515259;
+  --gray-2: #51545B;
+  --light-gray: #8C8D98;
   --white-gray: #D0D1DA;
   --white-gray-20: #E7E8F1;
+  --white-gray-30: #E7E8F2;
   --blue: #B9D0FF;
+  --navy-blue: #030922;
   --light-blue: rgba(185, 208, 255, 0.15);
   --error: #e11920;
 
@@ -19,7 +24,7 @@
 
   --gradient: #EBECFF;
   --gradient-2: linear-gradient(180deg, #EBECFF 0%, #DFF0FF 100%);
-  --linear-gradient: linear-gradient(
+  --brightest-gradient: linear-gradient(
       108deg, #BCE8FF 3.56%,
       rgba(218, 244, 255, 0.94) 50.39%,
       rgba(191, 216, 255, 0.89) 79.14%,

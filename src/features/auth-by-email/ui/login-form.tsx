@@ -2,6 +2,7 @@ import { useLoginForm } from "@/features/auth-by-email/model/use-login-form.ts";
 import { BaseMaskedPasswordInput, BaseTextInput, Button, Form } from "@/shared/ui";
 
 import styles from './login-from.module.scss';
+import type { TLoginFormValues } from "@/features/auth-by-email/model/login-form.schema.ts";
 
 export const LoginForm = () => {
   const { methods, onSubmit, isPending } = useLoginForm();
@@ -18,7 +19,7 @@ export const LoginForm = () => {
       </div>
 
       <div className={styles.fields}>
-        <BaseTextInput
+        <BaseTextInput<TLoginFormValues>
           name={'email'}
           label={'Email'}
           type={'email'}
@@ -26,7 +27,7 @@ export const LoginForm = () => {
           autoComplete={"email"}
         />
 
-        <BaseMaskedPasswordInput
+        <BaseMaskedPasswordInput<TLoginFormValues>
           name={'password'}
           label={'Password'}
           placeholder={'Enter password'}

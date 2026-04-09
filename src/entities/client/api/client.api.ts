@@ -1,7 +1,7 @@
 import { $api } from "@/app/api/http.ts";
 import type {
   IClientResponse,
-  IClientsListResponse,
+  IClientsListResponse, IUpdateClientParams,
   TGetClientsParams,
 } from "@/entities/client/model/client.types.ts";
 
@@ -33,6 +33,16 @@ export const getClientById = async (clientId: string) => {
   const { data } = await $api.get<IClientResponse>(`/admin/clients/${clientId}`);
 
   console.log('Successes response', data.data);
+
+  return data.data;
+};
+
+export const updateClient = async ({ clientId, dto }: IUpdateClientParams) => {
+  console.log(`Updating client ${clientId} with data:`, dto);
+
+  const { data } = await $api.patch<IClientResponse>(`/admin/clients/${clientId}`, dto);
+
+  console.log(`Successfully updated client ${clientId}`);
 
   return data.data;
 };

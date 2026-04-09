@@ -5,7 +5,7 @@ import styles from "./button.module.scss";
 
 type ButtonProps<T extends ElementType = "button"> = {
   as?: T;
-  variant?: "primary" | "secondary" | "gradient" | 'action';
+  variant?: "primary" | "secondary" | "gradient";
   size?: "small" | "medium" | "large";
 } & ComponentPropsWithoutRef<T>;
 

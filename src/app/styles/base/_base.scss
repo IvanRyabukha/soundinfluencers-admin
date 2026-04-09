@@ -30,6 +30,7 @@ body {
   color: var(--black-blue);
   font-family: "Satoshi", sans-serif;
 
+  scrollbar-gutter: stable;
   overflow-x: clip;
   isolation: isolate;
 }

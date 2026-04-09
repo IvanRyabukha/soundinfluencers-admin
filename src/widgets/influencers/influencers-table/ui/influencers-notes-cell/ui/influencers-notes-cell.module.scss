@@ -1,0 +1,11 @@
+@use '@/app/styles/utils/breakpoints' as breakpoints;
+@use '@/app/styles/utils/mixins' as mixins;
+
+.action {
+  cursor: pointer;
+}
+
+.popoverContent {
+  outline: none;
+  z-index: 100;
+}

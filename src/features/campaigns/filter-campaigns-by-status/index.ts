@@ -1,1 +1,1 @@
-export { FilterCampaignsByStatus } from './ui/filter-campaigns-by-status.tsx';
+export { FilterCampaignsByStatus } from './ui/filter-campaigns-by-status';

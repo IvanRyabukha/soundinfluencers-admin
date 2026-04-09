@@ -1,0 +1,8 @@
+@use '@/app/styles/utils/breakpoints' as breakpoints;
+@use '@/app/styles/utils/mixins' as mixins;
+
+.icon {
+  width: 16px;
+  height: 16px;
+  aspect-ratio: 1 / 1;
+}

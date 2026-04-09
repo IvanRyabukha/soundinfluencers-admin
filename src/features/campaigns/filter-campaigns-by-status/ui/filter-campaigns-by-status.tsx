@@ -1,15 +1,20 @@
-import { parseAsStringLiteral, useQueryState, parseAsNativeArrayOf } from "nuqs";
-import type { TCampaignStatus } from "@/entities/campaign";
+import React from "react";
 import clsx from "clsx";
 
 import { CAMPAIGN_STATUSES } from "@/entities/campaign/model/campaign.constants.ts";
+import { type TCampaignStatus } from "@/entities/campaign";
 
 import styles from './filter-campaigns-by-status.module.scss';
 
-export const FilterCampaignsByStatus = () => {
-  const [campaignStatus, setCampaignStatus] = useQueryState<TCampaignStatus[]>("campaigns-status",
-    parseAsNativeArrayOf(parseAsStringLiteral(CAMPAIGN_STATUSES.map(s => s.value))).withDefault([])
-  );
+interface FilterCampaignsByStatusProps {
+  campaignStatus: TCampaignStatus | null;
+  onChange: (status: TCampaignStatus | null) => void;
+}
+
+export const FilterCampaignsByStatus: React.FC<FilterCampaignsByStatusProps> = ({
+  campaignStatus,
+  onChange
+}) => {
 
   return (
     <div className={styles.filterBar}>
@@ -17,14 +22,13 @@ export const FilterCampaignsByStatus = () => {
         <button
           key={status.value}
           className={styles.button}
-          onClick={() => setCampaignStatus(prev => prev.includes(status.value)
-            ? prev.filter(s => s !== status.value) : [...prev, status.value], { history: "replace" })
-          }
+          type="button"
+          onClick={() => onChange(status.value)}
         >
           {status.label}
           <span className={clsx(styles.indicator, {
-             [styles['indicator--active']]: campaignStatus.includes(status.value),
-          })} />
+            [styles['indicator--active']]: campaignStatus === status.value,
+          })}/>
         </button>
       ))}
     </div>

@@ -1,4 +1,4 @@
-import type { TInfoField } from "@/widgets/clients/company-details/model/company-details-fields.ts";
+import type { TInfoField } from "@/widgets/clients/company-details/model/company-details-fields.tsx";
 
 import s from './company-details.module.scss';
 
@@ -18,7 +18,7 @@ export function CompanyFieldsCard<T>({ data, fields }: CompanyFieldsCardProps<T>
             <span className={s.label}>{field.label}</span>
 
             <span className={s.value}>
-              {field.render ? field.render(value, data) : value ? String(value) : '-'}
+              {field.render ? field.render(data) : value ? String(value) : '-'}
             </span>
           </div>
         );

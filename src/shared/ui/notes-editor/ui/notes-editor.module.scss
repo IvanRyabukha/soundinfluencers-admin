@@ -1,0 +1,59 @@
+@use '@/app/styles/utils/breakpoints' as breakpoints;
+@use '@/app/styles/utils/mixins' as mixins;
+
+.editor {
+  padding: 8px;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  gap: 8px;
+  width: 320px;
+  border-radius: 8px;
+  border: 1px solid var(--blue);
+
+  background-color: var(--white);
+}
+
+.textarea {
+  @include mixins.reset-input;
+  resize: none;
+  max-width: 300px;
+  height: 48px;
+
+  font-size: 12px;
+  color: var(--gray-dark);
+  line-height: normal;
+  font-style: normal;
+  font-weight: 400;
+}
+
+.action {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 8px;
+}
+
+.btn {
+  @include mixins.reset-button();
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px 8px;
+  border-radius: 24px;
+
+  border: 1px solid var(--blue);
+  background-color: var(--white);
+
+  font-size: 12px;
+  color: var(--gray-dark);
+  line-height: normal;
+  font-style: normal;
+  font-weight: 400;
+
+  transition: background-color var(--transition-base), color var(--transition-base);
+
+  @include mixins.hover {
+    background-color: var(--light-blue);
+  }
+}

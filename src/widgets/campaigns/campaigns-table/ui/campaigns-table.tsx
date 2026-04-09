@@ -5,18 +5,21 @@ import { paymentsCampaignColumns } from "@/widgets/campaigns/campaigns-table/mod
 
 interface CampaignsTableProps {
   data: ICampaign[];
-  isLoading?: boolean;
+  isFetching?: boolean;
   view: TViewCampaignMode;
 }
 
-export const CampaignsTable = ({ data, view }: CampaignsTableProps) => {
+export const CampaignsTable = ({ data, view, isFetching }: CampaignsTableProps) => {
   const columns = view === 'payments' ? paymentsCampaignColumns : mainCampaignColumns;
+
+  console.log("CampaignsTable", data);
 
   return (
     <Table
       data={data}
       columns={columns}
-      isLoading={false}
+      isManualPagination={true}
+      isFetching={isFetching}
       emptyText="No campaigns found"
     />
   )

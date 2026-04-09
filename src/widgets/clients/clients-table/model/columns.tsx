@@ -20,6 +20,9 @@ export const CLIENTS_COLUMN: ColumnDef<IClient>[] = [
   {
     header: "Name",
     accessorKey: "name",
+    size: 110,
+    minSize: 110,
+    maxSize: 110,
     cell: (info ) => (
       <div className={clsx(styles.cell)}>
         {info.getValue<string>()}
@@ -40,6 +43,9 @@ export const CLIENTS_COLUMN: ColumnDef<IClient>[] = [
   {
     header: "Company type",
     accessorKey: "companyType",
+    size: 100,
+    minSize: 100,
+    maxSize: 100,
     cell: (info ) => (
       <div className={clsx(styles.cell)}>
         {info.getValue<string>()}
@@ -50,6 +56,9 @@ export const CLIENTS_COLUMN: ColumnDef<IClient>[] = [
   {
     header: "Proposal Access",
     accessorKey: "proposalAccess",
+    size: 100,
+    minSize: 100,
+    maxSize: 100,
     cell: (info ) => (
       <div className={clsx(styles.cell)}>
         {info.getValue<boolean>() ? 'Enabled' : 'Disabled'}
@@ -60,6 +69,9 @@ export const CLIENTS_COLUMN: ColumnDef<IClient>[] = [
   {
     header: "Campaigns completed",
     accessorKey: "campaignsCompleted",
+    size: 75,
+    minSize: 75,
+    maxSize: 75,
     cell: (info ) => (
       <div className={clsx(styles.cell, styles.numberCell)}>
         {info.getValue<string>()}
@@ -70,6 +82,9 @@ export const CLIENTS_COLUMN: ColumnDef<IClient>[] = [
   {
     header: "Campaigns active",
     accessorKey: "campaignsActive",
+    size: 65,
+    minSize: 65,
+    maxSize: 65,
     cell: (info ) => (
       <div className={clsx(styles.cell, styles.numberCell)}>
         {info.getValue<string>()}

@@ -3,5 +3,7 @@ export const clientsQueryKeys = {
 
   list: <T>(params: T) => ["clients", "list", params] as const,
 
+  lists: () => ["clients", "list"] as const,
+
   detail: (id: string) => ["clients", "detail", id] as const,
 };
