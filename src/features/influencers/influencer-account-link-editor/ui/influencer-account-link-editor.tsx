@@ -1,17 +1,19 @@
 import React from "react";
 import { Modal } from "@/shared/ui/modal/modal.tsx";
 import { BaseTextInput, Button, Form } from "@/shared/ui";
-
-import close from "@/assets/icons/x.svg";
-import s from './influencer-account-link-editor.module.scss';
 import { useInfluencerAccountLinkEditor } from "@/features/influencers/influencer-account-link-editor";
 import type {
   InfluencerAccountLinkFormValues
 } from "@/features/influencers/influencer-account-link-editor/model/influencer-account-link-editor.schema.ts";
+import type { TSocialMediaValue } from "@/entities/influencers/model/influencers.constants.ts";
+
+import close from "@/assets/icons/x.svg";
+import s from './influencer-account-link-editor.module.scss';
 
 interface EditInfluencerAccountLinkProps {
   influencerId: string;
   accountId: string;
+  socialMedia: TSocialMediaValue;
   profileLink: string;
   platformLabel: string;
   onClose: () => void;
@@ -20,6 +22,7 @@ interface EditInfluencerAccountLinkProps {
 export const InfluencerAccountLinkEditor: React.FC<EditInfluencerAccountLinkProps> = ({
   influencerId,
   accountId,
+  socialMedia,
   profileLink,
   platformLabel,
   onClose,
@@ -34,6 +37,7 @@ export const InfluencerAccountLinkEditor: React.FC<EditInfluencerAccountLinkProp
     influencerId,
     accountId,
     profileLink,
+    socialMedia,
     onClose,
   })
 
@@ -88,7 +92,7 @@ export const InfluencerAccountLinkEditor: React.FC<EditInfluencerAccountLinkProp
         <img
           className={s.closeIcon}
           src={close}
-          alt=""
+          alt="Close modal"
           width={24}
           height={24}
         />

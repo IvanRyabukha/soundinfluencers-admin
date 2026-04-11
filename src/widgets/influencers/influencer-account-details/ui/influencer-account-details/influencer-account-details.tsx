@@ -1,23 +1,29 @@
-import React, { useState } from "react";
+import React, { useMemo, useState } from "react";
 import {
   InfluencerAccountDetailsEditForm,
   InfluencerAccountDetailsView,
 } from "@/widgets/influencers/influencer-account-details";
+import {
+  mapInfluencerDetailsToFormValues
+} from "@/widgets/influencers/influencer-account-details/model/influencer-account-details.mapper.ts";
+import type { IInfluencerDetails } from "@/entities/influencers/model/influencers.types.ts";
 import clsx from "clsx";
-
-import type { IInfluencerDetails } from "@/pages/influencers/influencer-details-page/ui/influencer-details-page.tsx";
 
 import edit from '@/assets/icons/influencers/edit.svg';
 import s from './influencer-account-details.module.scss';
 
 interface InfluencerAccountDetailsProps {
+  influencerId: string;
   details: IInfluencerDetails;
 }
 
 export const InfluencerAccountDetails: React.FC<InfluencerAccountDetailsProps> = ({
+  influencerId,
   details,
 }) => {
   const [isEditing, setIsEditing] = useState(false);
+
+  const defaultValues = useMemo(() => mapInfluencerDetailsToFormValues(details), [details]);
 
   return (
     <div className={s.influencerAccountDetails}>
@@ -25,7 +31,10 @@ export const InfluencerAccountDetails: React.FC<InfluencerAccountDetailsProps> =
         <h2 className={s.title}>Account details</h2>
         <button
           type="button"
-          className={s.editBtn}
+          className={clsx(
+            s.editBtn,
+            isEditing && s.active,
+          )}
           onClick={() => setIsEditing((prev) => !prev)}
         >
           Edit
@@ -41,8 +50,8 @@ export const InfluencerAccountDetails: React.FC<InfluencerAccountDetailsProps> =
 
       {isEditing ? (
         <InfluencerAccountDetailsEditForm
-          influencerId={details.influencerId}
-          defaultValues={details}
+          influencerId={influencerId}
+          defaultValues={defaultValues}
           onCancel={() => setIsEditing(false)}
         />
       ) : (

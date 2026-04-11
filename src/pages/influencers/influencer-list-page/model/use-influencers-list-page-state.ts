@@ -6,9 +6,10 @@ import {
 } from "nuqs";
 
 import { useDebounce } from "@/shared/hooks/use-debounce.ts";
-import type { TGetInfluencerParams } from "@/entities/influencers/model/influencers.types.ts";
+
 import { platformParser } from "@/entities/influencers/model/influencers.query-parsers.ts";
 import type { TSocialMediaValue } from "@/entities/influencers/model/influencers.constants.ts";
+import type { TGetInfluencersListParams } from "@/entities/influencers/model/influencers-list.types.ts";
 
 export const useInfluencersListPageState = () => {
   const [limit, setLimitQuery] = useQueryState(
@@ -77,7 +78,7 @@ export const useInfluencersListPageState = () => {
     }
   };
 
-  const queryParams: TGetInfluencerParams = useMemo(
+  const queryParams: TGetInfluencersListParams = useMemo(
     () => ({
       limit,
       page,

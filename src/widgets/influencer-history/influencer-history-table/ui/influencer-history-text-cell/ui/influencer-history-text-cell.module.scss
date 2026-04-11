@@ -1,0 +1,6 @@
+@use '@/app/styles/utils/breakpoints' as breakpoints;
+@use '@/app/styles/utils/mixins' as mixins;
+
+.textCell {
+  white-space: pre-wrap;
+}

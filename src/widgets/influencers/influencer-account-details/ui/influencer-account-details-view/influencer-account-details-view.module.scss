@@ -1,11 +1,40 @@
 @use '@/app/styles/utils/breakpoints' as breakpoints;
 @use '@/app/styles/utils/mixins' as mixins;
 
-.view {}
+.view {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
 
-.row {}
+  @include breakpoints.mobile {
+    gap: 16px;
+  }
+}
 
-.label {}
+.row {
+  display: grid;
+  grid-template-columns: minmax(90px, 184px) 1fr;
+  column-gap: 24px;
+  padding-block: 8px;
+  align-items: center;
 
-.value {}
+  @include breakpoints.mobile {
+    grid-template-columns: minmax(90px, 120px) 1fr;
+    column-gap: 16px;
+  }
+}
+
+.label {
+  font-size: var(--text-md);
+  color: var(--gray-dark);
+}
+
+.value {
+  font-weight: 500;
+  color: var(--gray-dark);
+
+  @include breakpoints.mobile {
+    font-size: 15px;
+  }
+}
 

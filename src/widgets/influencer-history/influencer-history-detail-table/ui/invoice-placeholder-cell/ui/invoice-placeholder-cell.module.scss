@@ -1,0 +1,24 @@
+@use '@/app/styles/utils/breakpoints' as breakpoints;
+@use '@/app/styles/utils/mixins' as mixins;
+
+.invoice {
+  padding: 12px 8px;
+  font-size: 14px;
+  font-style: normal;
+  line-height: normal;
+  font-weight: 400;
+
+  color: var(--red);
+
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: pre-wrap;
+
+  user-select: none;
+
+  @include breakpoints.tablet {
+    font-size: 13px;
+    padding: 10px 4px;
+  }
+}

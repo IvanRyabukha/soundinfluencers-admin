@@ -29,6 +29,18 @@ export const SOCIAL_MEDIA_LABEL_MAP = Object.fromEntries(
   SOCIAL_MEDIA_OPTIONS.map(({ value, label }) => [value, label])
 ) as Record<TSocialMediaValue, string>;
 
+export const isSocialMediaValue = (value: string): value is TSocialMediaValue => {
+  return SOCIAL_MEDIA_OPTIONS.some((item) => item.value === value);
+};
+
+export const getSocialMediaFromParam = (
+  platform: string | undefined,
+): TSocialMediaValue | undefined => {
+  if (!platform) return undefined;
+  return isSocialMediaValue(platform) ? platform : undefined;
+};
+
+
 export const ITEMS_LIMIT = [
   { label: "10 per page", value: 10 },
   { label: "20 per page", value: 20 },

@@ -61,6 +61,7 @@ export const TableFieldEditor = forwardRef<HTMLInputElement, TableFieldEditorPro
           }
         }}
         disabled={isPending}
+        autoComplete={"off"}
       />
     );
   }

@@ -1,5 +1,5 @@
 import React from "react";
-import type { IInfluencerDetails } from "@/pages/influencers/influencer-details-page/ui/influencer-details-page.tsx";
+import type { IInfluencerDetails } from "@/entities/influencers/model/influencers.types.ts";
 import { INFLUENCER_ACCOUNT_DETAILS_FIELD } from "@/widgets/influencers/influencer-account-details";
 
 import s from './influencer-account-details-view.module.scss';

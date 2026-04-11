@@ -3,13 +3,13 @@ import { useUploadInfluencersXlsxMutation } from "@/entities/influencers/api/use
 import { PageLimitSelect } from "@/shared/ui";
 import { SearchByQuery } from "@/features/search";
 import { ImportXlsx } from "@/features/import-xlsx";
+import { RefreshInfluencers } from "@/features/influencers/refresh-influencers";
 import { toast } from "react-toastify";
 import { ITEMS_LIMIT, type TSocialMediaValue } from "@/entities/influencers/model/influencers.constants.ts";
 
 import plus from '@/assets/icons/plus.svg';
 
 import s from './influencers-toolbar.module.scss';
-import { RefreshInfluencers } from "@/features/influencers/refresh-influencers";
 
 interface InfluencersToolbarProps {
   limit: number;

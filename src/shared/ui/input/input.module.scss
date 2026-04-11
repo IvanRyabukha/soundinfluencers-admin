@@ -34,6 +34,8 @@
   color: var(--black-blue);
   font-size: var(--text-md);
 
+  caret-color: black;
+
   transition: border-color var(--transition-base);
 
   &::placeholder {
@@ -43,7 +45,7 @@
 
   &:focus {
     outline: none;
-    border: 1px solid var(--blue);
+    border-color: var(--blue);
   }
 
   @include breakpoints.mobile {
@@ -56,7 +58,7 @@
 
   &:focus {
     outline: none;
-    border: 1px solid var(--error);
+    border-color: var(--error);
   }
 }
 

@@ -1,6 +1,4 @@
 import type { ColumnDef } from "@tanstack/react-table";
-import type { IInfluencerAccount } from "@/entities/influencers/model/influencers.types.ts";
-
 import { InfluencersNetworksCell } from "@/widgets/influencers/influencers-table/ui/influencers-networks-cell";
 import { InfluencersTextCell } from "@/widgets/influencers/influencers-table/ui/influencers-text-cell";
 import { InfluencersFollowersCell } from "@/widgets/influencers/influencers-table/ui/influencers-followers-cell";
@@ -10,12 +8,13 @@ import { InfluencersNotesCell } from "@/widgets/influencers/influencers-table/ui
 import { EditableInfluencersNumberCell } from "@/widgets/influencers/influencers-table/ui/editable-influencers-number-cell";
 
 import { SOCIAL_MEDIA_LABEL_MAP, type TSocialMediaValue } from "@/entities/influencers/model/influencers.constants.ts";
+import type { TInfluencersListRow } from "@/entities/influencers/model/influencers-list.types.ts";
 
 import s from "./columns.module.scss";
 
 export const getInfluencersColumns = (
   selectedPlatform: TSocialMediaValue | null,
-): ColumnDef<IInfluencerAccount>[] => [
+): ColumnDef<TInfluencersListRow>[] => [
   {
     id: "networks",
     header: "Networks",
@@ -133,8 +132,10 @@ export const getInfluencersColumns = (
     maxSize: 60,
     cell: ({ row }) => (
       <EditableInfluencersNumberCell
+        mode={"socialAccount"}
         influencerId={row.original.influencerId}
         accountId={row.original.accountId}
+        socialMedia={row.original.socialMedia}
         value={row.original.price}
         className={s.cell}
         field={"price"}
@@ -150,8 +151,10 @@ export const getInfluencersColumns = (
     maxSize: 60,
     cell: ({ row }) => (
       <EditableInfluencersNumberCell
+        mode={"socialAccount"}
         influencerId={row.original.influencerId}
         accountId={row.original.accountId}
+        socialMedia={row.original.socialMedia}
         value={row.original.publicPrice}
         className={s.cell}
         field={"publicPrice"}
@@ -196,9 +199,9 @@ export const getInfluencersColumns = (
     maxSize: 60,
     cell: ({ row }) => (
       <EditableInfluencersNumberCell
+        mode={"influencer"}
         influencerId={row.original.influencerId}
         accountId={row.original.accountId}
-        socialMedia={row.original.socialMedia}
         value={row.original.balance}
         className={s.cell}
         field={"balance"}

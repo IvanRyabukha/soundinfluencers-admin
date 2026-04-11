@@ -7,6 +7,8 @@ import {
   type InfluencerAccountDetailsFormValues,
 } from "./influencer-account-details.schema";
 import { mapInfluencerAccountDetailsFormToDto } from "./influencer-account-details.mapper";
+import { useUpdateInfluencerMutation } from "@/entities/influencers/api/use-update-influencer-mutation.ts";
+import { toast } from "react-toastify";
 
 interface UseInfluencerAccountDetailsFormParams {
   influencerId: string;
@@ -21,6 +23,7 @@ export const useInfluencerAccountDetailsForm = ({
   defaultValues,
   onCancel,
 }: UseInfluencerAccountDetailsFormParams) => {
+  const { mutate, isPending } = useUpdateInfluencerMutation();
   const methods = useForm<InfluencerAccountDetailsFormValues>({
     resolver: zodResolver(influencerAccountDetailsSchema),
     defaultValues,
@@ -57,19 +60,28 @@ export const useInfluencerAccountDetailsForm = ({
         return;
       }
 
-      console.log("SUBMIT ACCOUNT DETAILS:", {
+      mutate({
         influencerId,
         dto,
-      });
+      }, {
+        onSuccess: () => {
+          console.log("Successfully updated");
+          onCancel();
 
-      onCancel();
+          toast("Influencer account details updated successfully!", {
+            type: "success",
+            position: "top-right",
+            autoClose: 3000,
+          })
+        }
+      })
     },
-    [influencerId, onCancel, isUnchanged],
+    [influencerId, onCancel, isUnchanged, mutate],
   );
 
   return {
     methods,
     onSubmit,
-    isPending: false,
+    isPending,
   };
 };

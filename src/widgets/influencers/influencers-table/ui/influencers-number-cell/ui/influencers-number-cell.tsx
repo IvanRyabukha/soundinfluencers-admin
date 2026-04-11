@@ -11,7 +11,7 @@ interface InfluencersNumberCellProps {
 export const InfluencersNumberCell: React.FC<InfluencersNumberCellProps> = ({ value, suffix, className }) => {
   const displayValue = suffix ?
     formatCurrency(value, suffix) : value ?
-      `${value}` : '-';
+      `${value}` : '—';
 
   return (
     <div

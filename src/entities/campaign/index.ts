@@ -3,3 +3,5 @@ export { type TViewCampaignMode, type TCampaignStatus } from './model/campaign.t
 export * from "./model/campaign.types";
 export * from "./model/campaign.constants";
 export * from "./model/campaign.query-parsers";
+
+export * from './api/campaign.api.ts';

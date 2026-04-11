@@ -1,12 +1,83 @@
 @use '@/app/styles/utils/breakpoints' as breakpoints;
 @use '@/app/styles/utils/mixins' as mixins;
 
-.influencerAccountDetails {}
+.influencerAccountDetails {
+  max-width: 600px;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
 
-.header {}
+  @include breakpoints.tablet {
+    max-width: 100%;
+    gap: 24px;
+  }
 
-.title {}
+  @include breakpoints.mobile {
+    gap: 16px;
+  }
+}
 
-.editBtn {}
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-block: 8px;
 
-.editIcon {}
+  border-bottom: 1px solid var(--blue);
+}
+
+.title {
+  font-size: 20px;
+  font-weight: 400;
+  font-style: normal;
+  line-height: normal;
+
+  @include breakpoints.mobile {
+    font-size: 16px;
+  }
+}
+
+.editBtn {
+  @include mixins.reset-button;
+  position: relative;
+  isolation: isolate;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 8px 16px;
+
+  border-radius: 8px;
+
+  border: 1px solid #EBECFF;
+  background-color: var(--white);
+
+  font-size: 16px;
+  font-weight: 400;
+  font-style: normal;
+  line-height: normal;
+  color: var(--gray-dark);
+
+  transition: background-color var(--transition-base);
+
+  @include mixins.hover {
+    background-color: var(--white-gray-20);
+  }
+
+  @include breakpoints.tablet {
+    padding: 8px 12px;
+  }
+  @include breakpoints.mobile {
+    gap: 4px;
+  }
+}
+
+.active {
+  background-color: var(--light-blue);
+}
+
+.editIcon {
+  width: 18px;
+  height: 18px;
+  aspect-ratio: 1 / 1;
+}

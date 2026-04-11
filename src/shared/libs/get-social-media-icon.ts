@@ -10,7 +10,7 @@ import soundcloudIcon from "@/assets/icons/campaigns/social-media/soundcloud.svg
 import pressIcon from "@/assets/icons/campaigns/social-media/press.svg";
 import multipromoIcon from "@/assets/icons/campaigns/social-media/multipromo.svg";
 
-export const getSocialMediaIcon = (socialMedia: TSocialMedia | TSocialMediaValue) => {
+export const getSocialMediaIcon = (socialMedia: TSocialMedia | TSocialMediaValue | null) => {
   switch (socialMedia) {
     case "instagram":
       return instagramIcon;

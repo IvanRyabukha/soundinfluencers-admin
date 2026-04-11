@@ -6,10 +6,15 @@ import { Table } from "@/shared/ui";
 
 interface ClientsTableProps {
   data: IClient[];
+  isLoading?: boolean;
   isFetching?: boolean;
 }
 
-export const ClientsTable: React.FC<ClientsTableProps> = ({ data, isFetching}) => {
+export const ClientsTable: React.FC<ClientsTableProps> = ({
+  data,
+  isFetching,
+  isLoading,
+}) => {
 
   console.log("ClientsTable", data);
 
@@ -18,6 +23,7 @@ export const ClientsTable: React.FC<ClientsTableProps> = ({ data, isFetching}) =
       data={data}
       columns={CLIENTS_COLUMN}
       isFetching={isFetching}
+      isLoading={isLoading}
       isManualPagination={true}
       emptyText={"No clients found"}
     />

@@ -1,17 +1,19 @@
 import { useCallback } from "react";
 import { useForm, useWatch } from "react-hook-form";
 import {
-  useUpdateSocialAccountMutation,
-} from "@/entities/influencers/api/use-update-social-account-mutation.ts";
+  useUpdateListSocialAccountMutation,
+} from "@/entities/influencers/api/use-update-list-social-account-mutation.ts";
 import { toast } from "react-toastify";
 import { zodResolver } from "@hookform/resolvers/zod";
 import {
   type InfluencerAccountLinkFormValues, influencerAccountLinkSchema,
 } from "@/features/influencers/influencer-account-link-editor/model/influencer-account-link-editor.schema.ts";
+import type { TSocialMediaValue } from "@/entities/influencers/model/influencers.constants.ts";
 
 interface UseInfluencerAccountLinkEditorParams {
   influencerId: string;
   accountId: string;
+  socialMedia: TSocialMediaValue;
   profileLink: string;
   onClose: () => void;
 }
@@ -19,11 +21,11 @@ interface UseInfluencerAccountLinkEditorParams {
 export const useInfluencerAccountLinkEditor = ({
   influencerId,
   accountId,
+  socialMedia,
   profileLink,
   onClose,
-}: UseInfluencerAccountLinkEditorParams) =>   {
-
-  const { mutate, isPending } = useUpdateSocialAccountMutation();
+}: UseInfluencerAccountLinkEditorParams) => {
+  const { mutate, isPending } = useUpdateListSocialAccountMutation();
 
   const methods = useForm<InfluencerAccountLinkFormValues>({
     resolver: zodResolver(influencerAccountLinkSchema),
@@ -44,9 +46,8 @@ export const useInfluencerAccountLinkEditor = ({
     mutate({
       influencerId,
       accountId,
-      dto: {
-        profileLink: data.newLink.trim(),
-      },
+      socialMedia,
+      profileLink: data.newLink.trim(),
     }, {
       onSuccess: () => {
         onClose();
@@ -57,7 +58,7 @@ export const useInfluencerAccountLinkEditor = ({
         });
       },
     });
-  }, [mutate, influencerId, accountId, onClose]);
+  }, [mutate, influencerId, accountId, socialMedia, onClose]);
 
   return {
     methods,

@@ -1,0 +1,14 @@
+@use '@/app/styles/utils/breakpoints' as breakpoints;
+
+.performanceFields {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+
+  @include breakpoints.tablet {
+    gap: 24px;
+  }
+  @include breakpoints.mobile {
+    flex-direction: column;
+  }
+}

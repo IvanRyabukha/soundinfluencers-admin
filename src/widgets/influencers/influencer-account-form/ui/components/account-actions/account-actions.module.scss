@@ -1,0 +1,14 @@
+@use '@/app/styles/utils/breakpoints' as breakpoints;
+@use '@/app/styles/utils/mixins' as mixins;
+
+.accountActions {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 24px;
+
+  @include breakpoints.mobile {
+    flex-direction: column;
+    gap: 8px;
+  }
+}

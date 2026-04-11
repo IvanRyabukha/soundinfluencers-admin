@@ -1,13 +1,11 @@
 import React, { useCallback, useMemo, useState } from "react";
+import { useUpdateListInfluencerMutation } from "@/entities/influencers/api/use-update-list-influencer-mutation.ts";
 import * as Popover from "@radix-ui/react-popover";
 import { NotesEditor } from "@/shared/ui/notes-editor";
+import { toast } from "react-toastify";
 import clsx from "clsx";
 
 import s from './influencers-notes-cell.module.scss';
-import {
-  useUpdateSocialAccountMutation
-} from "@/entities/influencers/api/use-update-social-account-mutation.ts";
-import { toast } from "react-toastify";
 
 interface InfluencersNotesCellProps {
   influencerId: string;
@@ -22,10 +20,10 @@ export const InfluencersNotesCell: React.FC<InfluencersNotesCellProps> = ({
   value,
   className,
 }) => {
-  const { mutate, isPending } = useUpdateSocialAccountMutation();
+  const { mutate, isPending } = useUpdateListInfluencerMutation();
 
   const [isEditorOpen, setIsEditorOpen] = useState(false);
-  const displayValue = value?.trim() ? value : "-";
+  const displayValue = value?.trim() ? value : "—";
 
   const isTouchDevice = useMemo(
     () => window.matchMedia("(pointer: coarse)").matches,

@@ -16,6 +16,8 @@
   text-overflow: ellipsis;
   white-space: nowrap;
 
+  user-select: none;
+
   @include breakpoints.tablet {
     padding: 10px 4px;
 

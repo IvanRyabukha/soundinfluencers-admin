@@ -1,0 +1,35 @@
+@use '@/app/styles/utils/breakpoints' as breakpoints;
+@use '@/app/styles/utils/mixins' as mixins;
+
+.refreshHistoryForOne {
+  @include mixins.reset-button;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px 8px;
+
+  border: 1px solid transparent;
+  border-radius: 4px;
+  background:
+    linear-gradient(#fff, #fff) padding-box,
+    linear-gradient(180deg, #EBECFF 0%, #DFF0FF 100%) border-box;
+}
+
+.refreshIcon {
+  width: 16px;
+  height: 16px;
+  aspect-ratio: 1 / 1;
+}
+
+.rotate {
+  animation: spin 1.2s linear infinite;
+  transform-origin: center;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+

@@ -1,4 +1,4 @@
-import type { IInfluencerDetails } from "@/pages/influencers/influencer-details-page/ui/influencer-details-page.tsx";
+import type { IInfluencerDetails } from "@/entities/influencers/model/influencers.types.ts";
 
 export type TDetailsField<T> = {
   label: string;

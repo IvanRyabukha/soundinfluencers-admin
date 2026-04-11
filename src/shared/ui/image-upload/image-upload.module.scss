@@ -1,0 +1,105 @@
+@use '@/app/styles/utils/breakpoints' as breakpoints;
+@use '@/app/styles/utils/mixins' as mixins;
+
+.imageUpload {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+
+  @include breakpoints.tablet {
+    gap: 4px;
+  }
+}
+
+.label {
+  color: var(--gray-dark);
+  font-size: var(--text-md);
+
+  transition: color var(--transition-base);
+}
+
+.labelError {
+  color: var(--error);
+}
+
+.placeholder {
+  color: var(--gray);
+  font-size: var(--text-md);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  user-select: none;
+}
+
+.control {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 51px;
+  padding-inline: 16px;
+
+  border-radius: 8px;
+  background-color: var(--white);
+  border: 1px solid var(--white-gray-20);
+
+  transition: border-color var(--transition-base);
+
+  cursor: pointer;
+
+  @include breakpoints.mobile {
+    height: 48px;
+  }
+}
+
+.inputError {
+  border: 1px solid var(--error);
+
+  &:focus {
+    outline: none;
+    border-color: var(--error);
+  }
+}
+
+.logo {
+  width: 40px;
+  height: 40px;
+  aspect-ratio: 1 / 1;
+  border-radius: 50%;
+
+  @include breakpoints.tablet {
+    width: 32px;
+    height: 32px;
+  }
+}
+
+.action {
+  opacity: 1;
+  transition: opacity var(--transition-base);
+
+  > img {
+    width: 20px;
+    height: 20px;
+    aspect-ratio: 1 / 1;
+
+    @include breakpoints.tablet {
+      width: 18px;
+      height: 18px;
+    }
+  }
+
+  @include mixins.hover {
+    opacity: 0.7;
+  }
+}
+
+.error {
+  color: var(--error);
+  font-size: 12px;
+  margin-top: -4px;
+
+  @include breakpoints.mobile {
+    margin-top: -2px;
+  }
+}

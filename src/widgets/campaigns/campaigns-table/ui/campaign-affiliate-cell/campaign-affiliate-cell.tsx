@@ -34,7 +34,7 @@ export const CampaignAffiliateCell: React.FC<CampaignAffiliateCellProps> = ({
   const inputRef = useRef<HTMLInputElement>(null);
   const isSubmittingRef = useRef(false);
 
-  const displayValue = value?.trim() ? value : "-";
+  const displayValue = value?.trim() ? value : "—";
 
   const isTouchDevice = useMemo(
     () => window.matchMedia("(pointer: coarse)").matches,

@@ -7,10 +7,13 @@ interface CampaignFollowersCellProps {
 }
 
 export const CampaignFollowersCell: React.FC<CampaignFollowersCellProps> = ({ value, className = "" }) => {
-  const displayValue = value && value > 0 ? formatCompactNumber(value) : '-';
+  const displayValue = value && value > 0 ? formatCompactNumber(value) : '—';
 
   return (
-    <div className={className}>
+    <div
+      className={className}
+      title={value > 0 ? value.toString() : 'No followers'}
+    >
       <span>{displayValue}</span>
     </div>
   )
