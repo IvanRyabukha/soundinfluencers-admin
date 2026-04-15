@@ -18,7 +18,7 @@ export const InfluencerHistoryPage = () => {
   const { searchValue, handleSearchChange, historyQueryParams, searchQueryParams } = useInfluencersHistoryPageState();
   const { data: historyData, isLoading, isFetching, isError, error } = useInfluencerHistoryQuery(historyQueryParams);
 
-  const { data: influencersData, isPending } = useInfluencerSearchHistoryQuery(searchQueryParams);
+  const { data: influencersData } = useInfluencerSearchHistoryQuery(searchQueryParams);
 
   useEffect(() => {
     if (isError && error) {
@@ -56,7 +56,6 @@ export const InfluencerHistoryPage = () => {
             searchValue={searchValue}
             onSearchChange={handleSearchChange}
             data={influencersList}
-            isDisabled={isPending}
           />
 
           <InfluencerHistoryTable

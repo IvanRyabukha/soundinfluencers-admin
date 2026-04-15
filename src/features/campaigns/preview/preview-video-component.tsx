@@ -41,7 +41,7 @@ export const VideoPreview: React.FC<VideoPreviewProps> = ({
       }
     };
 
-    loadVideo();
+    void loadVideo();
   }, [videoUrl, pathLower]);
 
   return (

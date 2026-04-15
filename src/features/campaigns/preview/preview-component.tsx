@@ -38,14 +38,14 @@ export const PreviewPhoto: React.FC<PreviewVideoProps> = ({
 
         objectUrl = URL.createObjectURL(blob);
         setUrl(objectUrl);
-      } catch (e) {
+      } catch {
         setError(true);
       } finally {
         setLoading(false);
       }
     };
 
-    loadPreview();
+    void loadPreview();
 
     return () => {
       if (objectUrl) URL.revokeObjectURL(objectUrl);

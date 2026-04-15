@@ -15,7 +15,7 @@ interface ExportCampaignProps {
 export const ExportCampaign: React.FC<ExportCampaignProps> = ({ campaignId, socialMedia, className = "" }) => {
   const copyToClipboard = useCopyToClipboard();
 
-  const sharedLink = `http://localhost:5173/promo-share/${campaignId}/${socialMedia}`;
+  const sharedLink = `https://test.soundinfluencers.com/promo-share/${campaignId}/${socialMedia}`;
 
   const handleCopy = async () => {
     const success = await copyToClipboard(sharedLink);
