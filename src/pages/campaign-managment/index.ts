@@ -1,0 +1,1 @@
+export {CampaignManagment} from './ui/campaign-managment.tsx'

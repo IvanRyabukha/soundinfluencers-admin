@@ -1,0 +1,108 @@
+.BudgetPopUp {
+  position: relative;
+  max-width: 288px;
+  width: 100%;
+
+  @media screen and (max-width: 500px) {
+    max-width: 100%;
+  }
+
+  &.less {
+    width: 100%;
+    max-width: 184px;
+
+    @media screen and (max-width: 500px) {
+      max-width: 164px;
+    }
+  }
+
+  &__title {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    padding: 12px 24px;  height: 40px;
+    gap: 26px;
+    border: 1px solid rgba(231, 232, 241, 1);
+    background-color: rgba(255, 255, 255, 1);
+    border-radius: 8px;
+    z-index: 11;
+    cursor: pointer;
+
+    @media screen and (max-width: 500px) {
+      padding: 12px 8px;
+      justify-content: flex-start;
+
+      p {
+        font-size: 14px;
+      }
+    }
+
+    img {
+      margin-top: -3px;
+      position: absolute;
+      right: 16px;
+      transition: transform 0.2s ease;
+    }
+  }
+
+  &__select {
+    position: absolute;
+    left: 0;
+    right: 0;
+    margin-top: -8px;
+    background: rgba(255, 255, 255, 1);
+    padding: 24px;
+    z-index: 20;
+
+    border-left: 1px solid rgba(231, 232, 241, 1);
+    border-right: 1px solid rgba(231, 232, 241, 1);
+    border-bottom: 1px solid rgba(231, 232, 241, 1);
+    border-bottom-left-radius: 26px;
+    border-bottom-right-radius: 26px;
+
+    @media screen and (max-width: 500px) {
+      padding: 16px 12px;
+    }
+  }
+}
+
+.mySortList {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+
+  li {
+    position: relative;
+    cursor: pointer;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 100%;
+    padding-right: 24px;
+  }
+
+  img {
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+}
+
+.active {
+  border-color: rgba(185, 208, 255, 1) !important;
+}
+
+.activeIcon {
+  transform: rotate(180deg);
+}
+
+.less {
+  width: 100%;
+  max-width: 184px;
+
+  @media screen and (max-width: 500px) {
+    max-width: 164px;
+  }
+}

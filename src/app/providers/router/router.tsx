@@ -14,6 +14,10 @@ import { InfluencersListPage } from "@/pages/influencers/influencer-list-page";
 import { InfluencerDetailsPage } from "@/pages/influencers/influencer-details-page";
 import { CreateInfluencerAccountPage } from "@/pages/influencers/create-influencer-account-page";
 import { EditInfluencerAccountPage } from "@/pages/influencers/edit-influencer-account-page";
+import {CampaignManagment} from "@/pages/campaign-managment";
+import {
+    CampaignManagmentAddAccounts
+} from "@/pages/campaign-managment-add-accounts/ui/campaign-managment-add-accounts.tsx";
 import { InfluencerHistoryPage } from "@/pages/influencer-history/influencer-history-page";
 import { InfluencerHistoryDetailsPage } from "@/pages/influencer-history/influencer-history-details-page";
 
@@ -57,6 +61,13 @@ export const ROUTER = createBrowserRouter([
                 path: "dashboard/campaigns",
                 children: [
                   { index: true, element: <CampaignsPage/> },
+                    {
+                        path: "campaign-management",
+                        children: [
+                            { index: true, element: <CampaignManagment /> },
+                            { path: "add-account", element: <CampaignManagmentAddAccounts /> },
+                        ],
+                    },
                 ],
               },
 

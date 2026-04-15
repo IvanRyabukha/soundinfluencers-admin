@@ -1,0 +1,66 @@
+.node {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.home {
+  width: 100%;
+}
+
+.parentItem {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  position: relative;
+  width: 100%;
+  cursor: pointer;
+}
+
+.label {
+  cursor: pointer;
+  padding-right: 42px;
+}
+
+.count {
+  position: absolute;
+  right: 0;
+}
+
+.children {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 10px;
+  margin-left: 27px;
+}
+
+.parentItem input[type="checkbox"] {
+  appearance: none;
+  width: 18px;
+  height: 18px;
+  border: 0.1em solid #000;
+  border-radius: 50%;
+  display: inline-block;
+  position: relative;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  flex: 0 0 auto;
+}
+
+.parentItem input[type="checkbox"]::after {
+  content: "";
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  background: #000;
+  border-radius: 50%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0);
+  transition: transform 0.2s ease;
+}
+
+.parentItem input[type="checkbox"]:checked::after {
+  transform: translate(-50%, -50%) scale(1);
+}

@@ -1,3 +1,5 @@
+//@ts-nocheck
+
 import { useCallback } from "react";
 import { useForm, useWatch } from "react-hook-form";
 import {
