@@ -1,0 +1,114 @@
+@use '@/app/styles/utils/breakpoints' as breakpoints;
+@use '@/app/styles/utils/mixins' as mixins;
+
+.influencerHistoryDetailsPage {
+  padding-block: 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+
+  @include breakpoints.tablet {
+    padding-block: 16px;
+    gap: 24px;
+  }
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+
+  @include breakpoints.tablet {
+    gap: 16px;
+  }
+  @include breakpoints.tablet {
+    gap: 24px;
+  }
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  @include breakpoints.mobile {
+    flex-direction: column;
+    gap: 8px;
+    align-items: flex-start;
+  }
+}
+
+.topbar {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+
+  @include breakpoints.tablet {
+    gap: 8px;
+  }
+
+  @include breakpoints.mobile {
+    gap: 16px;
+  }
+}
+
+.cta {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 8px;
+
+  @include breakpoints.mobile {
+    width: 100%;
+    justify-content: flex-end;
+  }
+}
+
+.action {
+  @include mixins.reset-button;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 8px 16px;
+
+  border: 1px solid transparent;
+  border-radius: 8px;
+  background:
+    linear-gradient(#fff, #fff) padding-box,
+    linear-gradient(180deg, #EBECFF 0%, #DFF0FF 100%) border-box;
+
+  @include breakpoints.tablet {
+    padding: 8px 12px;
+    font-size: 13px;
+  }
+}
+
+.ctaIcon {
+  width: 24px;
+  height: 24px;
+  aspect-ratio: 1 / 1;
+
+  @include breakpoints.tablet {
+    width: 18px;
+    height: 18px;
+  }
+}
+
+.tableWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.rotate {
+  animation: spin 1.2s linear infinite;
+  transform-origin: center;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}

@@ -9,7 +9,7 @@ interface InfluencersFollowersCellProps {
 }
 
 export const InfluencersFollowersCell: React.FC<InfluencersFollowersCellProps> = ({ followers, className }) => {
-  const displayValue = followers && followers > 0 ? formatCompactNumber(followers) : '-';
+  const displayValue = followers && followers > 0 ? formatCompactNumber(followers) : '—';
 
   return (
     <div

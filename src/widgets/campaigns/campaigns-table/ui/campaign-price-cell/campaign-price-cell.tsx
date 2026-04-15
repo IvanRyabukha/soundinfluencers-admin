@@ -9,7 +9,7 @@ export const CampaignPriceCell: React.FC<CampaignPriceCellProps> = ({
   value,
   className = ""
 }) => {
-  const displayValue = value && value > 0 ? `${value}\u20AC` : '-';
+  const displayValue = value && value > 0 ? `${value}\u20AC` : '—';
 
   return (
     <div className={className}>

@@ -1,16 +1,22 @@
 import React, { useMemo } from "react";
 import { Table } from "@/shared/ui";
 import { getInfluencersColumns } from "@/widgets/influencers/influencers-table/model/columns.tsx";
-import type { IInfluencer } from "@/entities/influencers/model/influencers.types.ts";
+import type { TInfluencersListRow } from "@/entities/influencers/model/influencers-list.types.ts";
 import type { TSocialMediaValue } from "@/entities/influencers/model/influencers.constants.ts";
 
 interface InfluencersTableProps {
-  data: IInfluencer[];
+  data: TInfluencersListRow[];
   isFetching?: boolean;
+  isLoading?: boolean;
   platform: TSocialMediaValue | null;
 }
 
-export const InfluencersTable: React.FC<InfluencersTableProps> = ({ data, isFetching, platform }) => {
+export const InfluencersTable: React.FC<InfluencersTableProps> = ({
+  data,
+  isFetching,
+  isLoading,
+  platform
+}) => {
   console.log("InfluencersTable data:", data);
 
   const columns = useMemo(
@@ -23,6 +29,7 @@ export const InfluencersTable: React.FC<InfluencersTableProps> = ({ data, isFetc
       data={data}
       columns={columns}
       isFetching={isFetching}
+      isLoading={isLoading}
       isManualPagination={true}
       emptyText={"No influencers found"}
     />

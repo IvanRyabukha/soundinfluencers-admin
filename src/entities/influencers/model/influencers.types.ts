@@ -1,50 +1,40 @@
-import type { TSocialMediaValue } from "@/entities/influencers/model/influencers.constants.ts";
-import type { TCurrency } from "@/shared/types/types.ts";
+import type { TSocialAccountShort } from "@/entities/influencers/model/social-account.types.ts";
 
-export interface IInfluencerAccount {
-  influencerId: string,
-  firstName: string,
-  lastName: string,
-  email: string,
-  phone: string,
-  balance: number,
-  accountId: string,
-  username: string,
-  socialMedia: TSocialMediaValue,
-  logoUrl: string,
-  followers: number,
-  profileLink: string,
-  publicPrice: number,
-  price: number,
-  initialPrice: number,
-  currency: TCurrency,
-  costPerFollower: number,
-  isHidden: boolean,
-  internalNote: string,
+export interface IInfluencer {
+  influencerId: string;
+  firstName: string;
+  lastName: string;
+  email: string;
+  phone: string;
+  balance: number;
+
+  internalNote: string;
+  currencyNote: string;
 }
 
-export type TGetInfluencerAccountParams = {
-  limit: number;
-  page: number;
-  search?: string;
-  platform?: TSocialMediaValue;
-};
+export interface IInfluencerDetails {
+  firstName: string;
+  lastName: string;
+  logoUrl: string;
+  email: string;
+  phone: string;
 
-export interface IInfluencerAccountListPayload {
-  total: number;
-  page: number;
-  limit: number;
-  totalPages: number;
-  items: IInfluencerAccount[];
+  instagram: TSocialAccountShort[];
+  tiktok: TSocialAccountShort[];
+  youtube: TSocialAccountShort[];
+  facebook: TSocialAccountShort[];
+  spotify: TSocialAccountShort[];
+  soundcloud: TSocialAccountShort[];
+  press: TSocialAccountShort[];
 }
 
-export interface IInfluencerAccountListResponse {
+export interface IInfluencerDetailsResponse {
   statusCode: number;
   message: string;
-  data: IInfluencerAccountListPayload;
+  data: IInfluencerDetails;
 }
 
-//update influencer
+//update influencer (change for partial IInfluencer)
 export interface IUpdateInfluencerDto {
   firstName?: string;
   lastName?: string;
@@ -53,56 +43,24 @@ export interface IUpdateInfluencerDto {
   logoUrl?: string;
   balance?: number;
   internalNote?: string;
+  currencyNote?: string;
 }
 
-export interface IUpdateInfluencerParams {
+export type TUpdateInfluencerParams = {
   influencerId: string;
+  accountId?: string;
   dto: IUpdateInfluencerDto;
 }
 
-
-
-// update influencer Social Account
-export interface IUpdateSocialAccountDto {
-  influencerId: string;
-  accountId: string;
-  socialMedia: TSocialMediaValue;
-
-  isHidden?: boolean;
-  profileLink?: string;
-  publicPrice?: number;
-  price?: number;
-}
-
-export interface IUpdateSocialAccountResponse {
+export interface IUpdateInfluencerResponse {
   statusCode: number;
   message: string;
-  data: IInfluencerAccount;
-}
+  data: {
+    firstName: string;
+    lastName: string;
+    email: string;
+    phone: string;
 
-
-
-
-// balance?: number;
-// internalNote?: string;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// upload XLSX
-export interface UploadInfluencersXlsxParams {
-  file: File;
-  socialMedia: TSocialMediaValue;
+    currencyNote: string;
+  };
 }

@@ -18,7 +18,7 @@ export function CompanyFieldsCard<T>({ data, fields }: CompanyFieldsCardProps<T>
             <span className={s.label}>{field.label}</span>
 
             <span className={s.value}>
-              {field.render ? field.render(data) : value ? String(value) : '-'}
+              {field.render ? field.render(data) : value ? String(value) : '—'}
             </span>
           </div>
         );

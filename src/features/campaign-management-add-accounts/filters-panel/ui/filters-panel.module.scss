@@ -1,0 +1,80 @@
+.stickyFilter {
+  max-width: 312px;
+  width: 100%;
+  position: sticky;
+  top: 30px;
+  height: 100%;
+  margin-bottom: 26px;
+
+  @media screen and (max-width: 900px) {
+    position: relative;
+    max-width: 100%;
+  }
+}
+
+.filterForTable {
+  @media screen and (max-width: 600px) {
+    max-width: 100%;
+  }
+}
+
+.root {
+  max-width: 312px;
+  width: 100%;
+  padding: 16px;
+  background-color: white;
+  border: 1px solid rgba(231, 232, 241, 1);
+  border-radius: 8px;
+  height: 100%;
+
+  @media screen and (max-width: 900px) {
+    max-width: 100%;
+  }
+}
+
+.sticky {
+  height: 100%;
+}
+
+.head {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  h3 {
+    font-size: 20px;
+    line-height: 100%;
+    font-weight: 400;
+  }
+}
+
+.closeButton {
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+
+  img {
+    width: 24px;
+    height: 24px;
+  }
+}
+
+.body {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 16px;
+  overflow-y: auto;
+  max-height: 800px;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}

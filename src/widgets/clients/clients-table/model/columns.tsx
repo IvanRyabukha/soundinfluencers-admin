@@ -25,7 +25,7 @@ export const CLIENTS_COLUMN: ColumnDef<IClient>[] = [
     maxSize: 110,
     cell: (info ) => (
       <div className={clsx(styles.cell)}>
-        {info.getValue<string>()}
+        {info.getValue<string>() ?? '—'}
       </div>
     ),
   },
@@ -35,7 +35,7 @@ export const CLIENTS_COLUMN: ColumnDef<IClient>[] = [
     accessorKey: "email",
     cell: (info ) => (
       <div className={clsx(styles.cell, styles.emailCell)}>
-        {info.getValue<string>()}
+        {info.getValue<string>() ?? '—'}
       </div>
     ),
   },
@@ -48,7 +48,7 @@ export const CLIENTS_COLUMN: ColumnDef<IClient>[] = [
     maxSize: 100,
     cell: (info ) => (
       <div className={clsx(styles.cell)}>
-        {info.getValue<string>()}
+        {info.getValue<string>() ?? '—'}
       </div>
     ),
   },
@@ -74,7 +74,7 @@ export const CLIENTS_COLUMN: ColumnDef<IClient>[] = [
     maxSize: 75,
     cell: (info ) => (
       <div className={clsx(styles.cell, styles.numberCell)}>
-        {info.getValue<string>()}
+        {info.getValue<string>() ?? '—'}
       </div>
     ),
   },
@@ -87,7 +87,7 @@ export const CLIENTS_COLUMN: ColumnDef<IClient>[] = [
     maxSize: 65,
     cell: (info ) => (
       <div className={clsx(styles.cell, styles.numberCell)}>
-        {info.getValue<string>()}
+        {info.getValue<string>() ?? '—'}
       </div>
     ),
   },

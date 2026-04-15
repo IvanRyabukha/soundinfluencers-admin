@@ -1,0 +1,11 @@
+@use '@/app/styles/utils/breakpoints' as breakpoints;
+
+.accountMainFields {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+
+  @include breakpoints.mobile {
+    gap: 16px;
+  }
+}

@@ -1,0 +1,83 @@
+.container{
+  h3{
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    margin-bottom: 12px;
+  }
+
+  .title{
+    display: flex;
+    justify-content: space-between;
+    &__block{
+      h2{
+        font-size: 36px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+      }
+      p{
+        color: #202934;
+        font-size: 16px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+      }
+
+    }
+    &__flex{
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+  }
+
+  &Nav{
+    margin: 33px 0px;
+    display: flex;
+    justify-content: space-between;
+    &__content{
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+  }
+  .title{
+    color: #202934;
+    font-size: 36px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+  }
+  .wrapperCard {
+    display: grid;
+    gap: 16px;
+    grid-template-columns: repeat(3, minmax(0, 357px));
+    justify-content: space-between;
+    width: 100%;
+    &::-webkit-scrollbar-thumb {
+      background-color: black;
+      border-radius: 8px;
+    }
+
+    &::-webkit-scrollbar {
+      height: 8px;
+    }
+
+    &::-webkit-scrollbar-track {
+      background-color: rgba(185, 208, 255, 0.15);
+    }
+    @media (max-width: 1100px) {
+      grid-template-columns: repeat(2, minmax(0, 357px));
+    }
+    @media (max-width: 720px) {
+      grid-template-columns: minmax(0, 357px);
+      justify-content: center;
+      }
+    }
+
+
+  }
+

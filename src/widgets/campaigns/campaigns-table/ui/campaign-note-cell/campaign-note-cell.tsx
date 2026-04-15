@@ -25,7 +25,7 @@ export const CampaignNoteCell: React.FC<CampaignNoteCellProps> = ({
   const { mutate, isPending } = useUpdateCampaignMutation();
 
   const [isEditorOpen, setIsEditorOpen] = useState(false);
-  const displayValue = value?.trim() ? value : "-";
+  const displayValue = value?.trim() ? value : "—";
 
   const isTouchDevice = useMemo(
     () => window.matchMedia("(pointer: coarse)").matches,

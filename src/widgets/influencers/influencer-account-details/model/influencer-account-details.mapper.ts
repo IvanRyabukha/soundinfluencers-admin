@@ -1,4 +1,4 @@
-import type { IInfluencerDetails } from "@/pages/influencers/influencer-details-page/ui/influencer-details-page.tsx";
+import type { IInfluencerDetails } from "@/entities/influencers/model/influencers.types.ts";
 import type { InfluencerAccountDetailsFormValues } from "./influencer-account-details.schema";
 
 export const mapInfluencerDetailsToFormValues = (
@@ -9,14 +9,6 @@ export const mapInfluencerDetailsToFormValues = (
   email: details.email ?? "",
   phone: details.phone ?? "",
 });
-
-export const getInfluencerAccountDetailsDefaultValues =
-  (): InfluencerAccountDetailsFormValues => ({
-    firstName: "",
-    lastName: "",
-    email: "",
-    phone: "",
-  });
 
 export const mapInfluencerAccountDetailsFormToDto = (
   values: InfluencerAccountDetailsFormValues,

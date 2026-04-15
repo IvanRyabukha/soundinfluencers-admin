@@ -1,10 +1,6 @@
-import { DashboardWelcome } from "@/widgets/dashboard/dashboard-welcome/ui/dashboard-welcome.tsx";
-import { DashboardQuickAction } from "@/widgets/dashboard/dashboard-quick-action/ui/dashboard-quick-action.tsx";
-import { DashboardNavSection } from "@/widgets/dashboard/dashboard-nav-section/ui/dashboard-nav-section.tsx";
-import {
-  CLIENT_LINKS,
-  INFLUENCER_LINKS,
-} from "@/widgets/dashboard/dashboard-nav-section/model/dashboard-nav-section.data.ts";
+import { DashboardWelcome } from "@/widgets/dashboard/dashboard-welcome";
+import { DashboardQuickAction } from "@/widgets/dashboard/dashboard-quick-action";
+import { DashboardNavSection, CLIENT_LINKS, INFLUENCER_LINKS } from "@/widgets/dashboard/dashboard-nav-section";
 
 import styles from './dashboard-page.module.scss';
 

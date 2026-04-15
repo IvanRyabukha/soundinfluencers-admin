@@ -8,7 +8,7 @@ interface InfluencersTextCellProps {
 }
 
 export const InfluencersTextCell: React.FC<InfluencersTextCellProps> = ({ value, className }) => {
-  const displayValue = value ? value : "-";
+  const displayValue = value ? value : "—";
 
   return (
     <div

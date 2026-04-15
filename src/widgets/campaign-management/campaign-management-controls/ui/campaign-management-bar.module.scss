@@ -1,0 +1,60 @@
+.bar{
+
+  &Controls{
+    margin-top: 33px;
+    .controlsProposal{
+      margin-bottom: 24px;
+      &__left{
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        min-width: 0;
+        flex: 1 1 auto;
+      }
+
+      &.edit{
+        display: flex;
+        justify-content: space-between;
+        gap: 4px;
+      }
+
+    }
+    .nonEdit{
+      padding: 8px;
+      height: 35px;
+      font-size: 14px;
+    }
+    .tableControls{
+      display: flex;
+      justify-content: end;
+      gap: 16px;
+      margin-bottom: 16px;
+    }
+
+  }
+
+  &Save{
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    width: fit-content;
+    .button{
+      flex: 0 0 auto;
+      max-width: 91px;
+      width: 100%;
+      height: 37px;
+      display: flex;
+      padding: 8px 16px;
+      align-items: center;
+      line-height: 46px;
+      gap: 8px;
+      border-radius: 8px;
+      background: linear-gradient(180deg, #EBECFF 0%, #DFF0FF 100%);
+      img{
+        width: 18px;
+        height: 18px;
+      }
+    }
+  }
+
+}

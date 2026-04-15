@@ -1,19 +1,46 @@
+import { useParams } from "react-router-dom";
+import { getSocialMediaFromParam, SOCIAL_MEDIA_LABEL_MAP } from "@/entities/influencers/model/influencers.constants.ts";
+import { PageTitle } from "@/widgets/page-title";
+import { InfluencerAccountForm } from "@/widgets/influencers/influencer-account-form";
+import { PageBreadcrumbs } from "@/widgets/page-breadcrumbs";
+
+import s from './create-influencer-account-page.module.scss';
 
 export const CreateInfluencerAccountPage = () => {
+  const { influencerId, platform } = useParams();
+
+  const socialMedia = getSocialMediaFromParam(platform);
+
+  if (!influencerId) {
+    return <div>Influencer id is missing.</div>;
+  }
+
+  if (!socialMedia) {
+    return <div>Social platform is missing or invalid.</div>;
+  }
+
+  const title = `${SOCIAL_MEDIA_LABEL_MAP[socialMedia]} Account Setup`;
+
   return (
-    <div style={{
-      textAlign: "center",
-      display: 'flex',
-      flexDirection: 'column',
-      justifyContent: 'center',
-      gap: 20,
-      paddingBlock: 150,
-    }}>
-      <h1 style={{ fontSize: 40 }}>🚧 Account create page is under development</h1>
-      <p style={{ fontSize: 20, color: "#666" }}>
-        We're working hard to bring this feature to life.<br/>
-        It will be available very soon.
-      </p>
+    <div className={s.createAccountPage}>
+      <PageBreadcrumbs
+        items={[
+          { label: "Dashboard", to: "/dashboard" },
+          { label: "Influencers list", to: "/dashboard/influencers" },
+          { label: "Account details", to: `/dashboard/influencers/${influencerId}` },
+          { label: "Create" },
+        ]}
+      />
+
+      <div className={s.content}>
+        <PageTitle title={title}/>
+
+        <InfluencerAccountForm
+          influencerId={influencerId}
+          platform={socialMedia}
+          mode={"create"}
+        />
+      </div>
     </div>
   );
 };

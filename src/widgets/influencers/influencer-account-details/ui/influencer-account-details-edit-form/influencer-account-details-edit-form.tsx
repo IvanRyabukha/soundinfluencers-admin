@@ -1,16 +1,15 @@
 import React from "react";
 import { useInfluencerAccountDetailsForm } from "@/widgets/influencers/influencer-account-details";
 import { BaseTextInput, Button, Form } from "@/shared/ui";
-import type { IInfluencerDetails } from "@/pages/influencers/influencer-details-page/ui/influencer-details-page.tsx";
-
-import s from './influencer-account-details-edit-form.module.scss';
 import type {
   InfluencerAccountDetailsFormValues
 } from "@/widgets/influencers/influencer-account-details/model/influencer-account-details.schema.ts";
 
+import s from './influencer-account-details-edit-form.module.scss';
+
 interface InfluencerAccountDetailsEditFormProps {
   influencerId: string;
-  defaultValues: IInfluencerDetails;
+  defaultValues: InfluencerAccountDetailsFormValues;
   onCancel: () => void;
 }
 
@@ -33,7 +32,6 @@ export const InfluencerAccountDetailsEditForm: React.FC<InfluencerAccountDetails
     handleSubmit,
     formState: { isValid },
   } = methods;
-
 
   return (
     <Form methods={methods} onSubmit={handleSubmit(onSubmit)} className={s.form}>
@@ -62,9 +60,10 @@ export const InfluencerAccountDetailsEditForm: React.FC<InfluencerAccountDetails
       <Button
         type="submit"
         variant="primary"
+        size="large"
         disabled={isPending || !isValid}
       >
-        Save
+        {isPending ? "Saving..." : "Save"}
       </Button>
     </Form>
   );

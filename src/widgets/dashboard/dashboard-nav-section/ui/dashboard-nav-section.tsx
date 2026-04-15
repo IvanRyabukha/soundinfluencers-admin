@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import type { IDashboardNavItem } from "@/widgets/dashboard/dashboard-nav-section/model/types.ts";
+import type { IDashboardNavItem } from "@/widgets/dashboard/dashboard-nav-section";
 
 import styles from './dashboard-nav-section.module.scss';
 

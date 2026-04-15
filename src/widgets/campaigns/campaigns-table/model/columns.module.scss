@@ -11,6 +11,8 @@
   line-height: normal;
   color: var(--black);
 
+  user-select: none;
+
   @include breakpoints.tablet {
     font-size: 13px;
   }

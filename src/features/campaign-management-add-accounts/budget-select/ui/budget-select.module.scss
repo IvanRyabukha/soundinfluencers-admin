@@ -1,0 +1,112 @@
+.BudgetPopUp {
+  position: relative;
+  max-width: 288px;
+  width: 100%;
+
+  @media screen and (max-width: 500px) {
+    max-width: 100%;
+  }
+
+  &__title {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    padding: 12px 24px;
+    gap: 26px;
+    border: 1px solid rgba(231, 232, 241, 1);
+    background-color: rgba(255, 255, 255, 1);
+    border-radius: 8px;
+    z-index: 11;
+    cursor: pointer;
+
+    @media screen and (max-width: 500px) {
+      padding: 12px 8px;
+      justify-content: flex-start;
+
+      p {
+        font-size: 14px;
+      }
+    }
+
+    img {
+      position: absolute;
+      right: 16px;
+      transition: transform 0.2s ease;
+    }
+  }
+
+  &__select {
+    position: absolute;
+    left: 0;
+    right: 0;
+    margin-top: -8px;
+    background: rgba(255, 255, 255, 1);
+    padding: 24px;
+    z-index: 5;
+
+    border-left: 1px solid rgba(231, 232, 241, 1);
+    border-right: 1px solid rgba(231, 232, 241, 1);
+    border-bottom: 1px solid rgba(231, 232, 241, 1);
+    border-bottom-left-radius: 26px;
+    border-bottom-right-radius: 26px;
+
+    @media screen and (max-width: 500px) {
+      padding: 16px 12px;
+    }
+  }
+
+  &__select_price {
+    margin-top: 16px;
+    max-width: 240px;
+
+    label {
+      font-weight: 400;
+      font-size: 13px;
+      line-height: 100%;
+    }
+
+    input {
+      width: 100%;
+      border: 1px solid rgba(185, 208, 255, 1);
+      background-color: rgba(235, 245, 254, 1);
+      height: 40px;
+      border-radius: 4px;
+      padding: 0 8px;
+      outline: none;
+    }
+  }
+}
+
+.currency {
+  ul {
+    display: flex;
+    justify-content: space-evenly;
+    gap: 8px;
+  }
+
+  li {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 100%;
+    text-align: center;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    border: 1px solid rgba(185, 208, 255, 1);
+  }
+}
+
+.active {
+  border-color: rgba(185, 208, 255, 1) !important;
+  background-color: rgba(235, 245, 254, 1);
+}
+
+.activeIcon {
+  transform: rotate(180deg);
+}

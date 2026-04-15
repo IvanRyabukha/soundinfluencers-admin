@@ -1,0 +1,12 @@
+@use '@/app/styles/utils/breakpoints' as breakpoints;
+@use '@/app/styles/utils/mixins' as mixins;
+
+.musicGenresCommunity {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+
+  @include breakpoints.mobile {
+    gap: 16px;
+  }
+}

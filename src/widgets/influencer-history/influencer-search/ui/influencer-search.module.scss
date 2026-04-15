@@ -1,0 +1,119 @@
+@use "@/app/styles/utils/mixins" as mixins;
+@use '@/app/styles/utils/breakpoints' as breakpoints;
+
+.root {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 100%;
+  position: relative;
+  z-index: 1;
+  max-width: 600px;
+
+  @include breakpoints.mobile {
+    gap: 4px;
+  }
+}
+
+.focused {
+  z-index: 50;
+}
+
+.inputWrapper {
+  position: relative;
+  z-index: 2;
+}
+
+.listWrapper {
+  padding: 16px 16px 8px 16px;
+  border: 1px solid var(--blue);
+  border-radius: 0 0 8px 8px;
+  background: var(--white);
+
+  position: absolute;
+  width: 100%;
+  top: calc(100% - 8px);
+  left: 0;
+  opacity: 0;
+  z-index: 1;
+  transform: translateY(-4px);
+  transition:
+    opacity 0.12s ease,
+    transform 0.12s ease;
+  pointer-events: none;
+}
+
+.listWrapperVisible {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  overflow-y: auto;
+  max-height: 165px;
+
+  &::-webkit-scrollbar {
+    width: 4px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    border-radius: 2px;
+    width: 2px;
+    background: var(--blue);
+  }
+
+  &::-webkit-scrollbar-track {
+    background: var(--white-gray-20);
+    border-radius: 4px;
+  }
+}
+
+.item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+
+  cursor: pointer;
+  padding: 8px;
+  margin-right: 8px;
+  border-radius: 8px;
+  font-size: 14px;
+  color: var(--black);
+  text-decoration: none;
+
+  &:hover {
+    background: var(--light-blue);
+  }
+}
+
+.left {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  min-width: 0;
+}
+
+.avatar {
+  flex-shrink: 0;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.username {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.icon {
+  flex-shrink: 0;
+  width: 24px;
+  height: 24px;
+}

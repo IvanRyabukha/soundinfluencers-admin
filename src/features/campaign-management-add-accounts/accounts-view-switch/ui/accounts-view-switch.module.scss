@@ -1,0 +1,61 @@
+.changeView {
+  width: fit-content;
+  flex: 0 0 auto;
+
+  &.base {
+    margin-top: 0;
+
+    .changeView__content {
+      background-color: white;
+      height: 40px;
+    }
+  }
+
+  &__content {
+    display: flex;
+    align-items: center;
+    width: 108px;
+    min-width: 108px;
+    border-radius: 8px;
+    border: 1px solid rgba(231, 232, 241, 1);
+    height: 40px;
+    overflow: hidden;
+    background-color: transparent;
+  }
+}
+
+.changeViewCheck {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  width: 54px;
+  min-width: 54px;
+  height: 100%;
+  padding: 8px;
+  opacity: 0.5;
+  background: transparent;
+  border: none;
+
+  img {
+    width: 20px;
+    height: 20px;
+    object-fit: contain;
+    pointer-events: none;
+  }
+}
+
+.active {
+  background-color: white;
+  opacity: 1;
+}
+
+.divider {
+  position: absolute;
+  top: 7px;
+  right: 0;
+  width: 1px;
+  height: calc(100% - 14px);
+  background: rgba(231, 232, 241, 1);
+}

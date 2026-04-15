@@ -42,6 +42,7 @@ export const CampaignsPage = () => {
   }
 
   const campaigns = data?.items ?? [];
+  console.log(campaigns);
   const totalPages = data?.totalPages ?? 1;
 
   return (

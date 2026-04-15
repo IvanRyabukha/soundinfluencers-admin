@@ -1,7 +1,7 @@
 import React from "react";
 import {
-  useUpdateSocialAccountMutation
-} from "@/entities/influencers/api/use-update-social-account-mutation.ts";
+  useUpdateListSocialAccountMutation
+} from "@/entities/influencers/api/use-update-list-social-account-mutation.ts";
 import { toast } from "react-toastify";
 import type { TSocialMediaValue } from "@/entities/influencers/model/influencers.constants.ts";
 
@@ -24,7 +24,7 @@ export const HideInfluencerAccount: React.FC<HideInfluencerAccountProps> = ({
   className,
 }) => {
 
-  const { mutate, isPending } = useUpdateSocialAccountMutation();
+  const { mutate, isPending } = useUpdateListSocialAccountMutation();
 
   const handleHideInfluencerAccount = () => {
     if (isPending) return;
@@ -50,7 +50,7 @@ export const HideInfluencerAccount: React.FC<HideInfluencerAccountProps> = ({
       type="button"
       className={className}
       onClick={handleHideInfluencerAccount}
-      disabled={isHidden}
+      disabled={isPending}
     >
       <img
         src={isHidden ? eyeOff : eye}

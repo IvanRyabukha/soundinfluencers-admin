@@ -8,7 +8,7 @@ interface CampaignTextCellProps {
 }
 
 export const CampaignTextCell: React.FC<CampaignTextCellProps> = ({ value, className = "" }) => {
-  const displayValue = value ? value : "-";
+  const displayValue = value ? value : "—";
   return (
     <div
       className={className}
