@@ -12,14 +12,12 @@ interface InfluencerSearchProps {
   searchValue: string;
   onSearchChange: (searchQuery: string) => void;
   data: IInfluencerSearchHistory[];
-  isDisabled?: boolean;
 }
 
 export const InfluencerSearch: React.FC<InfluencerSearchProps> = ({
   searchValue,
   onSearchChange,
   data,
-  isDisabled,
 }) => {
   console.log('Rendering InfluencerSearch with data:', data);
   const rootRef = useRef<HTMLDivElement | null>(null);
@@ -41,7 +39,6 @@ export const InfluencerSearch: React.FC<InfluencerSearchProps> = ({
         <SearchByQuery
           value={searchValue}
           onChange={onSearchChange}
-          disabled={isDisabled}
         />
       </div>
 
