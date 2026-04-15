@@ -1,0 +1,26 @@
+.ViewAudience {
+  flex: 0 0 auto;
+
+  display: flex;
+  justify-content: end;
+  height: 36px;
+
+  &__btn {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    width: fit-content;
+    padding: 8px 12px;
+    border-radius: 8px;
+    border: 1px solid rgba(185, 208, 255, 1);
+    background-color: rgba(255, 255, 255, 0.5);
+    font-size: 13px;
+    p {
+      user-select: none;
+    }
+    &.active {
+      background: linear-gradient(180deg, #ebecff 0%, #dff0ff 100%);
+    }
+  }
+}

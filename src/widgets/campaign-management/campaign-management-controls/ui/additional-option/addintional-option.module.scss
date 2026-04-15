@@ -1,0 +1,14 @@
+.AddinitonalOption {
+  background-color: rgba(255, 255, 255, 0.5);
+  flex: 0 0 auto;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  border-radius: 8px;
+  height: 38px;
+  border: 1px solid rgba(185, 208, 255, 1);
+
+  width: fit-content;
+}

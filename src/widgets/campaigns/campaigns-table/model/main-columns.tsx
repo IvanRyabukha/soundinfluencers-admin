@@ -19,6 +19,8 @@ export const mainCampaignColumns: ColumnDef<ICampaign>[] = [
       <CampaignNameCell
         campaignName={row.original.campaignName}
         socialMedia={row.original.socialMedia}
+        status={row.original.status}
+        campaignId={row.original.campaignId}
       />
     ),
   },
