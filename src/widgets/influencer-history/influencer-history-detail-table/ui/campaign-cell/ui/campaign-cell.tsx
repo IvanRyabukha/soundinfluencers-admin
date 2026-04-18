@@ -16,10 +16,10 @@ export const CampaignCell: React.FC<CampaignCellProps> = ({
 
   return (
     <div
-      className={clsx(s.textCell, !isStillInCampaign && s.isCampaign)}
+      className={clsx(s.campaignCell, !isStillInCampaign && s.isCampaign)}
       title={displayValue}
     >
-      <span>{displayValue}</span>
+      <span className={s.text}>{displayValue}</span>
     </div>
   );
 };

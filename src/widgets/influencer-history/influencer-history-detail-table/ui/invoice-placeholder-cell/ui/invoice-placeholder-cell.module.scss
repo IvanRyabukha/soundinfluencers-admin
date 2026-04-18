@@ -2,23 +2,31 @@
 @use '@/app/styles/utils/mixins' as mixins;
 
 .invoice {
+  min-height: 50px;
+  display: flex;
+  align-items: center;
   padding: 12px 8px;
+  color: var(--red);
+  user-select: none;
+
+  @include breakpoints.tablet {
+    padding: 10px 4px;
+  }
+}
+
+.text {
+  flex: 1 1 auto;
   font-size: 14px;
   font-style: normal;
   line-height: normal;
   font-weight: 400;
 
-  color: var(--red);
-
   min-width: 0;
   overflow: hidden;
   text-overflow: ellipsis;
-  white-space: pre-wrap;
-
-  user-select: none;
+  white-space: nowrap;
 
   @include breakpoints.tablet {
     font-size: 13px;
-    padding: 10px 4px;
   }
 }

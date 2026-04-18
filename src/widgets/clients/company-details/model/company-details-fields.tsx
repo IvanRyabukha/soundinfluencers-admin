@@ -1,7 +1,7 @@
 import React from "react";
 import { ClientProposalAccessSwitch } from "@/features/clients/client-proposal-access-switch";
-import type { IClientDetails } from "@/entities/client/model/client.types.ts";
 import { ClientNoteEditor } from "@/features/clients/client-note-editor";
+import type { IClientDetails } from "@/entities/client/model/client.types.ts";
 
 export type TInfoField<T> = {
   label: string;

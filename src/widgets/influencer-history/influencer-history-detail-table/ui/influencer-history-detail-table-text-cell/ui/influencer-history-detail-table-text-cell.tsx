@@ -16,7 +16,7 @@ export const InfluencerHistoryDetailTableTextCell: React.FC<InfluencerHistoryDet
       className={s.textCell}
       title={displayValue}
     >
-      <span>{displayValue}</span>
+      <span className={s.text}>{displayValue}</span>
     </div>
   );
 };

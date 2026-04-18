@@ -1,18 +1,27 @@
-import React, { useCallback, useMemo, useRef, useState } from "react";
-import { useUpdateClientMutation } from "@/entities/client/api/use-update-client-mutation.ts";
+import React, { useMemo, useRef, useState } from "react";
+import { useUpdateInvoiceMutation } from "@/features/manage-invoice/model/use-update-invoice-mutation.ts";
 import { toast } from "react-toastify";
+import type { TInvoiceEditableKey } from "@/entities/invoice/model/invoice.types.ts";
+import clsx from "clsx";
 
-import s from './client-note-editor.module.scss';
+import s from './editable-invoice-field.module.scss';
 
-interface ClientNoteEditorProps {
-  clientId: string;
-  initialValue: string | undefined;
+interface IEditableInvoiceFieldProps {
+  invoiceId: string;
+  initialValue: string;
+  fieldKey: TInvoiceEditableKey;
+  inputClassName?: string;
 }
 
-export const ClientNoteEditor: React.FC<ClientNoteEditorProps> = ({ clientId, initialValue }) => {
-  const { mutate, isPending } = useUpdateClientMutation();
+export const EditableInvoiceField: React.FC<IEditableInvoiceFieldProps> = ({
+  invoiceId,
+  initialValue,
+  fieldKey,
+  inputClassName,
+}) => {
+  const { mutate, isPending } = useUpdateInvoiceMutation();
   const [draft, setDraft] = useState("");
-  const [isEditorOpen, setIsEditorOpen] = useState(false);
+  const [isEditing, setIsEditing] = useState(false);
 
   const inputRef = useRef<HTMLInputElement>(null);
 
@@ -23,49 +32,49 @@ export const ClientNoteEditor: React.FC<ClientNoteEditorProps> = ({ clientId, in
 
   const normalizedInitialValue = initialValue ?? "";
 
-  const openEditor = useCallback((event: React.SyntheticEvent) => {
+  const openEditor = (event: React.SyntheticEvent) => {
     event.stopPropagation();
     setDraft(normalizedInitialValue)
-    setIsEditorOpen(true);
-  }, [normalizedInitialValue]);
+    setIsEditing(true);
+  };
 
-  const handleCloseEditor = useCallback(() => {
-    setIsEditorOpen(false);
+  const handleCloseEditing = () => {
+    setIsEditing(false);
     setDraft("");
-  }, []);
+  };
 
-  const handleSave = useCallback(() => {
+  const handleSave = () => {
     if (isPending) return;
 
     const nextValue = draft.trim();
     const prevValue = normalizedInitialValue.trim();
 
     if (nextValue === prevValue) {
-      handleCloseEditor();
+      handleCloseEditing();
       return;
     }
 
     mutate(
       {
-        clientId,
+        invoiceId,
         dto: {
-          internalNote: draft,
+          [fieldKey]: draft,
         },
       },
       {
         onSuccess: () => {
-          toast("Client note updated successfully", {
+          toast("Invoice saved", {
             type: "success",
             position: "top-right",
             autoClose: 3000,
           });
-          handleCloseEditor();
+          handleCloseEditing();
         },
       },
     );
-  }, [draft, normalizedInitialValue, mutate, clientId, isPending, handleCloseEditor]);
+  };
 
-  const handleKeyDown = useCallback((e: React.KeyboardEvent<HTMLInputElement>) => {
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === "Enter") {
       e.preventDefault();
       inputRef.current?.blur();
@@ -73,9 +82,9 @@ export const ClientNoteEditor: React.FC<ClientNoteEditorProps> = ({ clientId, in
 
     if (e.key === "Escape") {
       e.preventDefault();
-      handleCloseEditor();
+      handleCloseEditing();
     }
-  }, [handleCloseEditor]);
+  };
 
   const displayValue = normalizedInitialValue.trim() ? normalizedInitialValue : "—";
 
@@ -85,23 +94,24 @@ export const ClientNoteEditor: React.FC<ClientNoteEditorProps> = ({ clientId, in
       onClick={isTouchDevice ? openEditor : undefined}
       onDoubleClick={!isTouchDevice ? openEditor : undefined}
     >
-      {isEditorOpen ?
-        (<input
+      {isEditing ? (
+        <input
+          id={fieldKey}
           ref={inputRef}
-          className={s.textInput}
+          className={clsx(s.textInput, inputClassName)}
           type="text"
           value={draft}
-          placeholder="Enter client note..."
+          placeholder=""
           onChange={(e) => setDraft(e.target.value)}
           onBlur={handleSave}
           onKeyDown={handleKeyDown}
           disabled={isPending}
+          autoComplete="off"
           autoFocus
         />
-        ) : (
-          <span className={s.text}>{displayValue}</span>
-        )
-      }
+      ) : (
+        <span>{displayValue}</span>
+      )}
     </div>
   );
 };

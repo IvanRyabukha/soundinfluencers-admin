@@ -3,15 +3,21 @@ import { createPortal } from "react-dom";
 import { useClickOutside } from "@/shared/hooks/use-click-outside.ts";
 import { useLockBodyScroll } from "@/shared/hooks/use-lock-body-scroll.ts";
 
+import clsx from "clsx";
+
 import s from './modal.module.scss';
 
 interface Props extends PropsWithChildren {
   onClose?: () => void;
+  className?: string;
+  contentClassName?: string;
 }
 
 export const Modal = ({
   onClose,
   children,
+  className,
+  contentClassName,
 }: Props) => {
   const modalRef = useRef<HTMLDivElement>(null);
 
@@ -33,8 +39,8 @@ export const Modal = ({
   }, [onClose]);
 
   return createPortal(
-    <div className={s.modal} aria-hidden={false}>
-      <div className={s.content} ref={modalRef} role={'dialog'} aria-modal={true} tabIndex={-1}>
+    <div className={clsx(s.modal, className)} aria-hidden={false}>
+      <div className={clsx(s.content, contentClassName)} ref={modalRef} role={'dialog'} aria-modal={true} tabIndex={-1}>
         {children}
       </div>
     </div>,

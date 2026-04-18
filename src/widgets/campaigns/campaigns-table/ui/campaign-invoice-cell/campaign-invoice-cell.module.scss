@@ -1,14 +1,12 @@
 @use '@/app/styles/utils/breakpoints' as breakpoints;
 @use '@/app/styles/utils/mixins' as mixins;
 
-.campaignCell {
+.campaignInvoiceCell {
   display: flex;
   align-items: center;
-  padding: 12px 8px;
-  min-height: 50px;
+  justify-content: center;
 
-  color: var(--black);
-  user-select: none;
+  padding: 12px 8px;
 
   @include breakpoints.tablet {
     padding: 10px 4px;
@@ -22,17 +20,15 @@
   line-height: normal;
   font-weight: 400;
 
+  color: var(--black);
+
   min-width: 0;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-
+  user-select: none;
 
   @include breakpoints.tablet {
     font-size: 13px;
   }
-}
-
-.isCampaign {
-  color: var(--red);
 }

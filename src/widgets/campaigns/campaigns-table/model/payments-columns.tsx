@@ -1,12 +1,21 @@
 import type { ColumnDef } from "@tanstack/react-table";
 import type { ICampaign } from "@/entities/campaign/model/campaign.types.ts";
 import { CampaignNameCell } from "@/widgets/campaigns/campaigns-table/ui/campaign-name-cell/campaign-name-cell.tsx";
-import { CampaignActionsCell } from "@/widgets/campaigns/campaigns-table/ui/campaign-actions-cell/campaign-actions-cell.tsx";
-import { CampaignReportCell } from "@/widgets/campaigns/campaigns-table/ui/campaign-report-cell/campaign-report-cell.tsx";
+import {
+  CampaignActionsCell,
+} from "@/widgets/campaigns/campaigns-table/ui/campaign-actions-cell/campaign-actions-cell.tsx";
+import {
+  CampaignReportCell,
+} from "@/widgets/campaigns/campaigns-table/ui/campaign-report-cell/campaign-report-cell.tsx";
 import { CampaignPriceCell } from "@/widgets/campaigns/campaigns-table/ui/campaign-price-cell/campaign-price-cell.tsx";
-import { CampaignFollowersCell } from "@/widgets/campaigns/campaigns-table/ui/campaign-followers-cell/campaign-followers-cell.tsx";
+import {
+  CampaignFollowersCell,
+} from "@/widgets/campaigns/campaigns-table/ui/campaign-followers-cell/campaign-followers-cell.tsx";
 import { CampaignTextCell } from "@/widgets/campaigns/campaigns-table/ui/campaign-text-cell/campaign-text-cell.tsx";
 import { CampaignNoteCell } from "@/widgets/campaigns/campaigns-table/ui/campaign-note-cell/campaign-note-cell.tsx";
+import {
+  CampaignInvoiceCell,
+} from "@/widgets/campaigns/campaigns-table/ui/campaign-invoice-cell/campaign-invoice-cell.tsx";
 
 import styles from './columns.module.scss';
 
@@ -19,8 +28,8 @@ export const paymentsCampaignColumns: ColumnDef<ICampaign>[] = [
     maxSize: 140,
     cell: ({ row }) => (
       <CampaignNameCell
-          campaignName={row.original.campaignName}
-          socialMedia={row.original.socialMedia} status={row.original.status} campaignId={row.original.campaignId}      />
+        campaignName={row.original.campaignName}
+        socialMedia={row.original.socialMedia} status={row.original.status} campaignId={row.original.campaignId}/>
     ),
   },
 
@@ -159,9 +168,9 @@ export const paymentsCampaignColumns: ColumnDef<ICampaign>[] = [
     minSize: 71,
     maxSize: 71,
     cell: ({ row }) => (
-      <CampaignTextCell
-        value={row.original.invoiceId}
-        className={styles.cell}
+      <CampaignInvoiceCell
+        invoiceId={row.original.invoiceId}
+        shortInvoiceNumber={row.original.shortInvoiceNumber}
       />
     ),
   },
