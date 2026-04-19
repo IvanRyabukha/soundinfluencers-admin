@@ -22,10 +22,10 @@ export const ActionInsight: React.FC<Props> = ({
                                                    disabledEmail = false,
                                                }) => {
     return (
-        <div className='action-insight'>
+        <div className="action-insight">
             <button
                 type="button"
-               className='action-insight__btn'
+                className="action-insight__btn"
                 onClick={onDelete}
                 disabled={disabledDelete}
                 aria-label="Delete"
@@ -35,7 +35,7 @@ export const ActionInsight: React.FC<Props> = ({
 
             <button
                 type="button"
-                className='action-insight__btn'
+                className="action-insight__btn"
                 onClick={onWhatsApp}
                 disabled={disabledWhatsApp}
                 aria-label="Send to WhatsApp"
@@ -45,7 +45,7 @@ export const ActionInsight: React.FC<Props> = ({
 
             <button
                 type="button"
-                className='action-insight__btn'
+                className="action-insight__btn"
                 onClick={onEmail}
                 disabled={disabledEmail}
                 aria-label="Send email"

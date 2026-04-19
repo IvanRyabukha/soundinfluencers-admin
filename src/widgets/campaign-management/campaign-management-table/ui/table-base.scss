@@ -168,6 +168,9 @@
     border-right: 1px solid rgba(191, 212, 255, 0.4);
     text-align: start;
     vertical-align: middle;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
     &:last-child {
       border-right: 0px;
     }
@@ -918,7 +921,6 @@
 .create-option {
   width: 671px;
   position: relative;
-  background-color: #fff;
   border-radius: 18px;
   display: flex;
   flex-direction: column;
@@ -967,10 +969,7 @@
     justify-content: center;
     gap: 24px;
 
-    .btn {
-      max-width: 250px;
-      width: 100%;
-    }
+
   }
 }
 
@@ -1004,4 +1003,18 @@
 }
 .table-campaign-page__tr.row--hl {
   background: rgba(185, 208, 255, 0.15);
+}
+.btn {
+  max-width: 250px;
+  height: 46px;
+  width: 100%;
+  border-radius: 222px;
+  &.btn-main{
+    background: #202934;
+    color: white;
+  }
+  &.btn-secondary{
+
+    border: 1px solid #E7E8F2;
+  }
 }
