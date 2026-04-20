@@ -7,16 +7,21 @@ import whatsApp from "../../assets/logos_whatsapp-icon (1).svg";
 import check from "../../assets/check-circle.svg";
 import reopen from "../../assets/refresh-ccw.svg";
 import { toast } from "react-toastify";
-import {closeCampaign, reopenCampaign} from "@/entities/campaign-managment/api/campaign-controls.api.ts";
-import {getPDF} from "@/entities/campaign-managment/model/campaign-management.helpers.ts";
-
+import {
+    closeCampaign,
+    reopenCampaign,
+} from "@/entities/campaign-managment/api/campaign-controls.api.ts";
+import { getPDF } from "@/entities/campaign-managment/model/campaign-management.helpers.ts";
+import type { CampaignStatus } from "@/entities/campaign-managment/model/campaign.managment.ts";
 
 export const Menu = ({
                          status,
                          campaignId,
+                         onSuccess,
                      }: {
     status: string;
     campaignId: string | null;
+    onSuccess?: (nextStatus: CampaignStatus) => void | Promise<void>;
 }) => {
     const [isOpen, setIsOpen] = React.useState(false);
     const [isLoading, setIsLoading] = React.useState(false);
@@ -45,6 +50,7 @@ export const Menu = ({
         try {
             setIsLoading(true);
             await closeCampaign(campaignId);
+            await onSuccess?.("completed");
             toast.success("Campaign closed successfully");
             setIsOpen(false);
         } catch (error) {
@@ -61,6 +67,7 @@ export const Menu = ({
         try {
             setIsLoading(true);
             await reopenCampaign(campaignId);
+            await onSuccess?.("distributing");
             toast.success("Campaign reopened successfully");
             setIsOpen(false);
         } catch (error) {
@@ -86,10 +93,7 @@ export const Menu = ({
                 className={`${styles.drawerRoot} ${isOpen ? styles.open : ""}`}
                 aria-hidden={!isOpen}
             >
-                <div
-                    className={styles.overlay}
-                    onClick={() => setIsOpen(false)}
-                />
+                <div className={styles.overlay} onClick={() => setIsOpen(false)} />
 
                 <aside className={styles.drawer}>
                     <div className={styles.drawerHeader}>
@@ -108,7 +112,8 @@ export const Menu = ({
                     <div className={styles.drawerBody}>
                         <div className={styles.drawerBody__content}>
                             <div className={styles.drawerBody__block}>
-                                <button onClick={() => getPDF(campaignId || '')}
+                                <button
+                                    onClick={() => getPDF(campaignId || "")}
                                     type="button"
                                     className={styles.drawerBodyButton}
                                 >
@@ -117,16 +122,15 @@ export const Menu = ({
                                 </button>
 
                                 {status === "completed" ? (
-                                        <button
-                                            type="button"
-                                            className={styles.drawerBodyButton}
-                                            onClick={handleReopenCampaign}
-                                            disabled={isLoading}
-                                        >
-                                            <img src={reopen} alt="" />
-                                            <p>Reopen Campaign</p>
-                                        </button>
-
+                                    <button
+                                        type="button"
+                                        className={styles.drawerBodyButton}
+                                        onClick={handleReopenCampaign}
+                                        disabled={isLoading}
+                                    >
+                                        <img src={reopen} alt="" />
+                                        <p>Reopen Campaign</p>
+                                    </button>
                                 ) : (
                                     <button
                                         type="button"
@@ -141,10 +145,7 @@ export const Menu = ({
                             </div>
 
                             <div className={styles.drawerBody__block}>
-                                <button
-                                    type="button"
-                                    className={styles.drawerBodyButton}
-                                >
+                                <button type="button" className={styles.drawerBodyButton}>
                                     <img src={whatsApp} alt="" />
                                     <p>Send all</p>
                                 </button>

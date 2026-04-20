@@ -230,10 +230,11 @@ export const CampaignManagmentAddAccounts = () => {
         onCancel,
     ]);
 
-    const isInitialLoading = isSearchMode
-        ? searchQuery.isLoading && accounts.length === 0
-        : listQuery.isLoading && accounts.length === 0;
+    const activeQuery = isSearchMode ? searchQuery : listQuery;
 
+    const isInitialLoading =
+
+        activeQuery.isFetching && accounts.length === 0;
     const isFetchingMore = !isSearchMode && listQuery.isFetching && isLoadingMore;
     const isRefetching = !isSearchMode && listQuery.isFetching && !isLoadingMore && accounts.length > 0;
 
@@ -277,33 +278,22 @@ export const CampaignManagmentAddAccounts = () => {
                         <h2>Failed to load social accounts</h2>
                         <p>Please try changing filters or search again.</p>
                     </NoData>
-                ) : !isInitialLoading && accounts.length === 0 ? (
-                    <NoData>
-                        <h2>No SocialAccounts for this filter right now</h2>
-                        <p>
-                            You can still choose another option, currency, or filter to create a
-                            <br />
-                            multi-platform promotion tailored to your needs.
-                        </p>
-                    </NoData>
-                ) : (
-                    <AccountsList
-                        accounts={accounts}
-                        selectedCards={selectedCards}
-                        currency={currency}
-                        view={view}
-                        onToggleCard={toggleCard}
-                        isLoading={isInitialLoading}
-                        isFetchingMore={isFetchingMore}
-                        isRefetching={isRefetching}
-                    />
-                )}
+                ) :  <AccountsList
+                    accounts={accounts}
+                    selectedCards={selectedCards}
+                    currency={currency}
+                    view={view}
+                    onToggleCard={toggleCard}
+                    isLoading={isInitialLoading}
+                    isFetchingMore={isFetchingMore}
+                    isRefetching={isRefetching}
+                />}
             </div>
-            {!isSearchMode && canLoadMore && (
-                <div ref={loadMoreRef} className={styles.loadMoreTrigger}>
-                    {listQuery.isFetching ? "Loading…" : "Scroll to load more"}
-                </div>
-            )}
+            {/*{!isSearchMode && canLoadMore && (*/}
+            {/*    <div ref={loadMoreRef} className={styles.loadMoreTrigger}>*/}
+            {/*        {listQuery.isFetching ? "Loading…" : "Scroll to load more"}*/}
+            {/*    </div>*/}
+            {/*)}*/}
 
             <AddAccountsFooter
                 selectedCount={selectedCards.length}

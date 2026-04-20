@@ -50,32 +50,28 @@ export const AccountsList = ({
                                 Array.from({ length: 20 }).map((_, i) => (
                                     <TableCardSkeleton key={`initial-${i}`} />
                                 ))
-                            ) : accounts.length > 0 ? (
-                                <>
-                                    {accounts.map((account) => {
-                                        const active = selectedCards.some(
-                                            (item) => item.accountId === account.accountId,
-                                        );
+                            ) :  <>
+                                {accounts.map((account) => {
+                                    const active = selectedCards.some(
+                                        (item) => item.accountId === account.accountId,
+                                    );
 
-                                        return (
-                                            <AccountRow
-                                                key={account.accountId}
-                                                data={account}
-                                                active={active}
-                                                currency={currency}
-                                                onClick={() => onToggleCard(account)}
-                                            />
-                                        );
-                                    })}
+                                    return (
+                                        <AccountRow
+                                            key={account.accountId}
+                                            data={account}
+                                            active={active}
+                                            currency={currency}
+                                            onClick={() => onToggleCard(account)}
+                                        />
+                                    );
+                                })}
 
-                                    {isFetchingMore &&
-                                        Array.from({ length: 20 }).map((_, i) => (
-                                            <TableCardSkeleton key={`append-${i}`} />
-                                        ))}
-                                </>
-                            ) : (
-                                <div className={styles.state}>No accounts found</div>
-                            )}
+                                {isFetchingMore &&
+                                    Array.from({ length: 20 }).map((_, i) => (
+                                        <TableCardSkeleton key={`append-${i}`} />
+                                    ))}
+                            </>}
                         </div>
                     </div>
 
@@ -95,32 +91,28 @@ export const AccountsList = ({
                         Array.from({ length: 20 }).map((_, i) => (
                             <CardSkeleton key={`initial-${i}`} />
                         ))
-                    ) : accounts.length > 0 ? (
-                        <>
-                            {accounts.map((account) => {
-                                const active = selectedCards.some(
-                                    (item) => item.accountId === account.accountId,
-                                );
+                    ) : <>
+                        {accounts.map((account) => {
+                            const active = selectedCards.some(
+                                (item) => item.accountId === account.accountId,
+                            );
 
-                                return (
-                                    <AccountCard
-                                        key={account.accountId}
-                                        data={account}
-                                        active={active}
-                                        currency={currency}
-                                        onClick={() => onToggleCard(account)}
-                                    />
-                                );
-                            })}
+                            return (
+                                <AccountCard
+                                    key={account.accountId}
+                                    data={account}
+                                    active={active}
+                                    currency={currency}
+                                    onClick={() => onToggleCard(account)}
+                                />
+                            );
+                        })}
 
-                            {isFetchingMore &&
-                                Array.from({ length: 20 }).map((_, i) => (
-                                    <CardSkeleton key={`append-${i}`} />
-                                ))}
-                        </>
-                    ) : (
-                        <div className={styles.state}>No accounts found</div>
-                    )}
+                        {isFetchingMore &&
+                            Array.from({ length: 20 }).map((_, i) => (
+                                <CardSkeleton key={`append-${i}`} />
+                            ))}
+                    </>}
                 </div>
 
                 {isRefetching && (

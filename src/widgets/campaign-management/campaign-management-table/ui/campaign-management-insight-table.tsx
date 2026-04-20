@@ -38,6 +38,8 @@ type Props = {
     statusParam?: string | null;
     optionIndex: number;
     totalPrice?: number;
+    loadCampaignByOption?: (nextOptionIndex: number, nextStatus?: CampaignStatus) => Promise<void>
+
 };
 
 export const CampaignManagementInsightTable = ({
@@ -49,12 +51,22 @@ export const CampaignManagementInsightTable = ({
                                                    statusParam,
                                                    optionIndex,
                                                    totalPrice,
+                                                   loadCampaignByOption
                                                }: Props) => {
     const rows = React.useMemo(
         () => buildCampaignManagementInsightRows(networks),
         [networks],
     );
-
+    const removeAccount = useCampaignManagementStore((s) => s.removeAccount);
+    const [deleteModal, setDeleteModal] = React.useState<{
+        isOpen: boolean;
+        accountKey: string;
+        username: string;
+    }>({
+        isOpen: false,
+        accountKey: "",
+        username: "",
+    });
     const [linkModal, setLinkModal] = React.useState<{
         isOpen: boolean;
         accountKey: string;
@@ -84,14 +96,15 @@ export const CampaignManagementInsightTable = ({
                     promoId,
                 });
 
-                setAccountInsightField(getAccountKey(row.account), "closePromo", "close");
+                await loadCampaignByOption?.(0);
+
                 toast.success("Promo marked as paid");
             } catch (error) {
                 console.error("Failed to pay promo", error);
                 toast.error("Failed to mark promo as paid");
             }
         },
-        [campaignId, setAccountInsightField],
+        [campaignId, loadCampaignByOption],
     );
     const handleOpenLinkModal = React.useCallback(
         (row: CampaignManagementInsightRow, field: "postLink" | "screenshot") => {
@@ -110,7 +123,27 @@ export const CampaignManagementInsightTable = ({
         },
         [],
     );
+    const handleOpenDeleteModal = React.useCallback(
+        (row: CampaignManagementInsightRow) => {
+            setDeleteModal({
+                isOpen: true,
+                accountKey: getAccountKey(row.account),
+                username: row.account.username ?? "this account",
+            });
+        },
+        [],
+    );
+    const handleConfirmDelete = React.useCallback(() => {
+        if (!deleteModal.accountKey) return;
 
+        removeAccount(deleteModal.accountKey);
+
+        setDeleteModal({
+            isOpen: false,
+            accountKey: "",
+            username: "",
+        });
+    }, [deleteModal.accountKey, removeAccount]);
     const handleSaveLinkModal = React.useCallback(() => {
         if (!linkModal.field || !linkModal.accountKey) return;
 
@@ -131,6 +164,7 @@ export const CampaignManagementInsightTable = ({
                 status: statusParam,
                 canEdit,
                 showCpm,
+                onDelete: handleOpenDeleteModal,
                 onEditLink: handleOpenLinkModal,
                 onMetricChange: (row, field, value) => {
                     setAccountInsightField(getAccountKey(row.account), field, value);
@@ -142,6 +176,7 @@ export const CampaignManagementInsightTable = ({
             statusParam,
             canEdit,
             showCpm,
+            handleOpenDeleteModal,
             handleOpenLinkModal,
             setAccountInsightField,
             handlePayPromo,
@@ -203,6 +238,50 @@ export const CampaignManagementInsightTable = ({
                                 onClick={handleSaveLinkModal}
                             >
                                 Save
+                            </button>
+                        </div>
+                    </div>
+                </Modal>
+            )}
+            {deleteModal.isOpen && (
+                <Modal
+                    onClose={() =>
+                        setDeleteModal({
+                            isOpen: false,
+                            accountKey: "",
+                            username: "",
+                        })
+                    }
+                >
+                    <div className="create-option">
+                        <h2>Delete</h2>
+                        <p>
+                            You want to delete{' '}
+                            {deleteModal.username}{' '}
+                            from this campaign?
+                        </p>
+
+                        <div className="create-option-btn">
+                            <button
+                                type="button"
+                                className="btn btn-secondary"
+                                onClick={() =>
+                                    setDeleteModal({
+                                        isOpen: false,
+                                        accountKey: "",
+                                        username: "",
+                                    })
+                                }
+                            >
+                                Cancel
+                            </button>
+
+                            <button
+                                type="button"
+                                className="btn btn-main"
+                                onClick={handleConfirmDelete}
+                            >
+                                Delete
                             </button>
                         </div>
                     </div>

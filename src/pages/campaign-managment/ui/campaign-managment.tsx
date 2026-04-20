@@ -45,6 +45,8 @@ export const CampaignManagment = () => {
     const campaignId = searchParams.get("id");
     const statusParam = searchParams.get("status") as CampaignStatus | null;
     const optionIndex = Number(searchParams.get("optionIndex") ?? "0");
+    const modeParam = searchParams.get("mode");
+    const insightMode = modeParam === "insight"
 
     const initCampaign = useCampaignManagementStore((s) => s.initCampaign);
     const view = useCampaignManagementStore((s) => s.view);
@@ -61,8 +63,7 @@ export const CampaignManagment = () => {
     const existingOptions = useCampaignManagementStore((s) => s.existingOptions);
     const status = useCampaignManagementStore((s) => s.status);
     const canEdit = useCampaignManagementStore((s) => s.canEdit);
-    const insightMode = useCampaignManagementStore((s) => s.insightMode);
-    const setInsightMode = useCampaignManagementStore((s) => s.setInsightMode);
+    const resetCampaignState = useCampaignManagementStore((s) => s.resetCampaign);
     const [optionModal, setOptionModal] = useState(false);
     const resolvedStatus = status || statusParam;
     const kind = getCampaignKindByStatus(resolvedStatus);
@@ -77,14 +78,16 @@ export const CampaignManagment = () => {
         setOptionModal(false);
     };
     const loadCampaignByOption = useCallback(
-        async (nextOptionIndex: number) => {
-            if (!campaignId || !statusParam) return;
+        async (nextOptionIndex: number, nextStatus?: CampaignStatus) => {
+            const resolvedStatus = nextStatus || statusParam;
+
+            if (!campaignId || !resolvedStatus) return;
 
             try {
                 setIsCampaignLoading(true);
 
                 const response = await getCampaignByStatus({
-                    status: statusParam,
+                    status: resolvedStatus,
                     campaignId,
                     optionIndex: nextOptionIndex,
                 });
@@ -100,6 +103,26 @@ export const CampaignManagment = () => {
         },
         [campaignId, statusParam, initCampaign],
     );
+    const reloadCampaignFromScratch = useCallback(
+        async (nextStatus: CampaignStatus) => {
+            if (!campaignId) return;
+
+            const nextParams = new URLSearchParams(searchParams);
+            nextParams.set("status", nextStatus);
+            setSearchParams(nextParams);
+
+            resetCampaignState();
+            await loadCampaignByOption(optionIndex, nextStatus);
+        },
+        [
+            campaignId,
+            searchParams,
+            optionIndex,
+            setSearchParams,
+            resetCampaignState,
+            loadCampaignByOption,
+        ],
+    );
     const handleOptionChange = (nextOptionIndex: number) => {
         if (nextOptionIndex === activeOptionIndex) return;
 
@@ -107,7 +130,13 @@ export const CampaignManagment = () => {
         nextParams.set("optionIndex", String(nextOptionIndex));
         setSearchParams(nextParams);
     };
+    useEffect(() => {
+        if (searchParams.get("mode")) return;
+        const nextParams = new URLSearchParams(searchParams);
+        nextParams.set("mode", "strategy");
+        setSearchParams(nextParams, { replace: true });
 
+    }, [searchParams, setSearchParams]);
     useEffect(() => {
         if (!campaignId || !statusParam) return;
 
@@ -216,11 +245,16 @@ export const CampaignManagment = () => {
             toast.success("Option added successfully");
         } catch (error) {
             console.error("Failed to add option", error);
-            toast.error("Failed to add option");
         } finally {
             setIsSaving(false);
         }
     };
+    const handleToggleMode = useCallback(() => {
+        const nextParams = new URLSearchParams(searchParams);
+        nextParams.set("mode", insightMode ? "strategy" : "insight");
+        setSearchParams(nextParams);
+
+    }, [searchParams, setSearchParams, insightMode]);
     const items = editable?.campaignContent ?? [];
     const networks = editable?.addedAccounts ?? [];
 
@@ -337,6 +371,7 @@ export const CampaignManagment = () => {
                 statusParam={status || statusParam}
                 optionIndex={optionIndex}
                 totalPrice={insightTotalPrice}
+                loadCampaignByOption={loadCampaignByOption}
             />
         </>
     );
@@ -386,28 +421,28 @@ export const CampaignManagment = () => {
                             campaignName={campaignName}
                             onSuccess={() => loadCampaignByOption(optionIndex)}
                         />
-                        <Menu campaignId={campaignId} status={status}/>
+                        <Menu campaignId={campaignId} status={status} onSuccess={reloadCampaignFromScratch}/>
                     </div>
                 }
             </div>
 
             <div className={styles.containerBar}>
-               <div className={styles.title}>
-                   <div className={styles.title__block}>
-                       {campaignName && <h2 className={styles.title}>{campaignName}</h2>}
-                       {isLockedStatus &&  <p>status: {status}</p>}
-                   </div>
-                   {status !== 'proposal' && (
-                       <div className={styles.title__flex}>
-                           <InternalCost internalCost={editable?.internalCost || 0}/>
-                           <SaveReset
-                               onSave={handleSave}
-                               onReset={resetEditableToOriginal}
-                               isSaving={isSaving}
-                           />
-                       </div>
-                   )}
-               </div>
+                <div className={styles.title}>
+                    <div className={styles.title__block}>
+                        {campaignName && <h2 className={styles.title}>{campaignName}</h2>}
+                        {isLockedStatus &&  <p>status: {status}</p>}
+                    </div>
+                    {status !== 'proposal' && (
+                        <div className={styles.title__flex}>
+                            <InternalCost internalCost={editable?.internalCost || 0}/>
+                            <SaveReset
+                                onSave={handleSave}
+                                onReset={resetEditableToOriginal}
+                                isSaving={isSaving}
+                            />
+                        </div>
+                    )}
+                </div>
 
                 <CampaignManagementBar
                     status={status || statusParam}
@@ -426,7 +461,7 @@ export const CampaignManagment = () => {
                     socialMedia={editable?.socialMedia}
                     kind={kind}
                     insightMode={insightMode}
-                    setInsightMode={setInsightMode}
+                    setInsightMode={handleToggleMode}
                     campaign={editable}
                 />
             </div>
