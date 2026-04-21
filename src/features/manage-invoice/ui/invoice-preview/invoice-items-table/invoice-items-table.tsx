@@ -27,7 +27,7 @@ export const InvoiceItemsTable: React.FC<InvoiceItemsTableProps> = ({ invoice })
           <div className={s.gridRow}>
             <div className={s.cell}>{"—"}</div>
             <div className={s.cell}>{invoice.campaignName || "—"}</div>
-            <div className={clsx(s.cell, s.editable)}>
+            <div className={clsx(s.cell)}>
               <EditableInvoiceField
                 initialValue={invoice.poNumber}
                 invoiceId={invoice.invoiceId}
@@ -38,7 +38,7 @@ export const InvoiceItemsTable: React.FC<InvoiceItemsTableProps> = ({ invoice })
             <div className={s.cell}>
               {invoice.campaignFollowers ? formatCompactNumber(invoice.campaignFollowers) : "—"}
             </div>
-            <div className={s.cell}>{invoice.amount ? String(invoice.amount) : "—"}€</div>
+            <div className={s.cell}>{invoice.amount ? `${String(invoice.amount)}€` : "—"}</div>
           </div>
         </div>
 

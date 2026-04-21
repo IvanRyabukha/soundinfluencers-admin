@@ -40,7 +40,6 @@ export const getSocialMediaFromParam = (
   return isSocialMediaValue(platform) ? platform : undefined;
 };
 
-
 export const ITEMS_LIMIT = [
   { label: "10 per page", value: 10 },
   { label: "20 per page", value: 20 },

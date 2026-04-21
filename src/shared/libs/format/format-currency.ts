@@ -12,7 +12,7 @@ export const formatCurrency = (
 ): string => {
   const amount = Number(value);
 
-  if (Number.isNaN(amount)) return "-";
+  if (Number.isNaN(amount)) return "—";
 
   return `${amount}${CURRENCY_SYMBOL[currency]}`;
 };

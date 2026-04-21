@@ -18,9 +18,9 @@
 
 .gridRow {
   display: grid;
-  //grid-template-columns: 125px 139px 73px 35px 62px;
+  //grid-template-columns: 190px 139px 73px 35px 62px;
   grid-template-columns:
-    minmax(125px, 125fr)
+    minmax(190px, 190fr)
     minmax(139px, 139fr)
     minmax(73px, 73fr)
     minmax(35px, 35fr)
@@ -59,10 +59,6 @@
 
 .input {
   text-align: left;
-}
-.editable {
-  border-radius: 2px;
-  background: var(--light-blue);
 }
 
 .footer {

@@ -1,21 +1,14 @@
+@use "@/app/styles/utils/mixins" as mixins;
 @use '@/app/styles/utils/breakpoints' as breakpoints;
-@use '@/app/styles/utils/mixins' as mixins;
 
-.accountUsernameCell {
+.baseTableCell {
   display: flex;
   align-items: center;
-  gap: 4px;
   min-height: 50px;
+  gap: 4px;
 
   padding: 12px 8px;
 
-  @include breakpoints.tablet {
-    padding: 10px 4px;
-  }
-}
-
-.text {
-  flex: 1 1 auto;
   font-size: 14px;
   font-style: normal;
   line-height: normal;
@@ -30,16 +23,8 @@
   user-select: none;
 
   @include breakpoints.tablet {
+    gap: 8px;
+    padding: 10px 4px;
     font-size: 13px;
   }
-}
-
-.icon {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
-  width: 20px;
-  height: 20px;
-  aspect-ratio: 1 / 1;
 }
