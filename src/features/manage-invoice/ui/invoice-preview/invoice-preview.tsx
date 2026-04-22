@@ -4,7 +4,7 @@ import { InvoiceParties } from "@/features/manage-invoice/ui/invoice-preview/inv
 import { InvoiceBalance } from "@/features/manage-invoice/ui/invoice-preview/invoice-balance/invoice-balance.tsx";
 import { PaymentInformation } from "@/features/manage-invoice/ui/invoice-preview/payment-information/payment-information.tsx";
 import { InvoiceItemsTable } from "@/features/manage-invoice/ui/invoice-preview/invoice-items-table/invoice-items-table.tsx";
-import type { IInvoice } from "@/entities/invoice/model/invoice.types.ts";
+import type { IInvoice } from "@/entities/campaign-invoice/model/invoice.types.ts";
 
 import s from './invoice-preview.module.scss';
 

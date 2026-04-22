@@ -1,7 +1,7 @@
 import React from 'react';
 import { InvoiceRow } from "@/features/influencer-invoices/ui/invoice/invoice-preview/invoice-row/invoice-row.tsx";
 import { getBillToRows } from "@/features/influencer-invoices/ui/invoice/invoice-preview/invoice-preview.config.ts";
-import type { IInvoiceDetails } from "@/entities/influencer-invoices/model/influencer-invoices.types.ts";
+import type { IInvoiceDetails } from "@/entities/invoices/model/influencer-invoices.types.ts";
 
 interface InvoicePreviewBillToProps {
   invoiceDetails: IInvoiceDetails;

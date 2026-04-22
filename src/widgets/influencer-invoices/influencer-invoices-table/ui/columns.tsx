@@ -1,25 +1,27 @@
 import type { ColumnDef } from "@tanstack/react-table";
 import { BaseTableCell } from "@/shared/ui";
 import {
-  PaidStatusCell
+  PaidStatusCell,
 } from "@/widgets/influencer-invoices/influencer-invoices-table/ui/paid-status-cell/paid-status-cell.tsx";
 import { DownloadPdf, OpenInfluencerInvoiceButton } from "@/features/influencer-invoices";
-
-import type { IInvoiceTableRow } from "@/entities/influencer-invoices/model/influencer-invoices.types.ts";
 import {
-  SOCIAL_MEDIA_ICONS
+  SOCIAL_MEDIA_ICONS,
 } from "@/widgets/influencer-invoices/influencer-invoices-table/model/influencer-invoices-table.constants.ts";
 import {
-  PAYMENT_METHOD_LABELS
+  PAYMENT_METHOD_LABELS,
 } from "@/widgets/influencer-history/influencer-history-detail-table/model/influencer-history-details-table.helper.ts";
 import {
-  INFLUENCER_INVOICES_STATUS_LABEL
+  INFLUENCER_INVOICES_STATUS_LABEL,
 } from "@/widgets/influencer-invoices/influencer-invoices-table/model/influencer-invoices-table.helper.ts";
 import { formatCurrency } from "@/shared/libs/format/format-currency.ts";
+import {
+  getPaymentDetailsLabel,
+} from "@/features/influencer-invoices/ui/invoice/invoice-preview/invoice-preview.helper.ts";
 
+import type { IInvoiceTableRowDto } from "@/entities/invoices/model/influencer-invoices.types.ts";
 import s from './columns.module.scss';
 
-export const INFLUENCERS_INVOICES_COLUMNS: ColumnDef<IInvoiceTableRow>[] = [
+export const INFLUENCERS_INVOICES_COLUMNS: ColumnDef<IInvoiceTableRowDto>[] = [
   {
     header: "First Name",
     accessorKey: "firstName",
@@ -41,7 +43,7 @@ export const INFLUENCERS_INVOICES_COLUMNS: ColumnDef<IInvoiceTableRow>[] = [
     maxSize: 110,
     cell: ({ row }) => (
       <BaseTableCell>
-        {row.original.lastName}
+        {row.original.lastName ? row.original.lastName : '—'}
       </BaseTableCell>
     ),
   },
@@ -56,8 +58,8 @@ export const INFLUENCERS_INVOICES_COLUMNS: ColumnDef<IInvoiceTableRow>[] = [
       <BaseTableCell>
         <img
           className={s.icon}
-          src={SOCIAL_MEDIA_ICONS[row.original.platform]}
-          alt={row.original.platform}
+          src={SOCIAL_MEDIA_ICONS[row.original.socialMedia]}
+          alt={row.original.socialMedia}
           width={20}
           height={20}
         />
@@ -94,13 +96,13 @@ export const INFLUENCERS_INVOICES_COLUMNS: ColumnDef<IInvoiceTableRow>[] = [
 
   {
     header: "Amount in EUR",
-    accessorKey: "amountEur",
+    accessorKey: "amountInEur",
     size: 86,
     minSize: 86,
     maxSize: 86,
     cell: ({ row }) => (
       <BaseTableCell>
-        {formatCurrency(row.original.amountEur, 'EUR')}
+        {formatCurrency(row.original.amountInEur, 'EUR')}
       </BaseTableCell>
     ),
   },
@@ -129,11 +131,21 @@ export const INFLUENCERS_INVOICES_COLUMNS: ColumnDef<IInvoiceTableRow>[] = [
     size: 160,
     minSize: 160,
     maxSize: 160,
-    cell: ({ row }) => (
-      <BaseTableCell>
-        {row.original.paymentDetails}
-      </BaseTableCell>
-    ),
+    cell: ({ row }) => {
+
+      const details = getPaymentDetailsLabel(row.original.paymentMethod, row.original.paymentDetails);
+
+      return (
+        <BaseTableCell>
+          <span
+            className={s.text}
+            title={details}
+          >
+            {details}
+          </span>
+        </BaseTableCell>
+      );
+    },
   },
 
   {
@@ -156,7 +168,11 @@ export const INFLUENCERS_INVOICES_COLUMNS: ColumnDef<IInvoiceTableRow>[] = [
     minSize: 70,
     maxSize: 70,
     cell: ({ row }) => (
-      <PaidStatusCell status={row.original.paid} className={s.cell} />
+      <PaidStatusCell
+        invoiceId={row.original.invoiceId}
+        status={row.original.isPaid}
+        className={s.cell}
+      />
     ),
   },
 
@@ -169,11 +185,10 @@ export const INFLUENCERS_INVOICES_COLUMNS: ColumnDef<IInvoiceTableRow>[] = [
     cell: ({ row }) => (
       <BaseTableCell>
         <OpenInfluencerInvoiceButton
-          invoiceDetails={row.original.invoiceDetails}
-          invoiceId={row.original.id}
+          invoiceRow={row.original}
+          invoiceId={row.original.invoiceId}
         />
-
-        <DownloadPdf/>
+        <DownloadPdf invoiceId={row.original.invoiceId}/>
       </BaseTableCell>
     ),
   },

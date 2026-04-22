@@ -3,7 +3,7 @@ import React from "react";
 import s from './invoice-balance.module.scss';
 
 interface InvoiceBalanceProps {
-  balance: string;
+  balance: number;
 }
 
 export const InvoiceBalance: React.FC<InvoiceBalanceProps> = ({ balance }) => {

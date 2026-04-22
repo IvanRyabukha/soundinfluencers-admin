@@ -1,7 +1,7 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { updateInvoiceById } from "@/entities/invoice/api/update-invoice.ts";
-import { invoiceQueryKeys } from "@/entities/invoice/model/invoice.query-keys.ts";
-import type { IInvoice } from "@/entities/invoice/model/invoice.types.ts";
+import { updateInvoiceById } from "@/entities/campaign-invoice/api/update-invoice.ts";
+import { invoiceQueryKeys } from "@/entities/campaign-invoice/model/invoice.query-keys.ts";
+import type { IInvoice } from "@/entities/campaign-invoice/model/invoice.types.ts";
 
 export const useUpdateInvoiceMutation = () => {
   const queryClient = useQueryClient();
@@ -41,19 +41,19 @@ export const useUpdateInvoiceMutation = () => {
       }
     },
 
-    onSuccess: (updatedInvoice, variables) => {
-
-      // queryClient.setQueryData(
-      //   invoiceQueryKeys.detail(variables.invoiceId),
-      //   (oldData: IInvoice | undefined) => {
-      //     if (!oldData) return oldData;
-      //
-      //     return {
-      //       ...oldData,
-      //       ...updatedInvoice,
-      //     };
-      //   },
-      // );
-    },
+    // onSuccess: (updatedInvoice, variables) => {
+    //
+    //   queryClient.setQueryData(
+    //     invoiceQueryKeys.detail(variables.invoiceId),
+    //     (oldData: IInvoice | undefined) => {
+    //       if (!oldData) return oldData;
+    //
+    //       return {
+    //         ...oldData,
+    //         ...updatedInvoice,
+    //       };
+    //     },
+    //   );
+    // },
   });
 };

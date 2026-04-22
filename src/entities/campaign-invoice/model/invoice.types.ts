@@ -1,7 +1,7 @@
 export interface IInvoice {
   invoiceId: string;
   creationDate: string;
-  amount: string;
+  amount: number;
   fullName: string;
   country: string;
   address: string;

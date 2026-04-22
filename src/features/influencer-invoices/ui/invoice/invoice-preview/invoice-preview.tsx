@@ -19,7 +19,7 @@ import {
   InvoicePreviewPaypalDetails
 } from "@/features/influencer-invoices/ui/invoice/invoice-preview/invoice-preview-paypal-details/invoice-preview-paypal-details.tsx";
 
-import type { IInvoiceDetails } from "@/entities/influencer-invoices/model/influencer-invoices.types.ts";
+import type { IInvoiceDetails } from "@/entities/invoices/model/influencer-invoices.types.ts";
 
 import s from './invoice-preview.module.scss';
 

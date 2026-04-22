@@ -1,23 +1,34 @@
-import React from "react";
+import React, { useMemo } from "react";
 import { Modal } from "@/shared/ui/modal/modal.tsx";
 import { InvoicePreview } from "@/features/influencer-invoices/ui/invoice/invoice-preview/invoice-preview.tsx";
-import type { IInvoiceDetails } from "@/entities/influencer-invoices/model/influencer-invoices.types.ts";
+import { useInvoiceQuery } from "@/features/manage-invoice/model/use-invoice-query.ts";
+import { normalizeInvoiceToPreview } from "@/features/influencer-invoices/model/influencer-invoces.mapper.ts";
+import type { IInvoiceTableRowDto } from "@/entities/invoices/model/influencer-invoices.types.ts";
 
 import close from "@/assets/icons/x.svg";
 
 import s from './invoice-modal.module.scss';
 
 interface InvoiceModalProps {
-  invoiceDetails: IInvoiceDetails;
+  invoiceRow: IInvoiceTableRowDto;
   invoiceId: string;
   onClose: () => void;
 }
 
 export const InvoiceModal: React.FC<InvoiceModalProps> = ({
-  invoiceDetails,
+  invoiceRow,
   invoiceId,
   onClose,
 }) => {
+
+  const { data, isPending, isError } = useInvoiceQuery(invoiceId);
+
+  const normalizeInvoiceDetails = useMemo(() => {
+    if (!data) return;
+
+    return normalizeInvoiceToPreview(invoiceRow, data);
+  }, [invoiceRow, data]);
+
   return (
     <Modal
       onClose={onClose}
@@ -27,9 +38,15 @@ export const InvoiceModal: React.FC<InvoiceModalProps> = ({
 
       <h2 className={s.title}>Invoice</h2>
 
-      <InvoicePreview
-        invoiceDetails={invoiceDetails}
-      />
+      {isPending && <div>Loading...</div>}
+
+      {isError && <div>Failed to load invoice.</div>}
+
+      {normalizeInvoiceDetails && (
+        <InvoicePreview
+          invoiceDetails={normalizeInvoiceDetails}
+        />
+      )}
 
       <button className={s.closeBtn} onClick={onClose}>
         <img

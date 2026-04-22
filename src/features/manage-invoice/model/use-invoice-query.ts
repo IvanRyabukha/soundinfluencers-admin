@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
-import { getInvoiceById } from "@/entities/invoice/api/get-invoice-by-id.ts";
-import { invoiceQueryKeys } from "@/entities/invoice/model/invoice.query-keys.ts";
+import { getInvoiceById } from "@/entities/campaign-invoice/api/get-invoice-by-id.ts";
+import { invoiceQueryKeys } from "@/entities/campaign-invoice/model/invoice.query-keys.ts";
 
 export const useInvoiceQuery = (invoiceId: string) => {
   return useQuery({

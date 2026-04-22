@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { InvoiceModal } from "@/features/influencer-invoices/ui/invoice/invoice-modal/invoice-modal.tsx";
-import type { IInvoiceDetails } from "@/entities/influencer-invoices/model/influencer-invoices.types.ts";
+import type { IInvoiceTableRowDto } from "@/entities/invoices/model/influencer-invoices.types.ts";
 
 import eye from '@/assets/icons/eye.svg';
 
@@ -8,12 +8,12 @@ import s from './open-influencer-invoice-button.module.scss';
 
 interface InfluencerInvoiceButton {
   invoiceId: string;
-  invoiceDetails: IInvoiceDetails;
+  invoiceRow: IInvoiceTableRowDto;
 }
 
 export const OpenInfluencerInvoiceButton: React.FC<InfluencerInvoiceButton> = ({
   invoiceId,
-  invoiceDetails,
+  invoiceRow,
 }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -44,7 +44,7 @@ export const OpenInfluencerInvoiceButton: React.FC<InfluencerInvoiceButton> = ({
       {isModalOpen && (
         <InvoiceModal
           invoiceId={invoiceId}
-          invoiceDetails={invoiceDetails}
+          invoiceRow={invoiceRow}
           onClose={handleCloseInvoiceModal}
         />
       )}

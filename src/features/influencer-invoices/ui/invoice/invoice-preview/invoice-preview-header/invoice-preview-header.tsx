@@ -1,5 +1,5 @@
 import React from 'react';
-import type { IInvoiceDetails } from "@/entities/influencer-invoices/model/influencer-invoices.types.ts";
+import type { IInvoiceDetails } from "@/entities/invoices/model/influencer-invoices.types.ts";
 
 import s from './invoice-preview-header.module.scss';
 
@@ -16,7 +16,7 @@ export const InvoicePreviewHeader: React.FC<InvoicePreviewHeaderProps> = ({
       <div className={s.column}>
         <span>{invoiceDetails.from.fullName}</span>
         <span>{invoiceDetails.from.addressLine1}</span>
-        <span>{invoiceDetails.from.country}</span>
+        <span>{invoiceDetails.from.addressLine2}</span>
 
         <div>
           <span className={s.label}>Postcode: </span>

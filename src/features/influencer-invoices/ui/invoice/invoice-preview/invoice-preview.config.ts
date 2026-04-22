@@ -1,5 +1,9 @@
-import type { IInvoiceDetails } from "@/entities/influencer-invoices/model/influencer-invoices.types.ts";
+import type { IInvoiceDetails } from "@/entities/invoices/model/influencer-invoices.types.ts";
 import type { TCurrency } from "@/shared/types/types.ts";
+import {
+  compactRows,
+  isNonEmptyValue,
+} from "@/features/influencer-invoices/ui/invoice/invoice-preview/invoice-preview.helper.ts";
 
 export interface IInvoicePreviewRowConfig {
   key: string;
@@ -11,28 +15,36 @@ export interface IInvoicePreviewRowConfig {
 export const getBillToRows = (
   invoiceDetails: IInvoiceDetails,
 ): IInvoicePreviewRowConfig[] => {
-  return [
-    {
-      key: "chamberOfCommerce",
-      label: "Chamber of commerce:",
-      value: invoiceDetails.billTo.chamberOfCommerce,
-    },
-    {
-      key: "email",
-      label: "Email address:",
-      value: invoiceDetails.billTo.email,
-    },
-    {
-      key: "phoneNumber",
-      label: "Phone number:",
-      value: invoiceDetails.billTo.phoneNumber,
-    },
-    {
-      key: "address",
-      label: "Address:",
-      value: invoiceDetails.billTo.address,
-    },
-  ];
+  return compactRows([
+    isNonEmptyValue(invoiceDetails.billTo.chamberOfCommerce)
+      ? {
+        key: "chamberOfCommerce",
+        label: "Chamber of commerce:",
+        value: invoiceDetails.billTo.chamberOfCommerce,
+      }
+      : null,
+    isNonEmptyValue(invoiceDetails.billTo.email)
+      ? {
+        key: "email",
+        label: "Email address:",
+        value: invoiceDetails.billTo.email,
+      }
+      : null,
+    isNonEmptyValue(invoiceDetails.billTo.phoneNumber)
+      ? {
+        key: "phoneNumber",
+        label: "Phone number:",
+        value: invoiceDetails.billTo.phoneNumber,
+      }
+      : null,
+    isNonEmptyValue(invoiceDetails.billTo.address)
+      ? {
+        key: "address",
+        label: "Address:",
+        value: invoiceDetails.billTo.address,
+      }
+      : null,
+  ]);
 };
 
 export const getSummaryRows = (
@@ -40,12 +52,12 @@ export const getSummaryRows = (
   formatMoney: (amount: number, currency: TCurrency) => string,
 ): IInvoicePreviewRowConfig[] => {
   return [
-    {
-      key: "description",
-      label: "Description:",
-      value: invoiceDetails.summary.description,
-      labelWeight: "medium",
-    },
+    // {
+    //   key: "description",
+    //   label: "Description:",
+    //   value: invoiceDetails.summary.description,
+    //   labelWeight: "medium",
+    // },
     {
       key: "total",
       label: "Total:",
@@ -79,41 +91,74 @@ export const getSummaryRows = (
 export const getBankDetailsRows = (
   invoiceDetails: IInvoiceDetails,
 ): IInvoicePreviewRowConfig[] => {
-  if (!invoiceDetails.bankDetails) return [];
+  const bankDetails = invoiceDetails.bankDetails;
 
-  return [
-    {
-      key: "bankName",
-      label: "Bank Name:",
-      value: invoiceDetails.bankDetails.bankName,
-    },
-    {
-      key: "beneficiary",
-      label: "Beneficiary:",
-      value: invoiceDetails.bankDetails.beneficiary,
-    },
-    {
-      key: "beneficiaryAddress",
-      label: "Beneficiary Address:",
-      value: invoiceDetails.bankDetails.beneficiaryAddress,
-    },
-    {
-      key: "sortCode",
-      label: "Sort Code:",
-      value: invoiceDetails.bankDetails.sortCode,
-    },
-    {
-      key: "accountNumber",
-      label: "Account Number:",
-      value: invoiceDetails.bankDetails.accountNumber,
-    },
-  ];
+  if (!bankDetails) return [];
+
+  return compactRows([
+    isNonEmptyValue(bankDetails.bankName)
+      ? {
+        key: "bankName",
+        label: "Bank Name:",
+        value: bankDetails.bankName,
+      }
+      : null,
+    isNonEmptyValue(bankDetails.beneficiary)
+      ? {
+        key: "beneficiary",
+        label: "Beneficiary:",
+        value: bankDetails.beneficiary,
+      }
+      : null,
+    isNonEmptyValue(bankDetails.beneficiaryAddress)
+      ? {
+        key: "beneficiaryAddress",
+        label: "Beneficiary Address:",
+        value: bankDetails.beneficiaryAddress,
+      }
+      : null,
+    isNonEmptyValue(bankDetails.sortCode)
+      ? {
+        key: "sortCode",
+        label: "Sort Code:",
+        value: bankDetails.sortCode,
+      }
+      : null,
+    isNonEmptyValue(bankDetails.accountNumber)
+      ? {
+        key: "accountNumber",
+        label: "Account Number:",
+        value: bankDetails.accountNumber,
+      }
+      : null,
+    isNonEmptyValue(bankDetails.iban)
+      ? {
+        key: "iban",
+        label: "IBAN:",
+        value: bankDetails.iban,
+      }
+      : null,
+    isNonEmptyValue(bankDetails.swiftBicCode)
+      ? {
+        key: "swiftBicCode",
+        label: "SWIFT/BIC:",
+        value: bankDetails.swiftBicCode,
+      }
+      : null,
+    isNonEmptyValue(bankDetails.bankCountry)
+      ? {
+        key: "bankCountry",
+        label: "Bank Country:",
+        value: bankDetails.bankCountry,
+      }
+      : null,
+  ]);
 };
 
 export const getPaypalRows = (
   invoiceDetails: IInvoiceDetails,
 ): IInvoicePreviewRowConfig[] => {
-  if (!invoiceDetails.paypalEmail) return [];
+  if (!isNonEmptyValue(invoiceDetails.paypalEmail)) return [];
 
   return [
     {

@@ -1,6 +1,6 @@
 import React from "react";
 import { EditableInvoiceField } from "@/features/manage-invoice/ui/editable-invoice-field/editable-invoice-field.tsx";
-import type { IInvoice } from "@/entities/invoice/model/invoice.types.ts";
+import type { IInvoice } from "@/entities/campaign-invoice/model/invoice.types.ts";
 
 export type TToField<T> = {
   key: keyof T;

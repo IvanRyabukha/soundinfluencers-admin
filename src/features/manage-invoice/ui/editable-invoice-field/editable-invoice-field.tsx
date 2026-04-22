@@ -1,7 +1,7 @@
 import React, { useMemo, useRef, useState } from "react";
 import { useUpdateInvoiceMutation } from "@/features/manage-invoice/model/use-update-invoice-mutation.ts";
 import { toast } from "react-toastify";
-import type { TInvoiceEditableKey } from "@/entities/invoice/model/invoice.types.ts";
+import type { TInvoiceEditableKey } from "@/entities/campaign-invoice/model/invoice.types.ts";
 import clsx from "clsx";
 
 import s from './editable-invoice-field.module.scss';

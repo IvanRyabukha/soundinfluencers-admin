@@ -4,11 +4,16 @@ import { BaseTableCell } from "@/shared/ui";
 import { ConfirmPaidStatus } from "@/features/influencer-invoices";
 
 interface PaidStatusCellProps {
+  invoiceId: string;
   status: boolean;
   className?: string;
 }
 
-export const PaidStatusCell: React.FC<PaidStatusCellProps> = ({ status, className }) => {
+export const PaidStatusCell: React.FC<PaidStatusCellProps> = ({
+  invoiceId,
+  status,
+  className,
+}) => {
   const [isOpen, setIsOpen] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
 
@@ -19,6 +24,7 @@ export const PaidStatusCell: React.FC<PaidStatusCellProps> = ({ status, classNam
   return (
     <BaseTableCell ref={ref} className={className}>
       <ConfirmPaidStatus
+        invoiceId={invoiceId}
         status={status}
         isOpen={isOpen}
         onOpen={() => setIsOpen(true)}

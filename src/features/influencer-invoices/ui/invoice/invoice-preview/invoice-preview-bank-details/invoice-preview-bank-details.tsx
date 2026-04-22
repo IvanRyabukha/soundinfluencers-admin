@@ -3,7 +3,7 @@ import { InvoiceRow } from "@/features/influencer-invoices/ui/invoice/invoice-pr
 import {
   getBankDetailsRows,
 } from "@/features/influencer-invoices/ui/invoice/invoice-preview/invoice-preview.config.ts";
-import type { IInvoiceDetails } from "@/entities/influencer-invoices/model/influencer-invoices.types.ts";
+import type { IInvoiceDetails } from "@/entities/invoices/model/influencer-invoices.types.ts";
 
 interface InvoicePreviewBankDetailsProps {
   invoiceDetails: IInvoiceDetails;

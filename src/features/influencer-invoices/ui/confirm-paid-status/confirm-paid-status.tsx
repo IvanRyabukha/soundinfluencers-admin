@@ -4,23 +4,43 @@ import close from '@/assets/icons/x.svg';
 import check from '@/assets/icons/check.svg';
 
 import s from "./confirm-paid-status.module.scss";
+import { useUpdateInvoiceMutation } from "@/features/influencer-invoices/model/use-update-influencer-invoices.ts";
+import { toast } from "react-toastify";
 
 interface ConfirmPaidStatusProps {
+  invoiceId: string;
   status: boolean;
   isOpen: boolean;
-  onOpen?: () => void;
-  onClose?: () => void;
+  onOpen: () => void;
+  onClose: () => void;
 }
 
 export const ConfirmPaidStatus: React.FC<ConfirmPaidStatusProps> = ({
+  invoiceId,
   status,
   isOpen,
   onOpen,
   onClose,
 }) => {
 
+  const { mutate, isPending } = useUpdateInvoiceMutation();
+
   if (status) {
     return "Paid";
+  }
+
+  const handleUpdateStatus = () => {
+    mutate(invoiceId, {
+      onSuccess: () => {
+        onClose();
+
+        toast('Invoice status updated to Paid successfully', {
+          type: "success",
+          position: "top-right",
+          autoClose: 3000,
+        });
+      },
+    });
   }
 
   return (
@@ -30,8 +50,8 @@ export const ConfirmPaidStatus: React.FC<ConfirmPaidStatusProps> = ({
           <button
             type="button"
             className={s.btn}
-            onClick={() => alert('Invoice status updated to Paid is not implemented yet')}
-            // disabled={isPending}
+            onClick={handleUpdateStatus}
+            disabled={isPending}
           >
             <img
               className={s.icon}

@@ -2,7 +2,7 @@ import React from "react";
 import clsx from "clsx";
 import { STATIC_COMPANY_INFO } from "@/features/manage-invoice/model/invoice-preview.constants.ts";
 import { toFields } from "@/features/manage-invoice/model/invoice-preview.config.tsx";
-import type { IInvoice } from "@/entities/invoice/model/invoice.types.ts";
+import type { IInvoice } from "@/entities/campaign-invoice/model/invoice.types.ts";
 
 import s from './invoice-parties.module.scss';
 

@@ -1,5 +1,5 @@
 import { $api } from "@/app/api/http.ts";
-import type { IUpdateInvoiceResponse, TUpdateInfluencerParams } from "@/entities/invoice/model/invoice.types.ts";
+import type { IUpdateInvoiceResponse, TUpdateInfluencerParams } from "@/entities/campaign-invoice/model/invoice.types.ts";
 
 export const updateInvoiceById = async ({
   invoiceId,

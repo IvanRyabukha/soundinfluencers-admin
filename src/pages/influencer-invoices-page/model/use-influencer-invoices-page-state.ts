@@ -5,6 +5,7 @@ import {
   parseAsString,
   useQueryState,
 } from "nuqs";
+import type { TGetInfluencersInvoicesParams } from "@/entities/invoices/model/influencer-invoices.types.ts";
 
 export const useInfluencerInvoicesPageState = () => {
   const LIMIT = 10;
@@ -39,18 +40,19 @@ export const useInfluencerInvoicesPageState = () => {
     void setPage(nextPage, { history: "replace" });
   };
 
-  const influencerInvoiceQueryParams = useMemo(
-    () => ({
-      limit: LIMIT,
-      search: query.trim(),
-      page,
-    }),
+  const influencerInvoiceQueryParams: TGetInfluencersInvoicesParams = useMemo(
+    () => {
+      const normalizedQuery = query.trim();
+
+      return normalizedQuery
+        ? { search: normalizedQuery }
+        : { page, limit: LIMIT };
+    },
     [query, page],
   );
 
   return {
     page,
-    query,
     searchValue,
     influencerInvoiceQueryParams,
 

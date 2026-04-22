@@ -1,5 +1,5 @@
 import { $api } from "@/app/api/http.ts";
-import type { IInvoiceResponse } from "@/entities/invoice/model/invoice.types.ts";
+import type { IInvoiceResponse } from "@/entities/campaign-invoice/model/invoice.types.ts";
 
 export const getInvoiceById = async (invoiceId: string) => {
   console.log(`Getting invoice with ID: ${invoiceId}`);
