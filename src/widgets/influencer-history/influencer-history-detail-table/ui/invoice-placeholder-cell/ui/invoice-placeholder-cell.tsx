@@ -10,7 +10,7 @@ export const InvoicePlaceholderCell: React.FC<InvoicePlaceholderCellProps> = ({
 }) => {
   return (
     <div className={s.invoice}>
-      <span>{text}</span>
+      <span className={s.text}>{text}</span>
     </div>
   );
 };

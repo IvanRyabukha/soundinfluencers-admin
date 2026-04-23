@@ -1,0 +1,11 @@
+.cell {
+  justify-content: center;
+}
+
+.text {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  user-select: none;
+}

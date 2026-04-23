@@ -34,7 +34,7 @@ export interface IInfluencerDetailsResponse {
   data: IInfluencerDetails;
 }
 
-//update influencer (change for partial IInfluencer)
+//update influencer (change base partial IInfluencer)
 export interface IUpdateInfluencerDto {
   firstName?: string;
   lastName?: string;

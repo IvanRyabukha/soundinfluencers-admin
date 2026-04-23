@@ -1,0 +1,30 @@
+@use "@/app/styles/utils/mixins" as mixins;
+@use '@/app/styles/utils/breakpoints' as breakpoints;
+
+.baseTableCell {
+  display: flex;
+  align-items: center;
+  min-height: 50px;
+  gap: 4px;
+
+  padding: 12px 8px;
+
+  font-size: 14px;
+  font-style: normal;
+  line-height: normal;
+  font-weight: 400;
+
+  color: var(--black);
+
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  user-select: none;
+
+  @include breakpoints.tablet {
+    gap: 8px;
+    padding: 10px 4px;
+    font-size: 13px;
+  }
+}

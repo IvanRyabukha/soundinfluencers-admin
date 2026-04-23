@@ -30,12 +30,13 @@
 }
 
 .content {
+  width: min(625px, calc(100vw - 32px));
   position: relative;
   padding: 32px 48px;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
+  align-items: stretch;
   gap: 32px;
 
   border-radius: vars.$radius-sm;
@@ -43,10 +44,12 @@
   background: var(--background-color);
 
   @include breakpoints.tablet {
+    width: min(610px, calc(100vw - 32px));
     padding: 24px 32px;
   }
 
   @include breakpoints.mobile {
+    width: calc(100vw - 32px);
     padding: 16px;
     gap: 24px;
   }

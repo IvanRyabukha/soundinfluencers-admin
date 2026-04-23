@@ -10,6 +10,7 @@ export { BaseCurrencySelector } from './form-input/base-currency-selector/base-c
 export { BasePriceInput } from './form-input/base-price-input/base-price-input';
 export { BaseCountryAutocompleteField } from './form-input/base-country-autocomplete-field/base-country-autocomplete-field';
 export { BaseCheckboxTreeField } from './form-input/base-checkbox-tree-field/base-checkbox-tree-field';
+export { BaseTableCell } from './base-table-cell/base-table-cell';
 
 export { Form } from './form/form';
 export { Button } from './button/button';

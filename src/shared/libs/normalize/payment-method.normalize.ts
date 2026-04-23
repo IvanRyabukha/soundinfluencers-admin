@@ -1,4 +1,4 @@
-import type { TPaymentMethod } from "@/entities/influencer-history/model/influencer-history-detail.types.ts";
+import type { TPaymentMethod } from "@/shared/types/types.ts";
 
 export const PAYMENT_METHOD_LABELS: Record<TPaymentMethod, string> = {
   paypal: "PayPal",

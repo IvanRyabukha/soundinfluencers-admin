@@ -77,7 +77,7 @@ export const ClientNoteEditor: React.FC<ClientNoteEditorProps> = ({ clientId, in
     }
   }, [handleCloseEditor]);
 
-  const displayValue = normalizedInitialValue.trim() ? normalizedInitialValue : "-";
+  const displayValue = normalizedInitialValue.trim() ? normalizedInitialValue : "—";
 
   return (
     <div
