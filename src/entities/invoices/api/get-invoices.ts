@@ -1,9 +1,12 @@
 import { $api } from "@/app/api/http.ts";
 import type {
   IInfluencersInvoicesListResponse,
-  TGetClientsInvoicesParams,
-  TGetInfluencersInvoicesParams,
+  TGetInfluencersInvoicesParams
 } from "@/entities/invoices/model/influencer-invoices.types.ts";
+import type {
+  IClientsInvoicesListResponse,
+  TGetClientsInvoicesParams,
+} from "@/entities/invoices/model/clients-invoices.types.ts";
 
 export const getInfluencersInvoices = async (params: TGetInfluencersInvoicesParams) => {
   console.log("Get Influencers Invoices", params);
@@ -20,4 +23,12 @@ export const getInfluencersInvoices = async (params: TGetInfluencersInvoicesPara
 
 export const getClientsInvoices = async (params: TGetClientsInvoicesParams) => {
   console.log("Get Clients Invoices", params);
+
+  const { data } = await $api.get<IClientsInvoicesListResponse>('/admin/invoices/client', {
+    params,
+  });
+
+  console.log('Successfully get Clients Invoices', data);
+
+  return data.data;
 }

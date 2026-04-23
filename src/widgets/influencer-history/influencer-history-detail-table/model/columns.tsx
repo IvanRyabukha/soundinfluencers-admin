@@ -13,11 +13,7 @@ import {
   AccountUsernameCell
 } from "@/widgets/influencer-history/influencer-history-detail-table/ui/account-user-name-cell";
 import { CampaignCell } from "@/widgets/influencer-history/influencer-history-detail-table/ui/campaign-cell";
-
-import {
-  PAYMENT_METHOD_LABELS
-} from "@/widgets/influencer-history/influencer-history-detail-table/model/influencer-history-details-table.helper.ts";
-
+import { PAYMENT_METHOD_LABELS } from "@/shared/libs/normalize/payment-method.normalize.ts";
 
 export const INFLUENCER_HISTORY_DETAILS_COLUMNS: ColumnDef<IInfluencerHistoryDetailsTableRow>[] = [
   {

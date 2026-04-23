@@ -1,6 +1,6 @@
 import type { TSocialMediaValue } from "@/entities/influencers/model/influencers.constants.ts";
-import type { TPaymentMethod } from "@/entities/influencer-history/model/influencer-history-detail.types.ts";
-import type { TCurrency } from "@/shared/types/types.ts";
+
+import type { TCurrency, TPaymentMethod } from "@/shared/types/types.ts";
 
 export type TInvoiceStatus = "submitted" | "paid";
 
@@ -84,11 +84,18 @@ export interface IInvoiceDetails {
 }
 
 // Params for getting influencers invoices list
-export type TGetInfluencersInvoicesParams = {
-  limit?: number;
-  page?: number;
-  search?: string;
-}
+export type TGetInfluencersInvoicesParams =
+  {
+    search: string;
+    page?: never;
+    limit?: never;
+  }
+  |
+  {
+    page: number;
+    limit: number;
+    search?: never;
+  };
 
 export interface IInfluencersInvoicesListPayload {
   total: number;
@@ -102,25 +109,4 @@ export interface IInfluencersInvoicesListResponse {
   statusCode: number;
   message: string;
   data: IInfluencersInvoicesListPayload;
-}
-
-// Params for getting clients invoices list
-export type TGetClientsInvoicesParams = {
-  limit: number;
-  page: number;
-  search?: string;
-}
-
-export interface IClientsInvoicesListPayload {
-  total: number;
-  page: number;
-  limit: number;
-  totalPages: number;
-  items: any[];
-}
-
-export interface IClientsInvoicesListResponse {
-  statusCode: number;
-  message: string;
-  data: IClientsInvoicesListPayload;
 }

@@ -1,7 +1,7 @@
 import React, { useMemo } from "react";
-import { Modal } from "@/shared/ui/modal/modal.tsx";
-import { InvoicePreview } from "@/features/influencer-invoices/ui/invoice/invoice-preview/invoice-preview.tsx";
 import { useInvoiceQuery } from "@/features/manage-invoice/model/use-invoice-query.ts";
+import { Modal } from "@/shared/ui/modal/modal.tsx";
+import { InvoicePreview } from "@/widgets/influencer-invoices/invoice-preview/ui/invoice-preview.tsx";
 import { normalizeInvoiceToPreview } from "@/features/influencer-invoices/model/influencer-invoces.mapper.ts";
 import type { IInvoiceTableRowDto } from "@/entities/invoices/model/influencer-invoices.types.ts";
 

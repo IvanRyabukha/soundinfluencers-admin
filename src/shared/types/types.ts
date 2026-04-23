@@ -9,3 +9,4 @@ export type TSocialMedia =
   | "multipromo";
 
 export type TCurrency = 'EUR' | 'GBP' | 'USD';
+export type TPaymentMethod = "paypal" | "ukBankTransfer" | "internationalBankTransfer";

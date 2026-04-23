@@ -5,9 +5,9 @@ import {
   parseAsString,
   useQueryState,
 } from "nuqs";
-import type { TGetInfluencersInvoicesParams } from "@/entities/invoices/model/influencer-invoices.types.ts";
+import type { TGetClientsInvoicesParams } from "@/entities/invoices/model/clients-invoices.types.ts";
 
-export const useInfluencerInvoicesPageState = () => {
+export const useClientsInvoicesPageState = () => {
   const LIMIT = 10;
 
   const [page, setPage] = useQueryState(
@@ -44,7 +44,7 @@ export const useInfluencerInvoicesPageState = () => {
     void setPage(nextPage, { history: "replace" });
   };
 
-  const influencersInvoicesQueryParams: TGetInfluencersInvoicesParams = useMemo(() => {
+  const clientsInvoiceQueryParams: TGetClientsInvoicesParams = useMemo(() => {
     const normalizedQuery = query.trim();
 
     if (normalizedQuery) {
@@ -62,7 +62,7 @@ export const useInfluencerInvoicesPageState = () => {
   return {
     page,
     searchValue,
-    influencersInvoicesQueryParams,
+    clientsInvoiceQueryParams,
     handleSearchChange,
     handlePageChange,
   };

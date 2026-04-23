@@ -1,7 +1,7 @@
 import type { TSocialMediaValue } from "@/entities/influencers/model/influencers.constants.ts";
+import type { TPaymentMethod } from "@/shared/types/types.ts";
 
 export type TActionType = 'invoice' | 'campaign';
-export type TPaymentMethod = "paypal" | "ukBankTransfer" | "internationalBankTransfer";
 
 export interface IInfluencerAccount {
   accountId: string;

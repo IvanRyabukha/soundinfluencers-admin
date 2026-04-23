@@ -1,22 +1,17 @@
 import type { ColumnDef } from "@tanstack/react-table";
 import { BaseTableCell } from "@/shared/ui";
-import {
-  PaidStatusCell,
-} from "@/widgets/influencer-invoices/influencer-invoices-table/ui/paid-status-cell/paid-status-cell.tsx";
-import { DownloadPdf, OpenInfluencerInvoiceButton } from "@/features/influencer-invoices";
+import { PaidStatusCell, } from "@/widgets/influencer-invoices/influencer-invoices-table/ui/paid-status-cell/paid-status-cell.tsx";
+import { OpenInfluencerInvoiceButton } from "@/features/influencer-invoices";
+import { DownloadInvoicePdf } from "@/features/download-invoice-pdf/download-invoice-pdf.tsx";
+import { PAYMENT_METHOD_LABELS } from "@/shared/libs/normalize/payment-method.normalize.ts";
 import {
   SOCIAL_MEDIA_ICONS,
 } from "@/widgets/influencer-invoices/influencer-invoices-table/model/influencer-invoices-table.constants.ts";
 import {
-  PAYMENT_METHOD_LABELS,
-} from "@/widgets/influencer-history/influencer-history-detail-table/model/influencer-history-details-table.helper.ts";
-import {
   INFLUENCER_INVOICES_STATUS_LABEL,
 } from "@/widgets/influencer-invoices/influencer-invoices-table/model/influencer-invoices-table.helper.ts";
 import { formatCurrency } from "@/shared/libs/format/format-currency.ts";
-import {
-  getPaymentDetailsLabel,
-} from "@/features/influencer-invoices/ui/invoice/invoice-preview/invoice-preview.helper.ts";
+import { getPaymentDetailsLabel } from "@/widgets/influencer-invoices/invoice-preview/model/invoice-preview.helper.ts";
 
 import type { IInvoiceTableRowDto } from "@/entities/invoices/model/influencer-invoices.types.ts";
 import s from './columns.module.scss';
@@ -188,7 +183,7 @@ export const INFLUENCERS_INVOICES_COLUMNS: ColumnDef<IInvoiceTableRowDto>[] = [
           invoiceRow={row.original}
           invoiceId={row.original.invoiceId}
         />
-        <DownloadPdf invoiceId={row.original.invoiceId}/>
+        <DownloadInvoicePdf invoiceId={row.original.invoiceId}/>
       </BaseTableCell>
     ),
   },

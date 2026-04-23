@@ -1,11 +1,11 @@
 import React from "react";
+import { useUpdateInvoiceMutation } from "@/features/influencer-invoices/model/use-update-influencer-invoices.ts";
+import { toast } from "react-toastify";
 
 import close from '@/assets/icons/x.svg';
 import check from '@/assets/icons/check.svg';
 
 import s from "./confirm-paid-status.module.scss";
-import { useUpdateInvoiceMutation } from "@/features/influencer-invoices/model/use-update-influencer-invoices.ts";
-import { toast } from "react-toastify";
 
 interface ConfirmPaidStatusProps {
   invoiceId: string;

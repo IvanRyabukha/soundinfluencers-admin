@@ -14,13 +14,14 @@ import { InfluencersListPage } from "@/pages/influencers/influencer-list-page";
 import { InfluencerDetailsPage } from "@/pages/influencers/influencer-details-page";
 import { CreateInfluencerAccountPage } from "@/pages/influencers/create-influencer-account-page";
 import { EditInfluencerAccountPage } from "@/pages/influencers/edit-influencer-account-page";
-import {CampaignManagment} from "@/pages/campaign-managment";
+import { CampaignManagment } from "@/pages/campaign-managment";
 import {
-    CampaignManagmentAddAccounts
-} from "@/pages/campaign-managment-add-accounts/ui/campaign-managment-add-accounts.tsx";
+  CampaignManagmentAddAccounts,
+} from "@/pages/campaign-managment-add-accounts/ui/campaign-managment-add-accounts";
 import { InfluencerHistoryPage } from "@/pages/influencer-history/influencer-history-page";
 import { InfluencerHistoryDetailsPage } from "@/pages/influencer-history/influencer-history-details-page";
 import { InfluencerInvoicesPage } from "@/pages/influencer-invoices-page";
+import { ClientsInvoicesPage } from "@/pages/clients-invoices-page";
 
 
 export const ROUTER = createBrowserRouter([
@@ -62,13 +63,13 @@ export const ROUTER = createBrowserRouter([
                 path: "dashboard/campaigns",
                 children: [
                   { index: true, element: <CampaignsPage/> },
-                    {
-                        path: "campaign-management",
-                        children: [
-                            { index: true, element: <CampaignManagment /> },
-                            { path: "add-account", element: <CampaignManagmentAddAccounts /> },
-                        ],
-                    },
+                  {
+                    path: "campaign-management",
+                    children: [
+                      { index: true, element: <CampaignManagment/> },
+                      { path: "add-account", element: <CampaignManagmentAddAccounts/> },
+                    ],
+                  },
                 ],
               },
 
@@ -98,23 +99,7 @@ export const ROUTER = createBrowserRouter([
               {
                 path: "dashboard/client-invoices",
                 children: [
-                  {
-                    index: true, element:
-                      <div style={{
-                        textAlign: "center",
-                        display: 'flex',
-                        flexDirection: 'column',
-                        justifyContent: 'center',
-                        gap: 20,
-                        paddingBlock: 150,
-                      }}>
-                        <h1 style={{ fontSize: 40 }}>🚧 This page is under development</h1>
-                        <p style={{ fontSize: 20, color: "#666" }}>
-                          We're working hard to bring this feature to life.<br/>
-                          It will be available very soon.
-                        </p>
-                      </div>,
-                  },
+                  { index: true, element: <ClientsInvoicesPage/> },
                 ],
               },
 
@@ -144,17 +129,17 @@ export const ROUTER = createBrowserRouter([
               {
                 path: "dashboard/influencers",
                 children: [
-                  { index: true, element: <InfluencersListPage /> },
+                  { index: true, element: <InfluencersListPage/> },
                   {
                     path: ":influencerId",
                     children: [
-                      { index: true, element: <InfluencerDetailsPage /> },
+                      { index: true, element: <InfluencerDetailsPage/> },
 
                       {
                         path: "accounts",
                         children: [
-                          { path: ":platform/create", element: <CreateInfluencerAccountPage /> },
-                          { path: ":platform/:accountId/edit", element: <EditInfluencerAccountPage /> },
+                          { path: ":platform/create", element: <CreateInfluencerAccountPage/> },
+                          { path: ":platform/:accountId/edit", element: <EditInfluencerAccountPage/> },
                         ],
                       },
                     ],
@@ -189,7 +174,7 @@ export const ROUTER = createBrowserRouter([
                 path: "dashboard/influencer-invoices",
                 children: [
                   {
-                    index: true, element: <InfluencerInvoicesPage />,
+                    index: true, element: <InfluencerInvoicesPage/>,
                   },
                 ],
               },
@@ -203,7 +188,7 @@ export const ROUTER = createBrowserRouter([
                     children: [
                       { index: true, element: <InfluencerHistoryDetailsPage/> },
                     ],
-                  }
+                  },
                 ],
               },
 
